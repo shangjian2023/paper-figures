@@ -1,0 +1,5461 @@
+{
+ "note": "数据输入契约。format: long=每行一观测 / wide=每列一组 / matrix=行列矩阵 / edges=边表 / sets=集合表 / xy=坐标表 / newick=树文件 / ternary 见 columns。使用: scripts/data_io.py 的 load/validate/as_* 适配器。",
+ "schemas": {
+  "001": {
+   "case": "案例1",
+   "title": "Nature 柱形图",
+   "family": "bar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/处理名"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "测量值"
+    },
+    {
+     "name": "pair_id",
+     "type": "string",
+     "required": false,
+     "desc": "配对个体 ID(配对图必填)"
+    }
+   ],
+   "notes": "2-8 组, 每组 n>=3; 若做显著性需对照组 | 分组(3组)×细胞计数,Cont约13个、处理组8-15个重复",
+   "source_text": "分组(3组)×细胞计数,Cont约13个、处理组8-15个重复",
+   "recipe_vars": [
+    {
+     "name": "groups",
+     "line": 16,
+     "rhs": "['Cont', 'pcna', 'foxj1a']"
+    },
+    {
+     "name": "data",
+     "line": 20,
+     "rhs": "[r.normal(m, s, k).clip(5, 400) for m, s"
+    }
+   ]
+  },
+  "002": {
+   "case": "案例2",
+   "title": "Lancet PCoA图",
+   "family": "scatter",
+   "format": "xy",
+   "columns": [
+    {
+     "name": "PC1",
+     "type": "number",
+     "required": true,
+     "desc": "PCo1 得分"
+    },
+    {
+     "name": "PC2",
+     "type": "number",
+     "required": true,
+     "desc": "PCo2 得分"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组"
+    }
+   ],
+   "notes": "排序图: 附各轴解释率于列名或 notes | 样本×PCo1/PCo2得分,3组各约50样本",
+   "source_text": "样本×PCo1/PCo2得分,3组各约50样本",
+   "recipe_vars": [
+    {
+     "name": "groups",
+     "line": 16,
+     "rhs": "['HC', 'Adult-onset T1D', 'T2D']"
+    }
+   ]
+  },
+  "003": {
+   "case": "案例3",
+   "title": "Nature PCoA图",
+   "family": "scatter",
+   "format": "xy",
+   "columns": [
+    {
+     "name": "PC1",
+     "type": "number",
+     "required": true,
+     "desc": "PCo1"
+    },
+    {
+     "name": "PC2",
+     "type": "number",
+     "required": true,
+     "desc": "PCo2"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "control/IBD"
+    },
+    {
+     "name": "study",
+     "type": "category",
+     "required": true,
+     "desc": "研究来源"
+    }
+   ],
+   "notes": "约1500样本×PCo1/PCo2,研究来源(6)×组别(2)",
+   "source_text": "约1500样本×PCo1/PCo2,研究来源(6)×组别(2)"
+  },
+  "004": {
+   "case": "案例4",
+   "title": "Nature 折线图",
+   "family": "curve",
+   "format": "long",
+   "columns": [
+    {
+     "name": "time",
+     "type": "number",
+     "required": true,
+     "desc": "时间/浓度/频率(自变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "响应值"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "系列"
+    },
+    {
+     "name": "err",
+     "type": "number",
+     "required": false,
+     "desc": "SEM/CI 半宽"
+    }
+   ],
+   "notes": "时序类每组 5-20 个时间点 | 4组×7时间点(0-35天)×体重变化%,每组10-15",
+   "source_text": "4组×7时间点(0-35天)×体重变化%,每组10-15",
+   "recipe_vars": [
+    {
+     "name": "days",
+     "line": 19,
+     "rhs": "np.array([0, 7, 14, 20, 26, 30, 35])"
+    },
+    {
+     "name": "means",
+     "line": 20,
+     "rhs": "np.array(["
+    }
+   ]
+  },
+  "005": {
+   "case": "案例5",
+   "title": "Nature 云雨图",
+   "family": "distribution",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/细胞类型/物种"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值(分布原始值, 非统计量)"
+    }
+   ],
+   "notes": "每组 n>=30 才能撑起 KDE; 小样本请走 bar 家族 | 4物种×每基因组BGC数",
+   "source_text": "4物种×每基因组BGC数",
+   "recipe_vars": [
+    {
+     "name": "groups",
+     "line": 38,
+     "rhs": "['subtilis', 'cereus', 'megaterium', 'ci"
+    },
+    {
+     "name": "data",
+     "line": 42,
+     "rhs": "[r.normal(12.0, 5.2, ns[0]).clip(2, 30),"
+    }
+   ]
+  },
+  "006": {
+   "case": "案例6",
+   "title": "Nature 分组柱形图",
+   "family": "bar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/处理名"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "测量值"
+    },
+    {
+     "name": "pair_id",
+     "type": "string",
+     "required": false,
+     "desc": "配对个体 ID(配对图必填)"
+    }
+   ],
+   "notes": "2-8 组, 每组 n>=3; 若做显著性需对照组 | 4基因×3基因型×6-10次qPCR,以WT=1",
+   "source_text": "4基因×3基因型×6-10次qPCR,以WT=1",
+   "recipe_vars": [
+    {
+     "name": "means",
+     "line": 18,
+     "rhs": "np.array([[1.00, 0.65, 0.38],"
+    },
+    {
+     "name": "sds",
+     "line": 22,
+     "rhs": "np.array([[0.22, 0.20, 0.12],"
+    },
+    {
+     "name": "data",
+     "line": 27,
+     "rhs": "[[r.normal(means[g, k], sds[g, k], 9).cl"
+    }
+   ]
+  },
+  "007": {
+   "case": "案例7",
+   "title": "Nature 截断+分组柱形图",
+   "family": "bar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/处理名"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "测量值"
+    },
+    {
+     "name": "pair_id",
+     "type": "string",
+     "required": false,
+     "desc": "配对个体 ID(配对图必填)"
+    }
+   ],
+   "notes": "2-8 组, 每组 n>=3; 若做显著性需对照组 | 2处理×3基因型×6-8重复",
+   "source_text": "2处理×3基因型×6-8重复"
+  },
+  "008": {
+   "case": "案例8",
+   "title": "Nature 分组柱形图",
+   "family": "bar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/处理名"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "测量值"
+    },
+    {
+     "name": "pair_id",
+     "type": "string",
+     "required": false,
+     "desc": "配对个体 ID(配对图必填)"
+    }
+   ],
+   "notes": "2-8 组, 每组 n>=3; 若做显著性需对照组 | 7个变体×4处理×3重复,倍数变化",
+   "source_text": "7个变体×4处理×3重复,倍数变化",
+   "recipe_vars": [
+    {
+     "name": "means",
+     "line": 19,
+     "rhs": "np.array(["
+    }
+   ]
+  },
+  "009": {
+   "case": "案例9",
+   "title": "Nature 双Y轴图",
+   "family": "bar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/处理名"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "测量值"
+    },
+    {
+     "name": "pair_id",
+     "type": "string",
+     "required": false,
+     "desc": "配对个体 ID(配对图必填)"
+    }
+   ],
+   "notes": "2-8 组, 每组 n>=3; 若做显著性需对照组 | 17菌株×2指标×3重复",
+   "source_text": "17菌株×2指标×3重复",
+   "recipe_vars": [
+    {
+     "name": "samples",
+     "line": 14,
+     "rhs": "['Srdi-'] + ['Srdi-idt%i' % i for i in r"
+    },
+    {
+     "name": "od",
+     "line": 15,
+     "rhs": "np.array([0.68, 1.45, 1.00, 1.60, 1.75, "
+    },
+    {
+     "name": "conc",
+     "line": 17,
+     "rhs": "np.array([118., 145., 142., 152., 163., "
+    },
+    {
+     "name": "od_rep",
+     "line": 23,
+     "rhs": "np.array([r.normal(m, 0.09, 3).clip(0.05"
+    },
+    {
+     "name": "co_rep",
+     "line": 24,
+     "rhs": "np.array([r.normal(m, 6.0, 3).clip(20, N"
+    }
+   ]
+  },
+  "010": {
+   "case": "案例10",
+   "title": "Nature 双Y轴图",
+   "family": "bar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/处理名"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "测量值"
+    },
+    {
+     "name": "pair_id",
+     "type": "string",
+     "required": false,
+     "desc": "配对个体 ID(配对图必填)"
+    }
+   ],
+   "notes": "2-8 组, 每组 n>=3; 若做显著性需对照组 | 20条目×(基因数,P值)",
+   "source_text": "20条目×(基因数,P值)",
+   "recipe_vars": [
+    {
+     "name": "counts",
+     "line": 24,
+     "rhs": "np.array([2138, 1472, 1124, 914, 1390, 1"
+    },
+    {
+     "name": "neglog10p",
+     "line": 26,
+     "rhs": "np.array([120, 65, 57, 56, 56, 55, 50, 4"
+    }
+   ]
+  },
+  "011": {
+   "case": "案例11",
+   "title": "Nature 气泡热图",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "row",
+     "type": "string",
+     "required": true,
+     "desc": "行标签(基因/代谢物/变量)"
+    },
+    {
+     "name": "col",
+     "type": "string",
+     "required": true,
+     "desc": "列标签(细胞类型/样本/变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "矩阵值(相关系数/表达/能量)"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": false,
+     "desc": "显著性 p 值(星号点阵用)"
+    }
+   ],
+   "notes": "矩阵维度按案例 notes; 相关矩阵需对称 | 26基因×14细胞×(平均表达,表达比例)",
+   "source_text": "26基因×14细胞×(平均表达,表达比例)",
+   "recipe_vars": [
+    {
+     "name": "groups",
+     "line": 23,
+     "rhs": "[('Early', 0, 5), ('Intermediate', 5, 10"
+    }
+   ]
+  },
+  "012": {
+   "case": "案例12",
+   "title": "Nature 系统发育树圈图(一)",
+   "family": "tree_geo",
+   "format": "newick",
+   "columns": [
+    {
+     "name": "newick",
+     "type": "string",
+     "required": true,
+     "desc": "Newick 树文件路径"
+    }
+   ],
+   "notes": "另需每叶注释长表: leaf,phylum,type,... | 约60叶Newick树+每叶(测序类型,门,出现环)",
+   "source_text": "约60叶Newick树+每叶(测序类型,门,出现环)"
+  },
+  "013": {
+   "case": "案例13",
+   "title": "Nature 系统发育树圈图(二)",
+   "family": "tree_geo",
+   "format": "newick",
+   "columns": [
+    {
+     "name": "newick",
+     "type": "string",
+     "required": true,
+     "desc": "Newick 树文件路径"
+    }
+   ],
+   "notes": "另需每叶注释长表 | Newick树+叶(门,丰度0-0.6,4环境有无)",
+   "source_text": "Newick树+叶(门,丰度0-0.6,4环境有无)"
+  },
+  "014": {
+   "case": "案例14",
+   "title": "Nature 系统发育树圈图(三)",
+   "family": "tree_geo",
+   "format": "newick",
+   "columns": [
+    {
+     "name": "newick",
+     "type": "string",
+     "required": true,
+     "desc": "Newick 树文件路径"
+    }
+   ],
+   "notes": "另需每叶注释长表 | 约90个ASV的树+ASV名,门,大小,ΔNiche",
+   "source_text": "约90个ASV的树+ASV名,门,大小,ΔNiche"
+  },
+  "015": {
+   "case": "案例15",
+   "title": "Nature 系统发育树圈图(四)",
+   "family": "tree_geo",
+   "format": "newick",
+   "columns": [
+    {
+     "name": "newick",
+     "type": "string",
+     "required": true,
+     "desc": "Newick 树文件路径"
+    }
+   ],
+   "notes": "另需每叶注释长表 | Newick树+叶(门,属,bsh有无,BBAA 0-0.6)",
+   "source_text": "Newick树+叶(门,属,bsh有无,BBAA 0-0.6)"
+  },
+  "016": {
+   "case": "案例16",
+   "title": "Nature 分组山脊图",
+   "family": "ridge",
+   "format": "long",
+   "columns": [
+    {
+     "name": "row",
+     "type": "category",
+     "required": true,
+     "desc": "山脊行(亚群/时间点/标记)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值"
+    },
+    {
+     "name": "facet",
+     "type": "category",
+     "required": false,
+     "desc": "分面列(标记/条件)"
+    }
+   ],
+   "notes": "每行 n>=100 | 2组×6时间点×RMSD分布",
+   "source_text": "2组×6时间点×RMSD分布"
+  },
+  "017": {
+   "case": "案例17",
+   "title": "Nature 分面山脊图",
+   "family": "ridge",
+   "format": "long",
+   "columns": [
+    {
+     "name": "row",
+     "type": "category",
+     "required": true,
+     "desc": "山脊行(亚群/时间点/标记)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值"
+    },
+    {
+     "name": "facet",
+     "type": "category",
+     "required": false,
+     "desc": "分面列(标记/条件)"
+    }
+   ],
+   "notes": "每行 n>=100 | 12标记×9亚群×单细胞表达",
+   "source_text": "12标记×9亚群×单细胞表达"
+  },
+  "018": {
+   "case": "案例18",
+   "title": "Nature 分组+分面山脊图",
+   "family": "ridge",
+   "format": "long",
+   "columns": [
+    {
+     "name": "row",
+     "type": "category",
+     "required": true,
+     "desc": "山脊行(亚群/时间点/标记)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值"
+    },
+    {
+     "name": "facet",
+     "type": "category",
+     "required": false,
+     "desc": "分面列(标记/条件)"
+    }
+   ],
+   "notes": "每行 n>=100 | 4细胞因子×9亚群×荧光强度",
+   "source_text": "4细胞因子×9亚群×荧光强度"
+  },
+  "019": {
+   "case": "案例19",
+   "title": "Nature 热图",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "row",
+     "type": "string",
+     "required": true,
+     "desc": "行标签(基因/代谢物/变量)"
+    },
+    {
+     "name": "col",
+     "type": "string",
+     "required": true,
+     "desc": "列标签(细胞类型/样本/变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "矩阵值(相关系数/表达/能量)"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": false,
+     "desc": "显著性 p 值(星号点阵用)"
+    }
+   ],
+   "notes": "矩阵维度按案例 notes; 相关矩阵需对称 | 43代谢物×8受体×(fold change,显著性)",
+   "source_text": "43代谢物×8受体×(fold change,显著性)",
+   "recipe_vars": [
+    {
+     "name": "nrow_data",
+     "line": 26,
+     "rhs": "len(rows)"
+    },
+    {
+     "name": "M",
+     "line": 61,
+     "rhs": "np.zeros((nrow, ncol))"
+    }
+   ]
+  },
+  "020": {
+   "case": "案例20",
+   "title": "Nature 散点图(R 版本)",
+   "family": "scatter",
+   "format": "long",
+   "columns": [
+    {
+     "name": "x",
+     "type": "number",
+     "required": true,
+     "desc": "基因组总大小(bp)"
+    },
+    {
+     "name": "y",
+     "type": "number",
+     "required": true,
+     "desc": "CDS 数"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "SAG/MAG/WGS"
+    }
+   ],
+   "notes": "log-log 轴, n≈5000 | 约5600点(总大小bp,CDS数,3组别)",
+   "source_text": "约5600点(总大小bp,CDS数,3组别)",
+   "recipe_vars": [
+    {
+     "name": "data",
+     "line": 20,
+     "rhs": "[]"
+    }
+   ]
+  },
+  "021": {
+   "case": "案例21",
+   "title": "Nature 散点图(Python 版本)",
+   "family": "scatter",
+   "format": "long",
+   "columns": [
+    {
+     "name": "x",
+     "type": "number",
+     "required": true,
+     "desc": "基因组总大小(bp)"
+    },
+    {
+     "name": "y",
+     "type": "number",
+     "required": true,
+     "desc": "CDS 数"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "SAG/MAG/WGS"
+    }
+   ],
+   "notes": "log-log 轴, n≈5000 | 约5600点(总大小bp,CDS数,3组别)",
+   "source_text": "约5600点(总大小bp,CDS数,3组别)",
+   "recipe_vars": [
+    {
+     "name": "data",
+     "line": 21,
+     "rhs": "[]"
+    }
+   ]
+  },
+  "022": {
+   "case": "案例22",
+   "title": "Nature 相关性热图",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "row",
+     "type": "string",
+     "required": true,
+     "desc": "行标签(基因/代谢物/变量)"
+    },
+    {
+     "name": "col",
+     "type": "string",
+     "required": true,
+     "desc": "列标签(细胞类型/样本/变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "矩阵值(相关系数/表达/能量)"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": false,
+     "desc": "显著性 p 值(星号点阵用)"
+    }
+   ],
+   "notes": "矩阵维度按案例 notes; 相关矩阵需对称 | 47×47相关矩阵+丰度+类别标签",
+   "source_text": "47×47相关矩阵+丰度+类别标签",
+   "recipe_vars": [
+    {
+     "name": "cats",
+     "line": 46,
+     "rhs": "np.array([c for c, _ in names])"
+    },
+    {
+     "name": "xs",
+     "line": 89,
+     "rhs": "np.array(xs, float)"
+    }
+   ]
+  },
+  "023": {
+   "case": "案例23",
+   "title": "Nature 相关性热图",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "row",
+     "type": "string",
+     "required": true,
+     "desc": "行标签(基因/代谢物/变量)"
+    },
+    {
+     "name": "col",
+     "type": "string",
+     "required": true,
+     "desc": "列标签(细胞类型/样本/变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "矩阵值(相关系数/表达/能量)"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": false,
+     "desc": "显著性 p 值(星号点阵用)"
+    }
+   ],
+   "notes": "矩阵维度按案例 notes; 相关矩阵需对称 | 约90基因相关矩阵+模块归属",
+   "source_text": "约90基因相关矩阵+模块归属",
+   "recipe_vars": [
+    {
+     "name": "order",
+     "line": 51,
+     "rhs": "np.array([int(x) for x in dd['ivl']])"
+    }
+   ]
+  },
+  "024": {
+   "case": "案例24",
+   "title": "Nature 折线图与柱形图",
+   "family": "curve",
+   "format": "long",
+   "columns": [
+    {
+     "name": "time",
+     "type": "number",
+     "required": true,
+     "desc": "时间/浓度/频率(自变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "响应值"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "系列"
+    },
+    {
+     "name": "err",
+     "type": "number",
+     "required": false,
+     "desc": "SEM/CI 半宽"
+    }
+   ],
+   "notes": "时序类每组 5-20 个时间点 | 2组×11周体重曲线+2体成分指标",
+   "source_text": "2组×11周体重曲线+2体成分指标",
+   "recipe_vars": [
+    {
+     "name": "ctl",
+     "line": 18,
+     "rhs": "np.array([22.6, 26.4, 29.6, 32.6, 37.2, "
+    },
+    {
+     "name": "lko",
+     "line": 20,
+     "rhs": "np.array([22.4, 24.8, 26.3, 29.0, 32.1, "
+    },
+    {
+     "name": "groups",
+     "line": 56,
+     "rhs": "[(fat_c, fat_l, 0), (lean_c, lean_l, 1)]"
+    }
+   ]
+  },
+  "025": {
+   "case": "案例25",
+   "title": "Nature 云雨图",
+   "family": "distribution",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/细胞类型/物种"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值(分布原始值, 非统计量)"
+    }
+   ],
+   "notes": "每组 n>=30 才能撑起 KDE; 小样本请走 bar 家族 | 5区域×样本年代值",
+   "source_text": "5区域×样本年代值",
+   "recipe_vars": [
+    {
+     "name": "samples",
+     "line": 30,
+     "rhs": "[d_WE, d_CE, d_SE, d_NE, d_AS]"
+    }
+   ]
+  },
+  "026": {
+   "case": "案例26",
+   "title": "Nature 分组散点图",
+   "family": "scatter",
+   "format": "long",
+   "columns": [
+    {
+     "name": "x",
+     "type": "number",
+     "required": true,
+     "desc": "自变量"
+    },
+    {
+     "name": "y",
+     "type": "number",
+     "required": true,
+     "desc": "因变量"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "系列/分组"
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "required": false,
+     "desc": "点标注(基因名等, 仅重点点需要)"
+    },
+    {
+     "name": "xerr",
+     "type": "number",
+     "required": false,
+     "desc": "x 误差"
+    },
+    {
+     "name": "yerr",
+     "type": "number",
+     "required": false,
+     "desc": "y 误差"
+    }
+   ],
+   "notes": "5组×约50点(能量,寿命)+均值±SD",
+   "source_text": "5组×约50点(能量,寿命)+均值±SD",
+   "recipe_vars": [
+    {
+     "name": "xt",
+     "line": 45,
+     "rhs": "np.array([2.331, 2.447])"
+    }
+   ]
+  },
+  "027": {
+   "case": "案例27",
+   "title": "Nature 和弦图",
+   "family": "flow",
+   "format": "edges",
+   "columns": [
+    {
+     "name": "source",
+     "type": "string",
+     "required": true,
+     "desc": "源"
+    },
+    {
+     "name": "target",
+     "type": "string",
+     "required": true,
+     "desc": "目标"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "流量"
+    }
+   ],
+   "notes": "和弦图: 方阵亦可, 行=源 | 节点×节点流量方阵",
+   "source_text": "节点×节点流量方阵"
+  },
+  "028": {
+   "case": "案例28",
+   "title": "Science 火山图",
+   "family": "volcano",
+   "format": "long",
+   "columns": [
+    {
+     "name": "feature",
+     "type": "string",
+     "required": true,
+     "desc": "基因"
+    },
+    {
+     "name": "log2fc",
+     "type": "number",
+     "required": true,
+     "desc": "log2FC"
+    },
+    {
+     "name": "padj",
+     "type": "number",
+     "required": true,
+     "desc": "校正 p"
+    }
+   ],
+   "notes": "另需基因集成员表(gene, set, direction) | 约5000基因(log2FC,adjP)+基因集",
+   "source_text": "约5000基因(log2FC,adjP)+基因集"
+  },
+  "029": {
+   "case": "案例29",
+   "title": "Cell 小提琴图",
+   "family": "distribution",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/细胞类型/物种"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值(分布原始值, 非统计量)"
+    }
+   ],
+   "notes": "每组 n>=30 才能撑起 KDE; 小样本请走 bar 家族 | 3年龄类×2组×约1000值",
+   "source_text": "3年龄类×2组×约1000值"
+  },
+  "030": {
+   "case": "案例30",
+   "title": "Cell 箱线图",
+   "family": "distribution",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/细胞类型/物种"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值(分布原始值, 非统计量)"
+    }
+   ],
+   "notes": "每组 n>=30 才能撑起 KDE; 小样本请走 bar 家族 | 4年龄类×2组×dN/dS值",
+   "source_text": "4年龄类×2组×dN/dS值"
+  },
+  "031": {
+   "case": "案例31",
+   "title": "Nature 表格热图",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "row",
+     "type": "string",
+     "required": true,
+     "desc": "行标签(基因/代谢物/变量)"
+    },
+    {
+     "name": "col",
+     "type": "string",
+     "required": true,
+     "desc": "列标签(细胞类型/样本/变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "矩阵值(相关系数/表达/能量)"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": false,
+     "desc": "显著性 p 值(星号点阵用)"
+    }
+   ],
+   "notes": "矩阵维度按案例 notes; 相关矩阵需对称 | 20方法×数据集排名1-3+注释列",
+   "source_text": "20方法×数据集排名1-3+注释列"
+  },
+  "032": {
+   "case": "案例32",
+   "title": "Nature 山脊图",
+   "family": "ridge",
+   "format": "long",
+   "columns": [
+    {
+     "name": "row",
+     "type": "category",
+     "required": true,
+     "desc": "山脊行(亚群/时间点/标记)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值"
+    },
+    {
+     "name": "facet",
+     "type": "category",
+     "required": false,
+     "desc": "分面列(标记/条件)"
+    }
+   ],
+   "notes": "每行 n>=100 | 每行(genus)一组值+正负计数",
+   "source_text": "每行(genus)一组值+正负计数"
+  },
+  "033": {
+   "case": "案例33",
+   "title": "Nature 哑铃图",
+   "family": "bar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/处理名"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "测量值"
+    },
+    {
+     "name": "pair_id",
+     "type": "string",
+     "required": false,
+     "desc": "配对个体 ID(配对图必填)"
+    }
+   ],
+   "notes": "2-8 组, 每组 n>=3; 若做显著性需对照组 | 每行:期望区间、观察值、分类",
+   "source_text": "每行:期望区间、观察值、分类"
+  },
+  "034": {
+   "case": "案例34",
+   "title": "Nature 火山图&富集网络图",
+   "family": "volcano",
+   "format": "long",
+   "columns": [
+    {
+     "name": "feature",
+     "type": "string",
+     "required": true,
+     "desc": "基因/蛋白/代谢物名"
+    },
+    {
+     "name": "log2fc",
+     "type": "number",
+     "required": true,
+     "desc": "log2 倍数变化"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": true,
+     "desc": "p 值(或已换算的 -log10p)"
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "required": false,
+     "desc": "重点标注名(仅关键基因)"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "分面/比较组(多组火山用)"
+    }
+   ],
+   "notes": "rows>=1000 观感最佳; 标注基因 5-40 个 | 蛋白log2FC/P;通路ES+相似度边表",
+   "source_text": "蛋白log2FC/P;通路ES+相似度边表"
+  },
+  "035": {
+   "case": "案例35",
+   "title": "Nature 通路富集circos&网络图",
+   "family": "flow",
+   "format": "edges",
+   "columns": [
+    {
+     "name": "source",
+     "type": "string",
+     "required": true,
+     "desc": "源节点"
+    },
+    {
+     "name": "target",
+     "type": "string",
+     "required": true,
+     "desc": "目标节点"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "流量/权重"
+    }
+   ],
+   "notes": "桑基/和弦/冲击图共用边表; UpSet 用 sets 列表(见 notes) | 基因列表;基因-GO归属;通路相似度矩阵",
+   "source_text": "基因列表;基因-GO归属;通路相似度矩阵",
+   "recipe_vars": [
+    {
+     "name": "xs",
+     "line": 118,
+     "rhs": "np.array([p[0] for p in pos0.values()])"
+    },
+    {
+     "name": "ys",
+     "line": 119,
+     "rhs": "np.array([p[1] for p in pos0.values()])"
+    }
+   ]
+  },
+  "036": {
+   "case": "案例36",
+   "title": "Nature FC-FC",
+   "family": "scatter",
+   "format": "long",
+   "columns": [
+    {
+     "name": "feature",
+     "type": "string",
+     "required": true,
+     "desc": "基因"
+    },
+    {
+     "name": "log2fc_a",
+     "type": "number",
+     "required": true,
+     "desc": "处理 A log2FC"
+    },
+    {
+     "name": "log2fc_b",
+     "type": "number",
+     "required": true,
+     "desc": "处理 B log2FC"
+    },
+    {
+     "name": "sig_a",
+     "type": "number",
+     "required": false,
+     "desc": "A 显著(0/1)"
+    },
+    {
+     "name": "sig_b",
+     "type": "number",
+     "required": false,
+     "desc": "B 显著(0/1)"
+    }
+   ],
+   "notes": "FC-FC 类共用此形 | 两列log2FC+显著性+基因名",
+   "source_text": "两列log2FC+显著性+基因名",
+   "recipe_vars": [
+    {
+     "name": "dd",
+     "line": 37,
+     "rhs": "np.array([-1.85, 2.30])"
+    }
+   ]
+  },
+  "037": {
+   "case": "案例37",
+   "title": "Science FC-FC",
+   "family": "scatter",
+   "format": "long",
+   "columns": [
+    {
+     "name": "feature",
+     "type": "string",
+     "required": true,
+     "desc": "基因"
+    },
+    {
+     "name": "log2fc_a",
+     "type": "number",
+     "required": true,
+     "desc": "log2FC A"
+    },
+    {
+     "name": "log2fc_b",
+     "type": "number",
+     "required": true,
+     "desc": "log2FC B"
+    },
+    {
+     "name": "p_a",
+     "type": "number",
+     "required": false,
+     "desc": "A 的 p"
+    },
+    {
+     "name": "p_b",
+     "type": "number",
+     "required": false,
+     "desc": "B 的 p"
+    }
+   ],
+   "notes": "两列log2FC+基因名+显著性",
+   "source_text": "两列log2FC+基因名+显著性"
+  },
+  "038": {
+   "case": "案例38",
+   "title": "Cognition 密度图&箱线/蜂群图",
+   "family": "ridge",
+   "format": "long",
+   "columns": [
+    {
+     "name": "row",
+     "type": "category",
+     "required": true,
+     "desc": "山脊行(亚群/时间点/标记)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值"
+    },
+    {
+     "name": "facet",
+     "type": "category",
+     "required": false,
+     "desc": "分面列(标记/条件)"
+    }
+   ],
+   "notes": "每行 n>=100 | 每参数条件×被试recovered值+真值",
+   "source_text": "每参数条件×被试recovered值+真值",
+   "recipe_vars": [
+    {
+     "name": "data",
+     "line": 78,
+     "rhs": "r.normal(0.45, 0.95, 130).clip(-2.9, 2.9"
+    }
+   ]
+  },
+  "039": {
+   "case": "案例39",
+   "title": "Cell 堆积柱形图",
+   "family": "bar",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "cluster",
+     "type": "string",
+     "required": true,
+     "desc": "簇标签 c01-c20"
+    },
+    {
+     "name": "isotype",
+     "type": "string",
+     "required": true,
+     "desc": "isotype 类别(9 类)"
+    },
+    {
+     "name": "frac",
+     "type": "number",
+     "required": true,
+     "desc": "构成比例 0-1"
+    },
+    {
+     "name": "shm_rate",
+     "type": "number",
+     "required": false,
+     "desc": "SHM rate(右侧点列)"
+    }
+   ],
+   "notes": "两条 100% 堆积条(簇×类构成矩阵)+右列 rate 值 | 20簇×9类比例、×3水平比例、rate值",
+   "source_text": "20簇×9类比例、×3水平比例、rate值",
+   "recipe_vars": [
+    {
+     "name": "shm_rate",
+     "line": 59,
+     "rhs": "np.array([0.9, 1.1, 0.7, 5.8, 4.9, 5.5, "
+    }
+   ]
+  },
+  "040": {
+   "case": "案例40",
+   "title": "Cell 相关性聚类热图",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "row",
+     "type": "string",
+     "required": true,
+     "desc": "行标签(基因/代谢物/变量)"
+    },
+    {
+     "name": "col",
+     "type": "string",
+     "required": true,
+     "desc": "列标签(细胞类型/样本/变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "矩阵值(相关系数/表达/能量)"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": false,
+     "desc": "显著性 p 值(星号点阵用)"
+    }
+   ],
+   "notes": "矩阵维度按案例 notes; 相关矩阵需对称 | 两套相关矩阵R+显著性+FC注释",
+   "source_text": "两套相关矩阵R+显著性+FC注释",
+   "recipe_vars": [
+    {
+     "name": "order",
+     "line": 45,
+     "rhs": "np.array([int(x) for x in dd['ivl']])"
+    }
+   ]
+  },
+  "041": {
+   "case": "案例41",
+   "title": "Nature 小提琴图",
+   "family": "distribution",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/细胞类型/物种"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值(分布原始值, 非统计量)"
+    }
+   ],
+   "notes": "每组 n>=30 才能撑起 KDE; 小样本请走 bar 家族 | 3组×3情境Z-score+两两P值",
+   "source_text": "3组×3情境Z-score+两两P值",
+   "recipe_vars": [
+    {
+     "name": "groups",
+     "line": 16,
+     "rhs": "['Proband', 'Parent Het', 'Parent Ref']"
+    },
+    {
+     "name": "edges",
+     "line": 18,
+     "rhs": "['#E89494', '#E89140', '#7FB2D8']"
+    }
+   ]
+  },
+  "042": {
+   "case": "案例42",
+   "title": "Nature 柱状图",
+   "family": "bar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/处理名"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "测量值"
+    },
+    {
+     "name": "pair_id",
+     "type": "string",
+     "required": false,
+     "desc": "配对个体 ID(配对图必填)"
+    }
+   ],
+   "notes": "2-8 组, 每组 n>=3; 若做显著性需对照组 | 5组×3-4重复qPCR+P值",
+   "source_text": "5组×3-4重复qPCR+P值",
+   "recipe_vars": [
+    {
+     "name": "data",
+     "line": 20,
+     "rhs": "[r.normal(m, s, 6).clip(0.2, 3.0) for m,"
+    }
+   ]
+  },
+  "043": {
+   "case": "案例44",
+   "title": "Nature 密度图",
+   "family": "ridge",
+   "format": "long",
+   "columns": [
+    {
+     "name": "x",
+     "type": "number",
+     "required": true,
+     "desc": "变量 1"
+    },
+    {
+     "name": "y",
+     "type": "number",
+     "required": true,
+     "desc": "变量 2"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "组别"
+    }
+   ],
+   "notes": "联合密度: 每组数百点 | 两组各数百(x,y)样本",
+   "source_text": "两组各数百(x,y)样本"
+  },
+  "044": {
+   "case": "案例45",
+   "title": "Nature 散点图",
+   "family": "scatter",
+   "format": "long",
+   "columns": [
+    {
+     "name": "x",
+     "type": "number",
+     "required": true,
+     "desc": "自变量"
+    },
+    {
+     "name": "y",
+     "type": "number",
+     "required": true,
+     "desc": "因变量"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "系列/分组"
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "required": false,
+     "desc": "点标注(基因名等, 仅重点点需要)"
+    },
+    {
+     "name": "xerr",
+     "type": "number",
+     "required": false,
+     "desc": "x 误差"
+    },
+    {
+     "name": "yerr",
+     "type": "number",
+     "required": false,
+     "desc": "y 误差"
+    }
+   ],
+   "notes": "每点:年龄,速度及误差,光谱类型",
+   "source_text": "每点:年龄,速度及误差,光谱类型",
+   "recipe_vars": [
+    {
+     "name": "w",
+     "line": 25,
+     "rhs": "np.array([2, 3, 5, 5, 4, 4, 4, 4, 4, 3, "
+    }
+   ]
+  },
+  "045": {
+   "case": "案例46",
+   "title": "Nature 动态交互桑基图(一)",
+   "family": "flow",
+   "format": "edges",
+   "columns": [
+    {
+     "name": "source",
+     "type": "string",
+     "required": true,
+     "desc": "源(时间点)"
+    },
+    {
+     "name": "target",
+     "type": "string",
+     "required": true,
+     "desc": "目标(基因)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "带宽值"
+    }
+   ],
+   "notes": "三层桑基: 两个边表(层1→2, 层2→3) | 链表:源→中间→目标流量",
+   "source_text": "链表:源→中间→目标流量",
+   "recipe_vars": [
+    {
+     "name": "links",
+     "line": 46,
+     "rhs": "[(0, s, 1, d, v, C1[d]) for s, d, v in f"
+    }
+   ]
+  },
+  "046": {
+   "case": "案例47",
+   "title": "Nature 动态交互桑基图(二)",
+   "family": "flow",
+   "format": "edges",
+   "columns": [
+    {
+     "name": "source",
+     "type": "string",
+     "required": true,
+     "desc": "源"
+    },
+    {
+     "name": "target",
+     "type": "string",
+     "required": true,
+     "desc": "目标"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "占比"
+    }
+   ],
+   "notes": "四层桑基: 三个边表 | 链表:年份段→谱系→国家→省",
+   "source_text": "链表:年份段→谱系→国家→省",
+   "recipe_vars": [
+    {
+     "name": "links",
+     "line": 71,
+     "rhs": "[(0, s, 1, d, v, '#B07CC6' if d == 'Subl"
+    }
+   ]
+  },
+  "047": {
+   "case": "案例48",
+   "title": "Nature 散点饼图",
+   "family": "scatter",
+   "format": "long",
+   "columns": [
+    {
+     "name": "hospital",
+     "type": "string",
+     "required": true,
+     "desc": "医院(x 轴)"
+    },
+    {
+     "name": "inc_type",
+     "type": "string",
+     "required": true,
+     "desc": "质粒 Inc 类型(y 轴)"
+    },
+    {
+     "name": "species_comp",
+     "type": "string",
+     "required": true,
+     "desc": "物种构成(A:B:C=5:3:2)"
+    },
+    {
+     "name": "count",
+     "type": "number",
+     "required": true,
+     "desc": "菌株数(饼径)"
+    }
+   ],
+   "notes": "散点饼图: 每行=网格上一个观测 | 医院×类型网格:物种构成计数",
+   "source_text": "医院×类型网格:物种构成计数"
+  },
+  "048": {
+   "case": "案例49",
+   "title": "Nature 环形图",
+   "family": "polar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "participant",
+     "type": "string",
+     "required": true,
+     "desc": "参与者 ID"
+    },
+    {
+     "name": "ring1",
+     "type": "number",
+     "required": true,
+     "desc": "环 1 指标"
+    },
+    {
+     "name": "ring2",
+     "type": "number",
+     "required": true,
+     "desc": "环 2 指标"
+    },
+    {
+     "name": "ring3",
+     "type": "number",
+     "required": true,
+     "desc": "环 3 指标"
+    },
+    {
+     "name": "age",
+     "type": "number",
+     "required": false,
+     "desc": "年龄"
+    },
+    {
+     "name": "bmi",
+     "type": "number",
+     "required": false,
+     "desc": "BMI"
+    },
+    {
+     "name": "gender",
+     "type": "category",
+     "required": false,
+     "desc": "性别"
+    }
+   ],
+   "notes": "约 100 参与者沿弧排布 | 每参与者ID+三组指标+分类",
+   "source_text": "每参与者ID+三组指标+分类"
+  },
+  "049": {
+   "case": "案例50a",
+   "title": "J.Hazard Mat. 环状柱形图(一)",
+   "family": "polar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "axis",
+     "type": "category",
+     "required": true,
+     "desc": "角度轴(指标/组织/城市)"
+    },
+    {
+     "name": "series",
+     "type": "category",
+     "required": false,
+     "desc": "系列(处理/分组)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "径向值"
+    },
+    {
+     "name": "sig",
+     "type": "string",
+     "required": false,
+     "desc": "显著性字母/星号"
+    }
+   ],
+   "notes": "8性状×3处理均值+显著性字母",
+   "source_text": "8性状×3处理均值+显著性字母"
+  },
+  "050": {
+   "case": "案例50b",
+   "title": "J.Hazard Mat. 环状柱形图(二)",
+   "family": "polar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "axis",
+     "type": "category",
+     "required": true,
+     "desc": "角度轴(指标/组织/城市)"
+    },
+    {
+     "name": "series",
+     "type": "category",
+     "required": false,
+     "desc": "系列(处理/分组)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "径向值"
+    },
+    {
+     "name": "sig",
+     "type": "string",
+     "required": false,
+     "desc": "显著性字母/星号"
+    }
+   ],
+   "notes": "11指标×4处理均值+显著性字母",
+   "source_text": "11指标×4处理均值+显著性字母"
+  },
+  "051": {
+   "case": "案例51",
+   "title": "Nature 样本地理分布图(一)",
+   "family": "tree_geo",
+   "format": "long",
+   "columns": [
+    {
+     "name": "name",
+     "type": "string",
+     "required": true,
+     "desc": "地点/类群名"
+    },
+    {
+     "name": "lon",
+     "type": "number",
+     "required": false,
+     "desc": "经度"
+    },
+    {
+     "name": "lat",
+     "type": "number",
+     "required": false,
+     "desc": "纬度"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": false,
+     "desc": "数量/丰度"
+    },
+    {
+     "name": "composition",
+     "type": "string",
+     "required": false,
+     "desc": "构成(如 A:B:C=5:3:2)"
+    }
+   ],
+   "notes": "地图类需 lon/lat 或国家/省名; 发育树类另备 Newick 文件 | 国家级数量+构成",
+   "source_text": "国家级数量+构成"
+  },
+  "052": {
+   "case": "案例52",
+   "title": "Science 样本地理分布图(二)",
+   "family": "tree_geo",
+   "format": "long",
+   "columns": [
+    {
+     "name": "name",
+     "type": "string",
+     "required": true,
+     "desc": "地点/类群名"
+    },
+    {
+     "name": "lon",
+     "type": "number",
+     "required": false,
+     "desc": "经度"
+    },
+    {
+     "name": "lat",
+     "type": "number",
+     "required": false,
+     "desc": "纬度"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": false,
+     "desc": "数量/丰度"
+    },
+    {
+     "name": "composition",
+     "type": "string",
+     "required": false,
+     "desc": "构成(如 A:B:C=5:3:2)"
+    }
+   ],
+   "notes": "地图类需 lon/lat 或国家/省名; 发育树类另备 Newick 文件 | 采样点经纬度+类别构成计数",
+   "source_text": "采样点经纬度+类别构成计数"
+  },
+  "053": {
+   "case": "案例53",
+   "title": "Nature 样本地理分布图(三)",
+   "family": "tree_geo",
+   "format": "long",
+   "columns": [
+    {
+     "name": "name",
+     "type": "string",
+     "required": true,
+     "desc": "地点/类群名"
+    },
+    {
+     "name": "lon",
+     "type": "number",
+     "required": false,
+     "desc": "经度"
+    },
+    {
+     "name": "lat",
+     "type": "number",
+     "required": false,
+     "desc": "纬度"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": false,
+     "desc": "数量/丰度"
+    },
+    {
+     "name": "composition",
+     "type": "string",
+     "required": false,
+     "desc": "构成(如 A:B:C=5:3:2)"
+    }
+   ],
+   "notes": "地图类需 lon/lat 或国家/省名; 发育树类另备 Newick 文件 | 国家坐标+11亚型构成",
+   "source_text": "国家坐标+11亚型构成"
+  },
+  "054": {
+   "case": "案例56",
+   "title": "Nature 配对散点图",
+   "family": "scatter",
+   "format": "long",
+   "columns": [
+    {
+     "name": "x",
+     "type": "number",
+     "required": true,
+     "desc": "自变量"
+    },
+    {
+     "name": "y",
+     "type": "number",
+     "required": true,
+     "desc": "因变量"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "系列/分组"
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "required": false,
+     "desc": "点标注(基因名等, 仅重点点需要)"
+    },
+    {
+     "name": "xerr",
+     "type": "number",
+     "required": false,
+     "desc": "x 误差"
+    },
+    {
+     "name": "yerr",
+     "type": "number",
+     "required": false,
+     "desc": "y 误差"
+    }
+   ],
+   "notes": "三联体序号+两条件成对值",
+   "source_text": "三联体序号+两条件成对值"
+  },
+  "055": {
+   "case": "案例57",
+   "title": "Nature 网络条形图",
+   "family": "flow",
+   "format": "long",
+   "columns": [
+    {
+     "name": "category",
+     "type": "string",
+     "required": true,
+     "desc": "中心类别(9 类)"
+    },
+    {
+     "name": "item",
+     "type": "string",
+     "required": true,
+     "desc": "外圈条目"
+    },
+    {
+     "name": "weight",
+     "type": "number",
+     "required": true,
+     "desc": "条长权重"
+    }
+   ],
+   "notes": "放射网络条形: 两层树表 | 类别→条目两层,各权重",
+   "source_text": "类别→条目两层,各权重",
+   "recipe_vars": [
+    {
+     "name": "items",
+     "line": 78,
+     "rhs": "[(name, c, it) for name, c, its in cats "
+    }
+   ]
+  },
+  "056": {
+   "case": "案例58",
+   "title": "Nature 网络气泡图",
+   "family": "flow",
+   "format": "long",
+   "columns": [
+    {
+     "name": "category",
+     "type": "string",
+     "required": true,
+     "desc": "中心类别"
+    },
+    {
+     "name": "item",
+     "type": "string",
+     "required": true,
+     "desc": "外圈气泡"
+    },
+    {
+     "name": "size",
+     "type": "number",
+     "required": true,
+     "desc": "气泡大小"
+    }
+   ],
+   "notes": "放射网络气泡: 两层树表 | 类别→条目两层,各数值",
+   "source_text": "类别→条目两层,各数值",
+   "recipe_vars": [
+    {
+     "name": "items",
+     "line": 77,
+     "rhs": "[(name, c, it) for name, c, its in cats "
+    }
+   ]
+  },
+  "057": {
+   "case": "案例59",
+   "title": "Nature 圆形雷达图",
+   "family": "polar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "axis",
+     "type": "category",
+     "required": true,
+     "desc": "角度轴(指标/组织/城市)"
+    },
+    {
+     "name": "series",
+     "type": "category",
+     "required": false,
+     "desc": "系列(处理/分组)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "径向值"
+    },
+    {
+     "name": "sig",
+     "type": "string",
+     "required": false,
+     "desc": "显著性字母/星号"
+    }
+   ],
+   "notes": "3组×8属性归一化得分",
+   "source_text": "3组×8属性归一化得分",
+   "recipe_vars": [
+    {
+     "name": "theta",
+     "line": 19,
+     "rhs": "np.array([np.radians(ang[l]) for l in or"
+    },
+    {
+     "name": "data",
+     "line": 22,
+     "rhs": "["
+    }
+   ]
+  },
+  "058": {
+   "case": "案例60",
+   "title": "Nature 圆形雷达图",
+   "family": "polar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "axis",
+     "type": "category",
+     "required": true,
+     "desc": "角度轴(指标/组织/城市)"
+    },
+    {
+     "name": "series",
+     "type": "category",
+     "required": false,
+     "desc": "系列(处理/分组)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "径向值"
+    },
+    {
+     "name": "sig",
+     "type": "string",
+     "required": false,
+     "desc": "显著性字母/星号"
+    }
+   ],
+   "notes": "5聚类×22指标均值",
+   "source_text": "5聚类×22指标均值",
+   "recipe_vars": [
+    {
+     "name": "ang",
+     "line": 28,
+     "rhs": "np.array([s[0] for s in spokes])"
+    }
+   ]
+  },
+  "059": {
+   "case": "案例61",
+   "title": "Nature 多边形雷达图",
+   "family": "polar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "axis",
+     "type": "category",
+     "required": true,
+     "desc": "角度轴(指标/组织/城市)"
+    },
+    {
+     "name": "series",
+     "type": "category",
+     "required": false,
+     "desc": "系列(处理/分组)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "径向值"
+    },
+    {
+     "name": "sig",
+     "type": "string",
+     "required": false,
+     "desc": "显著性字母/星号"
+    }
+   ],
+   "notes": "10山脉×6属性+坐标",
+   "source_text": "10山脉×6属性+坐标"
+  },
+  "060": {
+   "case": "案例62",
+   "title": "Nature 多边形雷达图",
+   "family": "polar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "axis",
+     "type": "category",
+     "required": true,
+     "desc": "角度轴(指标/组织/城市)"
+    },
+    {
+     "name": "series",
+     "type": "category",
+     "required": false,
+     "desc": "系列(处理/分组)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "径向值"
+    },
+    {
+     "name": "sig",
+     "type": "string",
+     "required": false,
+     "desc": "显著性字母/星号"
+    }
+   ],
+   "notes": "两材料×5属性",
+   "source_text": "两材料×5属性",
+   "recipe_vars": [
+    {
+     "name": "ours_rat",
+     "line": 21,
+     "rhs": "np.array([2.36 / 2.43, 1300 / 2100, 49.5"
+    }
+   ]
+  },
+  "061": {
+   "case": "案例63",
+   "title": "Cancer Cell 拟合散点图",
+   "family": "scatter",
+   "format": "long",
+   "columns": [
+    {
+     "name": "x",
+     "type": "number",
+     "required": true,
+     "desc": "自变量"
+    },
+    {
+     "name": "y",
+     "type": "number",
+     "required": true,
+     "desc": "因变量"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "系列/分组"
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "required": false,
+     "desc": "点标注(基因名等, 仅重点点需要)"
+    },
+    {
+     "name": "xerr",
+     "type": "number",
+     "required": false,
+     "desc": "x 误差"
+    },
+    {
+     "name": "yerr",
+     "type": "number",
+     "required": false,
+     "desc": "y 误差"
+    }
+   ],
+   "notes": "亚群×(分数x,指数y,类型色)",
+   "source_text": "亚群×(分数x,指数y,类型色)"
+  },
+  "062": {
+   "case": "案例64",
+   "title": "Nature 拟合气泡图",
+   "family": "scatter",
+   "format": "long",
+   "columns": [
+    {
+     "name": "x",
+     "type": "number",
+     "required": true,
+     "desc": "自变量"
+    },
+    {
+     "name": "y",
+     "type": "number",
+     "required": true,
+     "desc": "因变量"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "系列/分组"
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "required": false,
+     "desc": "点标注(基因名等, 仅重点点需要)"
+    },
+    {
+     "name": "xerr",
+     "type": "number",
+     "required": false,
+     "desc": "x 误差"
+    },
+    {
+     "name": "yerr",
+     "type": "number",
+     "required": false,
+     "desc": "y 误差"
+    }
+   ],
+   "notes": "每点:两观测值,站点,深度",
+   "source_text": "每点:两观测值,站点,深度"
+  },
+  "063": {
+   "case": "案例65",
+   "title": "Nature 平滑曲线图(一)",
+   "family": "curve",
+   "format": "long",
+   "columns": [
+    {
+     "name": "time",
+     "type": "number",
+     "required": true,
+     "desc": "时间/浓度/频率(自变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "响应值"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "系列"
+    },
+    {
+     "name": "err",
+     "type": "number",
+     "required": false,
+     "desc": "SEM/CI 半宽"
+    }
+   ],
+   "notes": "时序类每组 5-20 个时间点 | 两组波长-强度各约300点",
+   "source_text": "两组波长-强度各约300点"
+  },
+  "064": {
+   "case": "案例66",
+   "title": "Nature 平滑曲线图(二)",
+   "family": "curve",
+   "format": "long",
+   "columns": [
+    {
+     "name": "time",
+     "type": "number",
+     "required": true,
+     "desc": "时间/浓度/频率(自变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "响应值"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "系列"
+    },
+    {
+     "name": "err",
+     "type": "number",
+     "required": false,
+     "desc": "SEM/CI 半宽"
+    }
+   ],
+   "notes": "时序类每组 5-20 个时间点 | 3组浓度-电导率各十余点",
+   "source_text": "3组浓度-电导率各十余点"
+  },
+  "065": {
+   "case": "案例67",
+   "title": "Nature 平滑曲线图(三)",
+   "family": "curve",
+   "format": "long",
+   "columns": [
+    {
+     "name": "time",
+     "type": "number",
+     "required": true,
+     "desc": "时间/浓度/频率(自变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "响应值"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "系列"
+    },
+    {
+     "name": "err",
+     "type": "number",
+     "required": false,
+     "desc": "SEM/CI 半宽"
+    }
+   ],
+   "notes": "时序类每组 5-20 个时间点 | 两组浓度-响应各8-9点",
+   "source_text": "两组浓度-响应各8-9点",
+   "recipe_vars": [
+    {
+     "name": "conc_o",
+     "line": 23,
+     "rhs": "np.array([3.9e-9, 7.8e-9, 1.56e-8, 3.1e-"
+    },
+    {
+     "name": "shift_o",
+     "line": 25,
+     "rhs": "np.array([0.031, 0.037, 0.061, 0.104, 0."
+    },
+    {
+     "name": "conc_b",
+     "line": 30,
+     "rhs": "np.array([4.0e-8, 1.6e-7, 3.2e-7, 6.4e-7"
+    },
+    {
+     "name": "shift_b",
+     "line": 32,
+     "rhs": "np.array([-0.017, -0.014, -0.006, 0.012,"
+    }
+   ]
+  },
+  "066": {
+   "case": "案例68",
+   "title": "Nature 限制性立方样条(RCS)",
+   "family": "curve",
+   "format": "long",
+   "columns": [
+    {
+     "name": "x",
+     "type": "number",
+     "required": true,
+     "desc": "自变量(暴露)"
+    },
+    {
+     "name": "hr",
+     "type": "number",
+     "required": true,
+     "desc": "HR"
+    },
+    {
+     "name": "lo",
+     "type": "number",
+     "required": true,
+     "desc": "CI 下限"
+    },
+    {
+     "name": "hi",
+     "type": "number",
+     "required": true,
+     "desc": "CI 上限"
+    },
+    {
+     "name": "facet",
+     "type": "string",
+     "required": false,
+     "desc": "面板(a-d)"
+    }
+   ],
+   "notes": "RCS: 每面板一条 HR 曲线带 CI 带, 另注 Poverall/Pnonlinear | 自变量,HR,95%CI,两个P值",
+   "source_text": "自变量,HR,95%CI,两个P值"
+  },
+  "067": {
+   "case": "案例69",
+   "title": "Nature 蝴蝶状&堆积条形图",
+   "family": "bar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "cellstate",
+     "type": "string",
+     "required": true,
+     "desc": "细胞态(9 行)"
+    },
+    {
+     "name": "outcome",
+     "type": "category",
+     "required": true,
+     "desc": "PFS/OS(左右面板)"
+    },
+    {
+     "name": "direction",
+     "type": "category",
+     "required": true,
+     "desc": "Protective/Risk"
+    },
+    {
+     "name": "count",
+     "type": "number",
+     "required": true,
+     "desc": "癌种计数"
+    }
+   ],
+   "notes": "镜像堆积: 每 行×面板 一条水平堆叠 | 9细胞态×(PFS,OS)×正负计数",
+   "source_text": "9细胞态×(PFS,OS)×正负计数"
+  },
+  "068": {
+   "case": "案例70",
+   "title": "Cancer Cell 蝴蝶状&小提琴图",
+   "family": "distribution",
+   "format": "long",
+   "columns": [
+    {
+     "name": "gene",
+     "type": "string",
+     "required": true,
+     "desc": "基因签名(11 行)"
+    },
+    {
+     "name": "score",
+     "type": "number",
+     "required": true,
+     "desc": "M1/M2 得分"
+    },
+    {
+     "name": "side",
+     "type": "category",
+     "required": true,
+     "desc": "M1/M2(左右镜像)"
+    }
+   ],
+   "notes": "镜像小提琴: 每行背靠背两组分布 | 11基因签名×M1/M2得分分布",
+   "source_text": "11基因签名×M1/M2得分分布"
+  },
+  "069": {
+   "case": "案例71",
+   "title": "Nature 差异云雨图(一)",
+   "family": "distribution",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/细胞类型/物种"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值(分布原始值, 非统计量)"
+    }
+   ],
+   "notes": "每组 n>=30 才能撑起 KDE; 小样本请走 bar 家族 | 两组各数百值",
+   "source_text": "两组各数百值"
+  },
+  "070": {
+   "case": "案例72",
+   "title": "Nature 差异云雨图(二)",
+   "family": "distribution",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/细胞类型/物种"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值(分布原始值, 非统计量)"
+    }
+   ],
+   "notes": "每组 n>=30 才能撑起 KDE; 小样本请走 bar 家族 | 两组×两状态概率值",
+   "source_text": "两组×两状态概率值",
+   "recipe_vars": [
+    {
+     "name": "groups",
+     "line": 18,
+     "rhs": "{"
+    }
+   ]
+  },
+  "071": {
+   "case": "案例73",
+   "title": "Nature 差异云雨图(三)",
+   "family": "distribution",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/细胞类型/物种"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值(分布原始值, 非统计量)"
+    }
+   ],
+   "notes": "每组 n>=30 才能撑起 KDE; 小样本请走 bar 家族 | 两分期组×距离值,配对关系",
+   "source_text": "两分期组×距离值,配对关系"
+  },
+  "072": {
+   "case": "案例74",
+   "title": "Nature 堆积柱形图(一)",
+   "family": "bar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/处理名"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "测量值"
+    },
+    {
+     "name": "pair_id",
+     "type": "string",
+     "required": false,
+     "desc": "配对个体 ID(配对图必填)"
+    }
+   ],
+   "notes": "2-8 组, 每组 n>=3; 若做显著性需对照组 | 14列×3分数均值±SEM+显著性",
+   "source_text": "14列×3分数均值±SEM+显著性",
+   "recipe_vars": [
+    {
+     "name": "m0_mean",
+     "line": 21,
+     "rhs": "np.array([22, 23, 25, 23, 26, 30, 32, 23"
+    },
+    {
+     "name": "m1_mean",
+     "line": 22,
+     "rhs": "np.array([77, 40, 73, 23, 43, 68, 66, 60"
+    },
+    {
+     "name": "xs",
+     "line": 35,
+     "rhs": "np.array([0, 1, 2, 3, 4, 5, 6, 8, 9, 10,"
+    }
+   ]
+  },
+  "073": {
+   "case": "案例75",
+   "title": "Nature 堆积柱形图(二)",
+   "family": "bar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "block",
+     "type": "string",
+     "required": true,
+     "desc": "时间块(4-24wks)"
+    },
+    {
+     "name": "mouse",
+     "type": "string",
+     "required": true,
+     "desc": "处理组"
+    },
+    {
+     "name": "subgroup",
+     "type": "category",
+     "required": true,
+     "desc": "亚群(4-5 类)"
+    },
+    {
+     "name": "pct",
+     "type": "number",
+     "required": true,
+     "desc": "百分比"
+    }
+   ],
+   "notes": "分块堆积: 每 块×组 一根 100% 柱 | 18列×5亚群百分比±SEM",
+   "source_text": "18列×5亚群百分比±SEM"
+  },
+  "074": {
+   "case": "案例76",
+   "title": "Nature 空转&组合图",
+   "family": "tree_geo",
+   "format": "long",
+   "columns": [
+    {
+     "name": "name",
+     "type": "string",
+     "required": true,
+     "desc": "地点/类群名"
+    },
+    {
+     "name": "lon",
+     "type": "number",
+     "required": false,
+     "desc": "经度"
+    },
+    {
+     "name": "lat",
+     "type": "number",
+     "required": false,
+     "desc": "纬度"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": false,
+     "desc": "数量/丰度"
+    },
+    {
+     "name": "composition",
+     "type": "string",
+     "required": false,
+     "desc": "构成(如 A:B:C=5:3:2)"
+    }
+   ],
+   "notes": "地图类需 lon/lat 或国家/省名; 发育树类另备 Newick 文件 | 行×(两条件值,表达占比矩阵,KS值)",
+   "source_text": "行×(两条件值,表达占比矩阵,KS值)",
+   "recipe_vars": [
+    {
+     "name": "M",
+     "line": 26,
+     "rhs": "len(CELLS)"
+    }
+   ]
+  },
+  "075": {
+   "case": "案例77",
+   "title": "Plant Bio. J. 相关性矩阵图+拟合散点",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "row",
+     "type": "string",
+     "required": true,
+     "desc": "行标签(基因/代谢物/变量)"
+    },
+    {
+     "name": "col",
+     "type": "string",
+     "required": true,
+     "desc": "列标签(细胞类型/样本/变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "矩阵值(相关系数/表达/能量)"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": false,
+     "desc": "显著性 p 值(星号点阵用)"
+    }
+   ],
+   "notes": "矩阵维度按案例 notes; 相关矩阵需对称 | 4变量×约200样本成对值+年份",
+   "source_text": "4变量×约200样本成对值+年份"
+  },
+  "076": {
+   "case": "案例78",
+   "title": "New Phytol. 相关性网络&散点矩阵",
+   "family": "flow",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "var_a",
+     "type": "string",
+     "required": true,
+     "desc": "变量 A"
+    },
+    {
+     "name": "var_b",
+     "type": "string",
+     "required": true,
+     "desc": "变量 B"
+    },
+    {
+     "name": "r",
+     "type": "number",
+     "required": true,
+     "desc": "Pearson r"
+    },
+    {
+     "name": "p",
+     "type": "number",
+     "required": true,
+     "desc": "p 值"
+    }
+   ],
+   "notes": "左网络: 变量对 r/p 边表; 右上散点矩阵另需 6 变量原始观测长表 | 6变量×约90观测+r/P矩阵",
+   "source_text": "6变量×约90观测+r/P矩阵",
+   "recipe_vars": [
+    {
+     "name": "load",
+     "line": 30,
+     "rhs": "np.array([0.9, 0.8, 0.5, -0.6, -0.4, 0.7"
+    },
+    {
+     "name": "scales",
+     "line": 33,
+     "rhs": "np.array([12, 4, 150, 300, 12, 6])"
+    },
+    {
+     "name": "edges",
+     "line": 39,
+     "rhs": "[(0, 6, 0.72, 0.001), (6, 7, 0.65, 0.002"
+    }
+   ]
+  },
+  "077": {
+   "case": "案例79",
+   "title": "Nature 时间序列图(一)",
+   "family": "curve",
+   "format": "long",
+   "columns": [
+    {
+     "name": "time",
+     "type": "number",
+     "required": true,
+     "desc": "时间/浓度/频率(自变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "响应值"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "系列"
+    },
+    {
+     "name": "err",
+     "type": "number",
+     "required": false,
+     "desc": "SEM/CI 半宽"
+    }
+   ],
+   "notes": "时序类每组 5-20 个时间点 | 两组×16时间点GIR均值±SEM",
+   "source_text": "两组×16时间点GIR均值±SEM",
+   "recipe_vars": [
+    {
+     "name": "t_basal",
+     "line": 16,
+     "rhs": "np.array([-15.0, -7.5, 0.0])"
+    }
+   ]
+  },
+  "078": {
+   "case": "案例80",
+   "title": "Nature 时间序列图(二)",
+   "family": "curve",
+   "format": "long",
+   "columns": [
+    {
+     "name": "time",
+     "type": "number",
+     "required": true,
+     "desc": "时间/浓度/频率(自变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "响应值"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "系列"
+    },
+    {
+     "name": "err",
+     "type": "number",
+     "required": false,
+     "desc": "SEM/CI 半宽"
+    }
+   ],
+   "notes": "时序类每组 5-20 个时间点 | 2条件×3只×时间均值+SEM",
+   "source_text": "2条件×3只×时间均值+SEM"
+  },
+  "079": {
+   "case": "案例81",
+   "title": "Nature 时间序列图(三)",
+   "family": "curve",
+   "format": "long",
+   "columns": [
+    {
+     "name": "time",
+     "type": "number",
+     "required": true,
+     "desc": "时间/浓度/频率(自变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "响应值"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "系列"
+    },
+    {
+     "name": "err",
+     "type": "number",
+     "required": false,
+     "desc": "SEM/CI 半宽"
+    }
+   ],
+   "notes": "时序类每组 5-20 个时间点 | 4脑区×时间比值均值±SEM",
+   "source_text": "4脑区×时间比值均值±SEM"
+  },
+  "080": {
+   "case": "案例82",
+   "title": "Nature 时间序列图(四)",
+   "family": "curve",
+   "format": "long",
+   "columns": [
+    {
+     "name": "time",
+     "type": "number",
+     "required": true,
+     "desc": "时间/浓度/频率(自变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "响应值"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "系列"
+    },
+    {
+     "name": "err",
+     "type": "number",
+     "required": false,
+     "desc": "SEM/CI 半宽"
+    }
+   ],
+   "notes": "时序类每组 5-20 个时间点 | 两处理×时间ΔF/F均值+CI",
+   "source_text": "两处理×时间ΔF/F均值+CI"
+  },
+  "081": {
+   "case": "案例83",
+   "title": "Nature FC-FC",
+   "family": "scatter",
+   "format": "long",
+   "columns": [
+    {
+     "name": "x",
+     "type": "number",
+     "required": true,
+     "desc": "自变量"
+    },
+    {
+     "name": "y",
+     "type": "number",
+     "required": true,
+     "desc": "因变量"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "系列/分组"
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "required": false,
+     "desc": "点标注(基因名等, 仅重点点需要)"
+    },
+    {
+     "name": "xerr",
+     "type": "number",
+     "required": false,
+     "desc": "x 误差"
+    },
+    {
+     "name": "yerr",
+     "type": "number",
+     "required": false,
+     "desc": "y 误差"
+    }
+   ],
+   "notes": "每基因两条件log2FC+分类",
+   "source_text": "每基因两条件log2FC+分类"
+  },
+  "082": {
+   "case": "案例84",
+   "title": "Nature FC-FC",
+   "family": "scatter",
+   "format": "long",
+   "columns": [
+    {
+     "name": "x",
+     "type": "number",
+     "required": true,
+     "desc": "自变量"
+    },
+    {
+     "name": "y",
+     "type": "number",
+     "required": true,
+     "desc": "因变量"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "系列/分组"
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "required": false,
+     "desc": "点标注(基因名等, 仅重点点需要)"
+    },
+    {
+     "name": "xerr",
+     "type": "number",
+     "required": false,
+     "desc": "x 误差"
+    },
+    {
+     "name": "yerr",
+     "type": "number",
+     "required": false,
+     "desc": "y 误差"
+    }
+   ],
+   "notes": "每基因两log2FC;六类分类",
+   "source_text": "每基因两log2FC;六类分类",
+   "recipe_vars": [
+    {
+     "name": "dg",
+     "line": 56,
+     "rhs": "np.array([-LIM, LIM])"
+    }
+   ]
+  },
+  "083": {
+   "case": "案例85",
+   "title": "Nature 小提琴图&NMDS图",
+   "family": "distribution",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "排放分组(4 组)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "排放量"
+    }
+   ],
+   "notes": "A 面板小提琴; B/C NMDS 另备坐标表(sample, NMDS1, NMDS2, group) | 4组值;样本NMDS1/2坐标+分组",
+   "source_text": "4组值;样本NMDS1/2坐标+分组",
+   "recipe_vars": [
+    {
+     "name": "groups",
+     "line": 29,
+     "rhs": "[('MvY', C_MVY, 17, 620, 120), ('MvR', C"
+    }
+   ]
+  },
+  "084": {
+   "case": "案例86",
+   "title": "Nature 蜂群图",
+   "family": "distribution",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/细胞类型/物种"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值(分布原始值, 非统计量)"
+    }
+   ],
+   "notes": "每组 n>=30 才能撑起 KDE; 小样本请走 bar 家族 | 行×单细胞logFC值",
+   "source_text": "行×单细胞logFC值",
+   "recipe_vars": [
+    {
+     "name": "mu_early",
+     "line": 58,
+     "rhs": "np.array([-0.55, -0.75, -0.55, -0.60, -0"
+    }
+   ]
+  },
+  "085": {
+   "case": "案例87",
+   "title": "Nature 蜂群图",
+   "family": "distribution",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/细胞类型/物种"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值(分布原始值, 非统计量)"
+    }
+   ],
+   "notes": "每组 n>=30 才能撑起 KDE; 小样本请走 bar 家族 | 行×细胞logFC,两套对比",
+   "source_text": "行×细胞logFC,两套对比",
+   "recipe_vars": [
+    {
+     "name": "mu_top",
+     "line": 54,
+     "rhs": "np.array([-2.6, -2.9, 3.2, -2.4, -2.2, -"
+    }
+   ]
+  },
+  "086": {
+   "case": "案例88",
+   "title": "Nature 拟合散点图",
+   "family": "scatter",
+   "format": "long",
+   "columns": [
+    {
+     "name": "ecosystem",
+     "type": "category",
+     "required": true,
+     "desc": "红树/盐沼/海草(列)"
+    },
+    {
+     "name": "initial_C",
+     "type": "number",
+     "required": true,
+     "desc": "初始碳库"
+    },
+    {
+     "name": "loss",
+     "type": "number",
+     "required": true,
+     "desc": "变化量"
+    },
+    {
+     "name": "duration",
+     "type": "number",
+     "required": true,
+     "desc": "时长"
+    },
+    {
+     "name": "disturbance",
+     "type": "category",
+     "required": true,
+     "desc": "干扰类型(点色)"
+    }
+   ],
+   "notes": "2×3 拟合散点: 行=变化量/时长 | 样地×(初始C,变化量,时长,干扰)",
+   "source_text": "样地×(初始C,变化量,时长,干扰)"
+  },
+  "087": {
+   "case": "案例89",
+   "title": "Nature 一维变量的相关性热图",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "row",
+     "type": "string",
+     "required": true,
+     "desc": "行标签(基因/代谢物/变量)"
+    },
+    {
+     "name": "col",
+     "type": "string",
+     "required": true,
+     "desc": "列标签(细胞类型/样本/变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "矩阵值(相关系数/表达/能量)"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": false,
+     "desc": "显著性 p 值(星号点阵用)"
+    }
+   ],
+   "notes": "矩阵维度按案例 notes; 相关矩阵需对称 | 39×39相关矩阵+变量分组",
+   "source_text": "39×39相关矩阵+变量分组",
+   "recipe_vars": [
+    {
+     "name": "groups",
+     "line": 18,
+     "rhs": "["
+    },
+    {
+     "name": "gidx",
+     "line": 38,
+     "rhs": "np.array([gi for gi, (_, _, ss) in enume"
+    },
+    {
+     "name": "M",
+     "line": 42,
+     "rhs": "r.uniform(-0.30, 0.35, (n, n))"
+    },
+    {
+     "name": "M",
+     "line": 52,
+     "rhs": "(M + M.T) / 2"
+    }
+   ]
+  },
+  "088": {
+   "case": "案例90",
+   "title": "Nature 二维变量的相关性热图",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "row",
+     "type": "string",
+     "required": true,
+     "desc": "行标签(基因/代谢物/变量)"
+    },
+    {
+     "name": "col",
+     "type": "string",
+     "required": true,
+     "desc": "列标签(细胞类型/样本/变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "矩阵值(相关系数/表达/能量)"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": false,
+     "desc": "显著性 p 值(星号点阵用)"
+    }
+   ],
+   "notes": "矩阵维度按案例 notes; 相关矩阵需对称 | 相关矩阵+聚类树+行分组",
+   "source_text": "相关矩阵+聚类树+行分组",
+   "recipe_vars": [
+    {
+     "name": "row_groups",
+     "line": 24,
+     "rhs": "list('EEEEEEMMEEEEEENNYYLYYYNNLLLLYYYMLL"
+    },
+    {
+     "name": "M",
+     "line": 41,
+     "rhs": "r.uniform(-0.28, 0.28, (nr, nc))"
+    },
+    {
+     "name": "M",
+     "line": 51,
+     "rhs": "np.clip(M + r.normal(0, 0.05, (nr, nc)),"
+    },
+    {
+     "name": "order_r",
+     "line": 55,
+     "rhs": "np.array([int(x) for x in dendrogram(Zr,"
+    },
+    {
+     "name": "order_c",
+     "line": 56,
+     "rhs": "np.array([int(x) for x in dendrogram(Zc,"
+    }
+   ]
+  },
+  "089": {
+   "case": "案例91",
+   "title": "Nature 多维变量的相关性热图",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "var_a",
+     "type": "string",
+     "required": true,
+     "desc": "环境变量 A"
+    },
+    {
+     "name": "var_b",
+     "type": "string",
+     "required": true,
+     "desc": "环境变量 B"
+    },
+    {
+     "name": "r",
+     "type": "number",
+     "required": true,
+     "desc": "Pearson r"
+    },
+    {
+     "name": "p",
+     "type": "number",
+     "required": true,
+     "desc": "p 值"
+    },
+    {
+     "name": "mantel_r",
+     "type": "number",
+     "required": false,
+     "desc": "Mantel r(群落边)"
+    },
+    {
+     "name": "mantel_p",
+     "type": "number",
+     "required": false,
+     "desc": "Mantel p"
+    },
+    {
+     "name": "community",
+     "type": "string",
+     "required": false,
+     "desc": "所属群落(连边用)"
+    }
+   ],
+   "notes": "右上 Pearson 矩阵 + Mantel 连边同表 | 10变量Pearson r/p;4群落Mantel r/p",
+   "source_text": "10变量Pearson r/p;4群落Mantel r/p"
+  },
+  "090": {
+   "case": "案例92",
+   "title": "Cell 蝴蝶状&堆积柱形图",
+   "family": "bar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/处理名"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "测量值"
+    },
+    {
+     "name": "pair_id",
+     "type": "string",
+     "required": false,
+     "desc": "配对个体 ID(配对图必填)"
+    }
+   ],
+   "notes": "2-8 组, 每组 n>=3; 若做显著性需对照组 | 24行×7类占比+左右计数",
+   "source_text": "24行×7类占比+左右计数"
+  },
+  "091": {
+   "case": "案例93",
+   "title": "Cell 冲击图",
+   "family": "flow",
+   "format": "edges",
+   "columns": [
+    {
+     "name": "source",
+     "type": "string",
+     "required": true,
+     "desc": "源"
+    },
+    {
+     "name": "target",
+     "type": "string",
+     "required": true,
+     "desc": "目标"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "计数"
+    }
+   ],
+   "notes": "冲击图: 各流标 n | 流向表source-target-count",
+   "source_text": "流向表source-target-count",
+   "recipe_vars": [
+    {
+     "name": "links",
+     "line": 50,
+     "rhs": "f01 + f12"
+    }
+   ]
+  },
+  "092": {
+   "case": "案例94",
+   "title": "Nature 半圆形&小提琴图",
+   "family": "polar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "axis",
+     "type": "category",
+     "required": true,
+     "desc": "角度轴(指标/组织/城市)"
+    },
+    {
+     "name": "series",
+     "type": "category",
+     "required": false,
+     "desc": "系列(处理/分组)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "径向值"
+    },
+    {
+     "name": "sig",
+     "type": "string",
+     "required": false,
+     "desc": "显著性字母/星号"
+    }
+   ],
+   "notes": "长表group,value;各组中位数",
+   "source_text": "长表group,value;各组中位数",
+   "recipe_vars": [
+    {
+     "name": "groups",
+     "line": 15,
+     "rhs": "["
+    },
+    {
+     "name": "tk",
+     "line": 45,
+     "rhs": "np.array([0, 2, 4, 6, 8, 10])     # 径向刻度"
+    }
+   ]
+  },
+  "093": {
+   "case": "案例95",
+   "title": "Nature 扇形&箱线图",
+   "family": "polar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "axis",
+     "type": "category",
+     "required": true,
+     "desc": "角度轴(指标/组织/城市)"
+    },
+    {
+     "name": "series",
+     "type": "category",
+     "required": false,
+     "desc": "系列(处理/分组)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "径向值"
+    },
+    {
+     "name": "sig",
+     "type": "string",
+     "required": false,
+     "desc": "显著性字母/星号"
+    }
+   ],
+   "notes": "分组连续数据长表",
+   "source_text": "分组连续数据长表",
+   "recipe_vars": [
+    {
+     "name": "groups",
+     "line": 14,
+     "rhs": "["
+    },
+    {
+     "name": "tk",
+     "line": 44,
+     "rhs": "np.array([0, 2, 4, 6, 8, 10])     # 径向刻度"
+    }
+   ]
+  },
+  "094": {
+   "case": "案例96",
+   "title": "Nature 环状柱形图",
+   "family": "polar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "axis",
+     "type": "category",
+     "required": true,
+     "desc": "角度轴(指标/组织/城市)"
+    },
+    {
+     "name": "series",
+     "type": "category",
+     "required": false,
+     "desc": "系列(处理/分组)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "径向值"
+    },
+    {
+     "name": "sig",
+     "type": "string",
+     "required": false,
+     "desc": "显著性字母/星号"
+    }
+   ],
+   "notes": "指标名,z值,星号,维度分类",
+   "source_text": "指标名,z值,星号,维度分类"
+  },
+  "095": {
+   "case": "案例97",
+   "title": "Nature 环状折线图",
+   "family": "polar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "axis",
+     "type": "category",
+     "required": true,
+     "desc": "角度轴(指标/组织/城市)"
+    },
+    {
+     "name": "series",
+     "type": "category",
+     "required": false,
+     "desc": "系列(处理/分组)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "径向值"
+    },
+    {
+     "name": "sig",
+     "type": "string",
+     "required": false,
+     "desc": "显著性字母/星号"
+    }
+   ],
+   "notes": "指标×4组z-score长表",
+   "source_text": "指标×4组z-score长表",
+   "recipe_vars": [
+    {
+     "name": "groups",
+     "line": 45,
+     "rhs": "["
+    }
+   ]
+  },
+  "096": {
+   "case": "案例98",
+   "title": "Nature 相关性矩阵点图(一)",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "row",
+     "type": "string",
+     "required": true,
+     "desc": "行标签(基因/代谢物/变量)"
+    },
+    {
+     "name": "col",
+     "type": "string",
+     "required": true,
+     "desc": "列标签(细胞类型/样本/变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "矩阵值(相关系数/表达/能量)"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": false,
+     "desc": "显著性 p 值(星号点阵用)"
+    }
+   ],
+   "notes": "矩阵维度按案例 notes; 相关矩阵需对称 | 菌群×ARG:相关,p值,丰度",
+   "source_text": "菌群×ARG:相关,p值,丰度"
+  },
+  "097": {
+   "case": "案例99",
+   "title": "Nature 相关性矩阵点图(二)",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "row",
+     "type": "string",
+     "required": true,
+     "desc": "行标签(基因/代谢物/变量)"
+    },
+    {
+     "name": "col",
+     "type": "string",
+     "required": true,
+     "desc": "列标签(细胞类型/样本/变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "矩阵值(相关系数/表达/能量)"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": false,
+     "desc": "显著性 p 值(星号点阵用)"
+    }
+   ],
+   "notes": "矩阵维度按案例 notes; 相关矩阵需对称 | 签名×CNV事件:rho,p值,两组",
+   "source_text": "签名×CNV事件:rho,p值,两组",
+   "recipe_vars": [
+    {
+     "name": "ypos",
+     "line": 40,
+     "rhs": "np.array(ypos)"
+    }
+   ]
+  },
+  "098": {
+   "case": "案例100",
+   "title": "iMeta 差异雷达图(一)",
+   "family": "polar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "axis",
+     "type": "category",
+     "required": true,
+     "desc": "角度轴(指标/组织/城市)"
+    },
+    {
+     "name": "series",
+     "type": "category",
+     "required": false,
+     "desc": "系列(处理/分组)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "径向值"
+    },
+    {
+     "name": "sig",
+     "type": "string",
+     "required": false,
+     "desc": "显著性字母/星号"
+    }
+   ],
+   "notes": "组织×3指标比率矩阵",
+   "source_text": "组织×3指标比率矩阵",
+   "recipe_vars": [
+    {
+     "name": "M",
+     "line": 20,
+     "rhs": "len(tissues)"
+    }
+   ]
+  },
+  "099": {
+   "case": "案例101",
+   "title": "Nature 差异雷达图(二)",
+   "family": "polar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "axis",
+     "type": "category",
+     "required": true,
+     "desc": "角度轴(指标/组织/城市)"
+    },
+    {
+     "name": "series",
+     "type": "category",
+     "required": false,
+     "desc": "系列(处理/分组)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "径向值"
+    },
+    {
+     "name": "sig",
+     "type": "string",
+     "required": false,
+     "desc": "显著性字母/星号"
+    }
+   ],
+   "notes": "亚区×2组密度值+p值",
+   "source_text": "亚区×2组密度值+p值",
+   "recipe_vars": [
+    {
+     "name": "groups",
+     "line": 18,
+     "rhs": "[('CA1', 1, 5), ('vSub', 6, 6), ('DG', 7"
+    },
+    {
+     "name": "M",
+     "line": 19,
+     "rhs": "len(regions)"
+    },
+    {
+     "name": "D1",
+     "line": 23,
+     "rhs": "np.array([300, 430, 320, 270, 230, 210, "
+    },
+    {
+     "name": "D2",
+     "line": 25,
+     "rhs": "np.array([320, 390, 290, 250, 215, 200, "
+    }
+   ]
+  },
+  "100": {
+   "case": "案例102",
+   "title": "ES&T 环状条形图",
+   "family": "polar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "axis",
+     "type": "category",
+     "required": true,
+     "desc": "角度轴(指标/组织/城市)"
+    },
+    {
+     "name": "series",
+     "type": "category",
+     "required": false,
+     "desc": "系列(处理/分组)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "径向值"
+    },
+    {
+     "name": "sig",
+     "type": "string",
+     "required": false,
+     "desc": "显著性字母/星号"
+    }
+   ],
+   "notes": "城市名+CPUG值两列",
+   "source_text": "城市名+CPUG值两列"
+  },
+  "101": {
+   "case": "案例103",
+   "title": "Nature 环状条形图",
+   "family": "polar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "axis",
+     "type": "category",
+     "required": true,
+     "desc": "角度轴(指标/组织/城市)"
+    },
+    {
+     "name": "series",
+     "type": "category",
+     "required": false,
+     "desc": "系列(处理/分组)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "径向值"
+    },
+    {
+     "name": "sig",
+     "type": "string",
+     "required": false,
+     "desc": "显著性字母/星号"
+    }
+   ],
+   "notes": "靶点名+抑制值+panel两列",
+   "source_text": "靶点名+抑制值+panel两列"
+  },
+  "102": {
+   "case": "案例104",
+   "title": "Nature 渐变型等高线图",
+   "family": "ridge",
+   "format": "long",
+   "columns": [
+    {
+     "name": "row",
+     "type": "category",
+     "required": true,
+     "desc": "山脊行(亚群/时间点/标记)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值"
+    },
+    {
+     "name": "facet",
+     "type": "category",
+     "required": false,
+     "desc": "分面列(标记/条件)"
+    }
+   ],
+   "notes": "每行 n>=100 | 基因(x,y)坐标+KDE网格+高亮名单",
+   "source_text": "基因(x,y)坐标+KDE网格+高亮名单"
+  },
+  "103": {
+   "case": "案例105",
+   "title": "Nature 填充型等高线图",
+   "family": "ridge",
+   "format": "long",
+   "columns": [
+    {
+     "name": "row",
+     "type": "category",
+     "required": true,
+     "desc": "山脊行(亚群/时间点/标记)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值"
+    },
+    {
+     "name": "facet",
+     "type": "category",
+     "required": false,
+     "desc": "分面列(标记/条件)"
+    }
+   ],
+   "notes": "每行 n>=100 | 各组(P值,长度)点集+样本数",
+   "source_text": "各组(P值,长度)点集+样本数"
+  },
+  "104": {
+   "case": "案例106",
+   "title": "Nature 散点图",
+   "family": "scatter",
+   "format": "long",
+   "columns": [
+    {
+     "name": "x",
+     "type": "number",
+     "required": true,
+     "desc": "自变量"
+    },
+    {
+     "name": "y",
+     "type": "number",
+     "required": true,
+     "desc": "因变量"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "系列/分组"
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "required": false,
+     "desc": "点标注(基因名等, 仅重点点需要)"
+    },
+    {
+     "name": "xerr",
+     "type": "number",
+     "required": false,
+     "desc": "x 误差"
+    },
+    {
+     "name": "yerr",
+     "type": "number",
+     "required": false,
+     "desc": "y 误差"
+    }
+   ],
+   "notes": "长表:细胞型,组别,MFI重复值",
+   "source_text": "长表:细胞型,组别,MFI重复值"
+  },
+  "105": {
+   "case": "案例107",
+   "title": "Nature 气泡图",
+   "family": "scatter",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "motif",
+     "type": "string",
+     "required": true,
+     "desc": "抑制基序(行)"
+    },
+    {
+     "name": "layer",
+     "type": "string",
+     "required": true,
+     "desc": "皮层柱(列)"
+    },
+    {
+     "name": "frac",
+     "type": "number",
+     "required": true,
+     "desc": "Frac Syn 0-1"
+    }
+   ],
+   "notes": "气泡矩阵: 4 档大小编码 | motif×layer比例矩阵",
+   "source_text": "motif×layer比例矩阵",
+   "recipe_vars": [
+    {
+     "name": "layers",
+     "line": 16,
+     "rhs": "['L2a', 'L2b', 'L2c', 'L3a', 'L3b', 'L4a"
+    }
+   ]
+  },
+  "106": {
+   "case": "案例108",
+   "title": "Cell 热图(一)",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "row",
+     "type": "string",
+     "required": true,
+     "desc": "行标签(基因/代谢物/变量)"
+    },
+    {
+     "name": "col",
+     "type": "string",
+     "required": true,
+     "desc": "列标签(细胞类型/样本/变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "矩阵值(相关系数/表达/能量)"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": false,
+     "desc": "显著性 p 值(星号点阵用)"
+    }
+   ],
+   "notes": "矩阵维度按案例 notes; 相关矩阵需对称 | 状态×因子active/repressed%+显著性",
+   "source_text": "状态×因子active/repressed%+显著性",
+   "recipe_vars": [
+    {
+     "name": "groups",
+     "line": 25,
+     "rhs": "[('Set 1 (single f.)', single8), ('Set 1"
+    }
+   ]
+  },
+  "107": {
+   "case": "案例109",
+   "title": "Cell 热图(二)",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "row",
+     "type": "string",
+     "required": true,
+     "desc": "行标签(基因/代谢物/变量)"
+    },
+    {
+     "name": "col",
+     "type": "string",
+     "required": true,
+     "desc": "列标签(细胞类型/样本/变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "矩阵值(相关系数/表达/能量)"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": false,
+     "desc": "显著性 p 值(星号点阵用)"
+    }
+   ],
+   "notes": "矩阵维度按案例 notes; 相关矩阵需对称 | TF×TF:active%,repressed%,p",
+   "source_text": "TF×TF:active%,repressed%,p"
+  },
+  "108": {
+   "case": "案例110",
+   "title": "iMeta 多分组火山图(一)",
+   "family": "volcano",
+   "format": "long",
+   "columns": [
+    {
+     "name": "feature",
+     "type": "string",
+     "required": true,
+     "desc": "基因/蛋白/代谢物名"
+    },
+    {
+     "name": "log2fc",
+     "type": "number",
+     "required": true,
+     "desc": "log2 倍数变化"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": true,
+     "desc": "p 值(或已换算的 -log10p)"
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "required": false,
+     "desc": "重点标注名(仅关键基因)"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "分面/比较组(多组火山用)"
+    }
+   ],
+   "notes": "rows>=1000 观感最佳; 标注基因 5-40 个 | 长表:蛋白,log2FC,score,组织",
+   "source_text": "长表:蛋白,log2FC,score,组织"
+  },
+  "109": {
+   "case": "案例111",
+   "title": "Nature 多分组火山图(二)",
+   "family": "volcano",
+   "format": "long",
+   "columns": [
+    {
+     "name": "feature",
+     "type": "string",
+     "required": true,
+     "desc": "基因/蛋白/代谢物名"
+    },
+    {
+     "name": "log2fc",
+     "type": "number",
+     "required": true,
+     "desc": "log2 倍数变化"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": true,
+     "desc": "p 值(或已换算的 -log10p)"
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "required": false,
+     "desc": "重点标注名(仅关键基因)"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "分面/比较组(多组火山用)"
+    }
+   ],
+   "notes": "rows>=1000 观感最佳; 标注基因 5-40 个 | 长表:基因,脑区,log2FC,pct",
+   "source_text": "长表:基因,脑区,log2FC,pct"
+  },
+  "110": {
+   "case": "案例112",
+   "title": "Clin.Transl.Med 多分组火山图(三)",
+   "family": "volcano",
+   "format": "long",
+   "columns": [
+    {
+     "name": "feature",
+     "type": "string",
+     "required": true,
+     "desc": "基因/蛋白/代谢物名"
+    },
+    {
+     "name": "log2fc",
+     "type": "number",
+     "required": true,
+     "desc": "log2 倍数变化"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": true,
+     "desc": "p 值(或已换算的 -log10p)"
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "required": false,
+     "desc": "重点标注名(仅关键基因)"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "分面/比较组(多组火山用)"
+    }
+   ],
+   "notes": "rows>=1000 观感最佳; 标注基因 5-40 个 | 长表:比较组,基因,log2FC,方向",
+   "source_text": "长表:比较组,基因,log2FC,方向"
+  },
+  "111": {
+   "case": "案例113",
+   "title": "Nature 火山图+富集图(一)",
+   "family": "volcano",
+   "format": "long",
+   "columns": [
+    {
+     "name": "feature",
+     "type": "string",
+     "required": true,
+     "desc": "基因/蛋白/代谢物名"
+    },
+    {
+     "name": "log2fc",
+     "type": "number",
+     "required": true,
+     "desc": "log2 倍数变化"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": true,
+     "desc": "p 值(或已换算的 -log10p)"
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "required": false,
+     "desc": "重点标注名(仅关键基因)"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "分面/比较组(多组火山用)"
+    }
+   ],
+   "notes": "rows>=1000 观感最佳; 标注基因 5-40 个 | 基因log2FC/FDR;通路-基因富集",
+   "source_text": "基因log2FC/FDR;通路-基因富集"
+  },
+  "112": {
+   "case": "案例114",
+   "title": "iMeta 火山图+富集图(二)",
+   "family": "volcano",
+   "format": "long",
+   "columns": [
+    {
+     "name": "feature",
+     "type": "string",
+     "required": true,
+     "desc": "基因/蛋白/代谢物名"
+    },
+    {
+     "name": "log2fc",
+     "type": "number",
+     "required": true,
+     "desc": "log2 倍数变化"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": true,
+     "desc": "p 值(或已换算的 -log10p)"
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "required": false,
+     "desc": "重点标注名(仅关键基因)"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "分面/比较组(多组火山用)"
+    }
+   ],
+   "notes": "rows>=1000 观感最佳; 标注基因 5-40 个 | 蛋白log2FC/p;富集通路p+基因",
+   "source_text": "蛋白log2FC/p;富集通路p+基因"
+  },
+  "113": {
+   "case": "案例115",
+   "title": "Nature 火山图+富集图(三)",
+   "family": "volcano",
+   "format": "long",
+   "columns": [
+    {
+     "name": "feature",
+     "type": "string",
+     "required": true,
+     "desc": "基因/蛋白/代谢物名"
+    },
+    {
+     "name": "log2fc",
+     "type": "number",
+     "required": true,
+     "desc": "log2 倍数变化"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": true,
+     "desc": "p 值(或已换算的 -log10p)"
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "required": false,
+     "desc": "重点标注名(仅关键基因)"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "分面/比较组(多组火山用)"
+    }
+   ],
+   "notes": "rows>=1000 观感最佳; 标注基因 5-40 个 | 两组蛋白log2FC/p;富集FDR",
+   "source_text": "两组蛋白log2FC/p;富集FDR"
+  },
+  "114": {
+   "case": "案例116",
+   "title": "Microbiome Upset图(一)",
+   "family": "flow",
+   "format": "sets",
+   "columns": [
+    {
+     "name": "set_name",
+     "type": "string",
+     "required": true,
+     "desc": "集合名"
+    },
+    {
+     "name": "elements",
+     "type": "string",
+     "required": true,
+     "desc": "元素列表(分号分隔)"
+    }
+   ],
+   "notes": "UpSet 输入: 每行一个集合 | 8集合元素交集计数",
+   "source_text": "8集合元素交集计数",
+   "recipe_vars": [
+    {
+     "name": "sets",
+     "line": 28,
+     "rhs": "{n: set() for n in names}"
+    }
+   ]
+  },
+  "115": {
+   "case": "案例117",
+   "title": "Clin.Transl.Med Upset图(二)",
+   "family": "flow",
+   "format": "sets",
+   "columns": [
+    {
+     "name": "set_name",
+     "type": "string",
+     "required": true,
+     "desc": "集合名"
+    },
+    {
+     "name": "elements",
+     "type": "string",
+     "required": true,
+     "desc": "元素列表(分号分隔)"
+    }
+   ],
+   "notes": "8组DEG交集矩阵",
+   "source_text": "8组DEG交集矩阵",
+   "recipe_vars": [
+    {
+     "name": "sets",
+     "line": 40,
+     "rhs": "{n: set() for n in names}"
+    }
+   ]
+  },
+  "116": {
+   "case": "案例118",
+   "title": "Sci. Adv 曼哈顿图",
+   "family": "volcano",
+   "format": "long",
+   "columns": [
+    {
+     "name": "term",
+     "type": "string",
+     "required": true,
+     "desc": "目/类目"
+    },
+    {
+     "name": "log2fc",
+     "type": "number",
+     "required": true,
+     "desc": "log2FC"
+    },
+    {
+     "name": "abundance",
+     "type": "number",
+     "required": true,
+     "desc": "丰度(气泡大小)"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "比较组(分层面板)"
+    }
+   ],
+   "notes": "目×3比较log2FC,丰度,类目",
+   "source_text": "目×3比较log2FC,丰度,类目",
+   "recipe_vars": [
+    {
+     "name": "data",
+     "line": 37,
+     "rhs": "[]"
+    }
+   ]
+  },
+  "117": {
+   "case": "案例119",
+   "title": "Nat. Microbiol 中国地图(一)",
+   "family": "tree_geo",
+   "format": "long",
+   "columns": [
+    {
+     "name": "name",
+     "type": "string",
+     "required": true,
+     "desc": "地点/类群名"
+    },
+    {
+     "name": "lon",
+     "type": "number",
+     "required": false,
+     "desc": "经度"
+    },
+    {
+     "name": "lat",
+     "type": "number",
+     "required": false,
+     "desc": "纬度"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": false,
+     "desc": "数量/丰度"
+    },
+    {
+     "name": "composition",
+     "type": "string",
+     "required": false,
+     "desc": "构成(如 A:B:C=5:3:2)"
+    }
+   ],
+   "notes": "地图类需 lon/lat 或国家/省名; 发育树类另备 Newick 文件 | 省界+区划;样点:经纬度,数量,构成",
+   "source_text": "省界+区划;样点:经纬度,数量,构成"
+  },
+  "118": {
+   "case": "案例120",
+   "title": "PNAS 中国地图(二)",
+   "family": "tree_geo",
+   "format": "long",
+   "columns": [
+    {
+     "name": "name",
+     "type": "string",
+     "required": true,
+     "desc": "地点/类群名"
+    },
+    {
+     "name": "lon",
+     "type": "number",
+     "required": false,
+     "desc": "经度"
+    },
+    {
+     "name": "lat",
+     "type": "number",
+     "required": false,
+     "desc": "纬度"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": false,
+     "desc": "数量/丰度"
+    },
+    {
+     "name": "composition",
+     "type": "string",
+     "required": false,
+     "desc": "构成(如 A:B:C=5:3:2)"
+    }
+   ],
+   "notes": "地图类需 lon/lat 或国家/省名; 发育树类另备 Newick 文件 | 省界;城市:经纬度,亏缺量分档",
+   "source_text": "省界;城市:经纬度,亏缺量分档"
+  },
+  "119": {
+   "case": "案例121",
+   "title": "Cell 上下双热图",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "row",
+     "type": "string",
+     "required": true,
+     "desc": "行标签(基因/代谢物/变量)"
+    },
+    {
+     "name": "col",
+     "type": "string",
+     "required": true,
+     "desc": "列标签(细胞类型/样本/变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "矩阵值(相关系数/表达/能量)"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": false,
+     "desc": "显著性 p 值(星号点阵用)"
+    }
+   ],
+   "notes": "矩阵维度按案例 notes; 相关矩阵需对称 | 60×60相关矩阵+p值+签名注释",
+   "source_text": "60×60相关矩阵+p值+签名注释"
+  },
+  "120": {
+   "case": "案例122",
+   "title": "上下双热图",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "row",
+     "type": "string",
+     "required": true,
+     "desc": "行标签(基因/代谢物/变量)"
+    },
+    {
+     "name": "col",
+     "type": "string",
+     "required": true,
+     "desc": "列标签(细胞类型/样本/变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "矩阵值(相关系数/表达/能量)"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": false,
+     "desc": "显著性 p 值(星号点阵用)"
+    }
+   ],
+   "notes": "矩阵维度按案例 notes; 相关矩阵需对称 | 两套57×57相关矩阵+签名名",
+   "source_text": "两套57×57相关矩阵+签名名"
+  },
+  "121": {
+   "case": "案例123",
+   "title": "cell 带显著性的小提琴图(一)",
+   "family": "distribution",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/细胞类型/物种"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值(分布原始值, 非统计量)"
+    }
+   ],
+   "notes": "每组 n>=30 才能撑起 KDE; 小样本请走 bar 家族 | 长表:7类×2区室×数值",
+   "source_text": "长表:7类×2区室×数值",
+   "recipe_vars": [
+    {
+     "name": "groups",
+     "line": 17,
+     "rhs": "[('Exc', '#22A022', 'white'), ('Inh', '#"
+    }
+   ]
+  },
+  "122": {
+   "case": "案例124",
+   "title": "Nature 带显著性的小提琴图(二)",
+   "family": "distribution",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/细胞类型/物种"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值(分布原始值, 非统计量)"
+    }
+   ],
+   "notes": "每组 n>=30 才能撑起 KDE; 小样本请走 bar 家族 | 长表:10亚群×2状态×百分比",
+   "source_text": "长表:10亚群×2状态×百分比"
+  },
+  "123": {
+   "case": "案例125",
+   "title": "Nature 带显著性的小提琴图(三)",
+   "family": "distribution",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/细胞类型/物种"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值(分布原始值, 非统计量)"
+    }
+   ],
+   "notes": "每组 n>=30 才能撑起 KDE; 小样本请走 bar 家族 | 长表:区域×事件×时期×百分比",
+   "source_text": "长表:区域×事件×时期×百分比"
+  },
+  "124": {
+   "case": "案例126",
+   "title": "Cell 三元图(1)",
+   "family": "flow",
+   "format": "long",
+   "columns": [
+    {
+     "name": "TE",
+     "type": "number",
+     "required": true,
+     "desc": "顶点 TE(上)",
+     "aliases": [
+      "fa"
+     ]
+    },
+    {
+     "name": "EPI",
+     "type": "number",
+     "required": true,
+     "desc": "顶点 EPI(左下)",
+     "aliases": [
+      "fb"
+     ]
+    },
+    {
+     "name": "PrE",
+     "type": "number",
+     "required": true,
+     "desc": "顶点 PrE(右下)",
+     "aliases": [
+      "fc"
+     ]
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "归属/分期"
+    }
+   ],
+   "notes": "三元图: 三分量和为 100(或 1, 自动归一) | 每细胞三维归一化得分+分组",
+   "source_text": "每细胞三维归一化得分+分组"
+  },
+  "125": {
+   "case": "案例127",
+   "title": "Nature 三元图(2)",
+   "family": "flow",
+   "format": "long",
+   "columns": [
+    {
+     "name": "TH1",
+     "type": "number",
+     "required": true,
+     "desc": "顶点 TH1",
+     "aliases": [
+      "fa"
+     ]
+    },
+    {
+     "name": "TH2",
+     "type": "number",
+     "required": true,
+     "desc": "顶点 TH2",
+     "aliases": [
+      "fb"
+     ]
+    },
+    {
+     "name": "TH17",
+     "type": "number",
+     "required": true,
+     "desc": "顶点 TH17",
+     "aliases": [
+      "fc"
+     ]
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "Young/Older"
+    }
+   ],
+   "notes": "三维状态得分+年龄组",
+   "source_text": "三维状态得分+年龄组"
+  },
+  "126": {
+   "case": "案例128",
+   "title": "Nature 三元图(3)",
+   "family": "flow",
+   "format": "long",
+   "columns": [
+    {
+     "name": "TH1",
+     "type": "number",
+     "required": true,
+     "desc": "顶点 TH1",
+     "aliases": [
+      "fa"
+     ]
+    },
+    {
+     "name": "TH2",
+     "type": "number",
+     "required": true,
+     "desc": "顶点 TH2",
+     "aliases": [
+      "fb"
+     ]
+    },
+    {
+     "name": "TH17",
+     "type": "number",
+     "required": true,
+     "desc": "顶点 TH17",
+     "aliases": [
+      "fc"
+     ]
+    },
+    {
+     "name": "age",
+     "type": "number",
+     "required": true,
+     "desc": "年龄(着色)"
+    }
+   ],
+   "notes": "三维得分+年龄数值",
+   "source_text": "三维得分+年龄数值"
+  },
+  "127": {
+   "case": "案例129",
+   "title": "PNAS 三元图(4)",
+   "family": "flow",
+   "format": "long",
+   "columns": [
+    {
+     "name": "Nodule",
+     "type": "number",
+     "required": true,
+     "desc": "顶点 Nodule",
+     "aliases": [
+      "fa"
+     ]
+    },
+    {
+     "name": "Root",
+     "type": "number",
+     "required": true,
+     "desc": "顶点 Root",
+     "aliases": [
+      "fb"
+     ]
+    },
+    {
+     "name": "Rhizosphere",
+     "type": "number",
+     "required": true,
+     "desc": "顶点 Rhizosphere",
+     "aliases": [
+      "fc"
+     ]
+    },
+    {
+     "name": "size",
+     "type": "number",
+     "required": true,
+     "desc": "丰度(气泡)"
+    },
+    {
+     "name": "enriched",
+     "type": "category",
+     "required": false,
+     "desc": "富集生境/灰色"
+    }
+   ],
+   "notes": "OTU三维丰度+富集归属",
+   "source_text": "OTU三维丰度+富集归属"
+  },
+  "128": {
+   "case": "案例130",
+   "title": "Nature 三元图(5)",
+   "family": "flow",
+   "format": "long",
+   "columns": [
+    {
+     "name": "Control",
+     "type": "number",
+     "required": true,
+     "desc": "顶点 Control",
+     "aliases": [
+      "fa"
+     ]
+    },
+    {
+     "name": "NPK",
+     "type": "number",
+     "required": true,
+     "desc": "顶点 NPK",
+     "aliases": [
+      "fb"
+     ]
+    },
+    {
+     "name": "NPKM",
+     "type": "number",
+     "required": true,
+     "desc": "顶点 NPKM",
+     "aliases": [
+      "fc"
+     ]
+    },
+    {
+     "name": "size",
+     "type": "number",
+     "required": true,
+     "desc": "丰度"
+    },
+    {
+     "name": "genus",
+     "type": "category",
+     "required": true,
+     "desc": "属(着色)"
+    }
+   ],
+   "notes": "属级三处理丰度+分类",
+   "source_text": "属级三处理丰度+分类"
+  },
+  "129": {
+   "case": "案例131",
+   "title": "Nature 三元图(6)",
+   "family": "flow",
+   "format": "long",
+   "columns": [
+    {
+     "name": "ISC_TA",
+     "type": "number",
+     "required": true,
+     "desc": "顶点 ISC/TA",
+     "aliases": [
+      "fa"
+     ]
+    },
+    {
+     "name": "Diff_int",
+     "type": "number",
+     "required": true,
+     "desc": "顶点 Diff.int.",
+     "aliases": [
+      "fb"
+     ]
+    },
+    {
+     "name": "Non_canonical",
+     "type": "number",
+     "required": true,
+     "desc": "顶点 Non-canonical",
+     "aliases": [
+      "fc"
+     ]
+    }
+   ],
+   "notes": "三元 KDE: n>=200 | 三维概率向量",
+   "source_text": "三维概率向量",
+   "recipe_vars": [
+    {
+     "name": "cen",
+     "line": 92,
+     "rhs": "np.array([0.5, H / 3])"
+    }
+   ]
+  },
+  "130": {
+   "case": "案例132",
+   "title": "Nature 相关性矩阵(R版)",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "row",
+     "type": "string",
+     "required": true,
+     "desc": "行标签(基因/代谢物/变量)"
+    },
+    {
+     "name": "col",
+     "type": "string",
+     "required": true,
+     "desc": "列标签(细胞类型/样本/变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "矩阵值(相关系数/表达/能量)"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": false,
+     "desc": "显著性 p 值(星号点阵用)"
+    }
+   ],
+   "notes": "矩阵维度按案例 notes; 相关矩阵需对称 | 7变量相关矩阵+变量对原始数据",
+   "source_text": "7变量相关矩阵+变量对原始数据",
+   "recipe_vars": [
+    {
+     "name": "R",
+     "line": 19,
+     "rhs": "np.array(["
+    },
+    {
+     "name": "hi",
+     "line": 34,
+     "rhs": "np.array([5.0, 5.0, 5.0, 40.0, 4.0, 5.0,"
+    }
+   ]
+  },
+  "131": {
+   "case": "案例133",
+   "title": "Nature 相关性矩阵(Python版)",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "row",
+     "type": "string",
+     "required": true,
+     "desc": "行标签(基因/代谢物/变量)"
+    },
+    {
+     "name": "col",
+     "type": "string",
+     "required": true,
+     "desc": "列标签(细胞类型/样本/变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "矩阵值(相关系数/表达/能量)"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": false,
+     "desc": "显著性 p 值(星号点阵用)"
+    }
+   ],
+   "notes": "矩阵维度按案例 notes; 相关矩阵需对称 | 同案例132",
+   "source_text": "同案例132",
+   "recipe_vars": [
+    {
+     "name": "R",
+     "line": 18,
+     "rhs": "np.array(["
+    },
+    {
+     "name": "hi",
+     "line": 31,
+     "rhs": "np.array([5.0, 5.0, 5.0, 40.0, 4.0, 5.0,"
+    }
+   ]
+  },
+  "132": {
+   "case": "案例134",
+   "title": "Nature 点线图",
+   "family": "curve",
+   "format": "long",
+   "columns": [
+    {
+     "name": "freq",
+     "type": "number",
+     "required": true,
+     "desc": "频率"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "摩尔体积"
+    },
+    {
+     "name": "temp",
+     "type": "number",
+     "required": true,
+     "desc": "温度(K, 系列色)"
+    }
+   ],
+   "notes": "log x 曲线族 | 16温度×频率扫描数值",
+   "source_text": "16温度×频率扫描数值"
+  },
+  "133": {
+   "case": "案例135",
+   "title": "Cell 环形热图",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "row",
+     "type": "string",
+     "required": true,
+     "desc": "行标签(基因/代谢物/变量)"
+    },
+    {
+     "name": "col",
+     "type": "string",
+     "required": true,
+     "desc": "列标签(细胞类型/样本/变量)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "矩阵值(相关系数/表达/能量)"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": false,
+     "desc": "显著性 p 值(星号点阵用)"
+    }
+   ],
+   "notes": "矩阵维度按案例 notes; 相关矩阵需对称 | 基因×5样本矩阵+通路分组;交集矩阵",
+   "source_text": "基因×5样本矩阵+通路分组;交集矩阵",
+   "recipe_vars": [
+    {
+     "name": "sizes",
+     "line": 91,
+     "rhs": "np.array([2, 1, 2, 2, 3, 2, 2, 3, 3, 3, "
+    }
+   ]
+  },
+  "134": {
+   "case": "案例137",
+   "title": "Cell umap图",
+   "family": "scatter",
+   "format": "xy",
+   "columns": [
+    {
+     "name": "umap_1",
+     "type": "number",
+     "required": true,
+     "desc": "UMAP1"
+    },
+    {
+     "name": "umap_2",
+     "type": "number",
+     "required": true,
+     "desc": "UMAP2"
+    },
+    {
+     "name": "celltype",
+     "type": "category",
+     "required": true,
+     "desc": "细胞类型"
+    },
+    {
+     "name": "timepoint",
+     "type": "category",
+     "required": false,
+     "desc": "时间点"
+    },
+    {
+     "name": "condition",
+     "type": "category",
+     "required": false,
+     "desc": "条件"
+    }
+   ],
+   "notes": "UMAP 类共用 | UMAP二维坐标+三列注释",
+   "source_text": "UMAP二维坐标+三列注释"
+  },
+  "135": {
+   "case": "案例139",
+   "title": "双曲线火山图",
+   "family": "volcano",
+   "format": "long",
+   "columns": [
+    {
+     "name": "feature",
+     "type": "string",
+     "required": true,
+     "desc": "基因/蛋白/代谢物名"
+    },
+    {
+     "name": "log2fc",
+     "type": "number",
+     "required": true,
+     "desc": "log2 倍数变化"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": true,
+     "desc": "p 值(或已换算的 -log10p)"
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "required": false,
+     "desc": "重点标注名(仅关键基因)"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "分面/比较组(多组火山用)"
+    }
+   ],
+   "notes": "rows>=1000 观感最佳; 标注基因 5-40 个 | 基因:效应值+p值+重点名单",
+   "source_text": "基因:效应值+p值+重点名单"
+  },
+  "136": {
+   "case": "案例140",
+   "title": "火山图",
+   "family": "volcano",
+   "format": "long",
+   "columns": [
+    {
+     "name": "feature",
+     "type": "string",
+     "required": true,
+     "desc": "基因/蛋白/代谢物名"
+    },
+    {
+     "name": "log2fc",
+     "type": "number",
+     "required": true,
+     "desc": "log2 倍数变化"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": true,
+     "desc": "p 值(或已换算的 -log10p)"
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "required": false,
+     "desc": "重点标注名(仅关键基因)"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "分面/比较组(多组火山用)"
+    }
+   ],
+   "notes": "rows>=1000 观感最佳; 标注基因 5-40 个 | 基因log2FC与-log10P+关键子集",
+   "source_text": "基因log2FC与-log10P+关键子集",
+   "recipe_vars": [
+    {
+     "name": "pts",
+     "line": 39,
+     "rhs": "np.array(pts)"
+    }
+   ]
+  },
+  "137": {
+   "case": "案例142",
+   "title": "泳道图(python)",
+   "family": "bar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "patient",
+     "type": "string",
+     "required": true,
+     "desc": "患者 ID"
+    },
+    {
+     "name": "start",
+     "type": "number",
+     "required": true,
+     "desc": "起点(天)"
+    },
+    {
+     "name": "end",
+     "type": "number",
+     "required": true,
+     "desc": "终点(天)"
+    },
+    {
+     "name": "event",
+     "type": "category",
+     "required": true,
+     "desc": "事件类型"
+    },
+    {
+     "name": "note_col",
+     "type": "category",
+     "required": false,
+     "desc": "注释列 1-3"
+    }
+   ],
+   "notes": "泳道图: 长事件表 | 患者事件时间线+器官计数+配对数据",
+   "source_text": "患者事件时间线+器官计数+配对数据"
+  },
+  "138": {
+   "case": "案例143",
+   "title": "配对散点箱线图",
+   "family": "distribution",
+   "format": "long",
+   "columns": [
+    {
+     "name": "group",
+     "type": "category",
+     "required": true,
+     "desc": "分组/细胞类型/物种"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "单观测值(分布原始值, 非统计量)"
+    }
+   ],
+   "notes": "每组 n>=30 才能撑起 KDE; 小样本请走 bar 家族 | 配对长表:患者×4组值",
+   "source_text": "配对长表:患者×4组值"
+  },
+  "139": {
+   "case": "案例144",
+   "title": "普通条形图 vs Cell 内向环形图",
+   "family": "polar",
+   "format": "long",
+   "columns": [
+    {
+     "name": "axis",
+     "type": "category",
+     "required": true,
+     "desc": "角度轴(指标/组织/城市)"
+    },
+    {
+     "name": "series",
+     "type": "category",
+     "required": false,
+     "desc": "系列(处理/分组)"
+    },
+    {
+     "name": "value",
+     "type": "number",
+     "required": true,
+     "desc": "径向值"
+    },
+    {
+     "name": "sig",
+     "type": "string",
+     "required": false,
+     "desc": "显著性字母/星号"
+    }
+   ],
+   "notes": "22组织×4亚型丰度矩阵(0~1)",
+   "source_text": "22组织×4亚型丰度矩阵(0~1)"
+  },
+  "140": {
+   "case": "案例145",
+   "title": "普通UMAP vs Cell 复现图",
+   "family": "scatter",
+   "format": "xy",
+   "columns": [
+    {
+     "name": "umap_1",
+     "type": "number",
+     "required": true,
+     "desc": "UMAP1"
+    },
+    {
+     "name": "umap_2",
+     "type": "number",
+     "required": true,
+     "desc": "UMAP2"
+    },
+    {
+     "name": "cluster",
+     "type": "category",
+     "required": true,
+     "desc": "簇标签"
+    }
+   ],
+   "notes": "UMAP坐标+12类标签",
+   "source_text": "UMAP坐标+12类标签"
+  },
+  "141": {
+   "case": "案例146",
+   "title": "UMAP (T 亚群)",
+   "family": "scatter",
+   "format": "xy",
+   "columns": [
+    {
+     "name": "umap_1",
+     "type": "number",
+     "required": true,
+     "desc": "UMAP1"
+    },
+    {
+     "name": "umap_2",
+     "type": "number",
+     "required": true,
+     "desc": "UMAP2"
+    },
+    {
+     "name": "cluster",
+     "type": "category",
+     "required": true,
+     "desc": "T 亚群标签"
+    }
+   ],
+   "notes": "UMAP坐标+T亚群标签",
+   "source_text": "UMAP坐标+T亚群标签"
+  },
+  "142": {
+   "case": "案例147",
+   "title": "森林图",
+   "family": "volcano",
+   "format": "long",
+   "columns": [
+    {
+     "name": "variable",
+     "type": "string",
+     "required": true,
+     "desc": "变量名"
+    },
+    {
+     "name": "hr",
+     "type": "number",
+     "required": true,
+     "desc": "HR"
+    },
+    {
+     "name": "lo",
+     "type": "number",
+     "required": true,
+     "desc": "CI 下限"
+    },
+    {
+     "name": "hi",
+     "type": "number",
+     "required": true,
+     "desc": "CI 上限"
+    },
+    {
+     "name": "p",
+     "type": "number",
+     "required": true,
+     "desc": "p 值"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "分组(Mono/TAM/DC)"
+    }
+   ],
+   "notes": "森林图类共用 | 变量HR、CI上下限、p+分组映射",
+   "source_text": "变量HR、CI上下限、p+分组映射"
+  },
+  "143": {
+   "case": "案例148",
+   "title": "3D地图",
+   "family": "tree_geo",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "lon",
+     "type": "number",
+     "required": true,
+     "desc": "经度格点"
+    },
+    {
+     "name": "lat",
+     "type": "number",
+     "required": true,
+     "desc": "纬度格点"
+    },
+    {
+     "name": "rain",
+     "type": "number",
+     "required": true,
+     "desc": "降雨(归一化)"
+    },
+    {
+     "name": "runoff",
+     "type": "number",
+     "required": true,
+     "desc": "径流(归一化)"
+    },
+    {
+     "name": "event",
+     "type": "string",
+     "required": true,
+     "desc": "场次(a-d)"
+    }
+   ],
+   "notes": "3D 地图: 网格化长表 | 子流域多边形+归一化降雨径流(4组)",
+   "source_text": "子流域多边形+归一化降雨径流(4组)"
+  },
+  "144": {
+   "case": "案例149",
+   "title": "森林图",
+   "family": "volcano",
+   "format": "long",
+   "columns": [
+    {
+     "name": "variable",
+     "type": "string",
+     "required": true,
+     "desc": "疾病/变量"
+    },
+    {
+     "name": "beta",
+     "type": "number",
+     "required": true,
+     "desc": "β"
+    },
+    {
+     "name": "lo",
+     "type": "number",
+     "required": true,
+     "desc": "CI 下限"
+    },
+    {
+     "name": "hi",
+     "type": "number",
+     "required": true,
+     "desc": "CI 上限"
+    },
+    {
+     "name": "padj",
+     "type": "number",
+     "required": true,
+     "desc": "校正 p"
+    },
+    {
+     "name": "count",
+     "type": "number",
+     "required": false,
+     "desc": "Count"
+    }
+   ],
+   "notes": "疾病级β、95%CI、Padj+阈值",
+   "source_text": "疾病级β、95%CI、Padj+阈值"
+  },
+  "145": {
+   "case": "案例150",
+   "title": "氨基酸位点热图",
+   "family": "heatmap",
+   "format": "matrix",
+   "columns": [
+    {
+     "name": "site",
+     "type": "string",
+     "required": true,
+     "desc": "位点(S11..N27)"
+    },
+    {
+     "name": "aa",
+     "type": "string",
+     "required": true,
+     "desc": "氨基酸单字母"
+    },
+    {
+     "name": "energy",
+     "type": "number",
+     "required": true,
+     "desc": "结合能量"
+    }
+   ],
+   "notes": "长表或 57×20 宽表均可 | 57位点×20氨基酸能量矩阵+均值",
+   "source_text": "57位点×20氨基酸能量矩阵+均值"
+  },
+  "146": {
+   "case": "案例151",
+   "title": "火山+条形图",
+   "family": "volcano",
+   "format": "long",
+   "columns": [
+    {
+     "name": "feature",
+     "type": "string",
+     "required": true,
+     "desc": "基因/蛋白/代谢物名"
+    },
+    {
+     "name": "log2fc",
+     "type": "number",
+     "required": true,
+     "desc": "log2 倍数变化"
+    },
+    {
+     "name": "pvalue",
+     "type": "number",
+     "required": true,
+     "desc": "p 值(或已换算的 -log10p)"
+    },
+    {
+     "name": "label",
+     "type": "string",
+     "required": false,
+     "desc": "重点标注名(仅关键基因)"
+    },
+    {
+     "name": "group",
+     "type": "category",
+     "required": false,
+     "desc": "分面/比较组(多组火山用)"
+    }
+   ],
+   "notes": "rows>=1000 观感最佳; 标注基因 5-40 个 | 基因log2FC与p;GO条目与基因",
+   "source_text": "基因log2FC与p;GO条目与基因"
+  }
+ }
+}

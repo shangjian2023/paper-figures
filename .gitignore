@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# 生成物(可用 scripts/build_index.py / gen_cards.py / build_schemas.py 重建)
+# gallery/index.md 与 reference/gallery-index.md 为生成文件, 如嫌噪音可取消下一行注释:
+# gallery/index.md
+# reference/gallery-index.md
+
+# 运行残留
+gallery/_smoke/
+*.tmp
+.DS_Store
+Thumbs.db
+
+# 本地品味记录(个人偏好, 不宜公开时取消注释):
+# taste.md
