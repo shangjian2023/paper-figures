@@ -11,12 +11,17 @@
 需要为论文/组会画图、选图型、美化图表、按例图复刻时，读取并遵循 <SKILL_DIR>/SKILL.md
 的四阶段流程（鉴赏/共鸣/演绎/品评，细则在其 stages/ 目录）：
 
-- 选图：先读 <SKILL_DIR>/reference/gallery-index.md 头部用途词统计，grep 定位候选，
-  `python <SKILL_DIR>/scripts/make_contact_sheet.py sheet --out /tmp/sheet.png <候选> --open`
+- 选图：先跑 `python <SKILL_DIR>/scripts/route.py "<意图>" --n 9 --log`（场景路由器，
+  输出跨家族候选+样板册命令；有数据加 `--data`，要"高级"加 `--min-wow 2`），
+  再 `python <SKILL_DIR>/scripts/make_contact_sheet.py sheet --out /tmp/sheet.png <候选> --open`
   摆样板册给用户挑，同时在对话里给 A/B/C 文字菜单。
+  路由器不可用时：读 <SKILL_DIR>/gallery/index.md 头部用途词 + reference/selection.md 决策表。
+  用户要"高级/惊艳"的图：`--min-wow 3` 样板册起手（<SKILL_DIR>/reference/selection.md 第 0 节）。
 - 画图：从 <SKILL_DIR>/scripts/recipes/ 对应 case_segNNN.py 改数据段，头部保持
   `from paper_style import *; set_style()`；交付 PNG+PDF+脚本三件套到 figures/。
-- 交付前：`python <SKILL_DIR>/scripts/make_contact_sheet.py compare --out /tmp/cmp.png <seg> --open`
+- 交付前：`python <SKILL_DIR>/scripts/polish.py figures/<名字>.py` 过完美度门禁
+  （文字重叠/截断/300dpi，POLISH FAIL 先修），再
+  `python <SKILL_DIR>/scripts/make_contact_sheet.py compare --out /tmp/cmp.png <seg> --open`
   并排品评，无文字重叠/截断/数值错误才交付。
 - 环境问题：`python <SKILL_DIR>/scripts/doctor.py` 自检。
 ```

@@ -37,6 +37,13 @@ def run(desc, cmd, expect=None):
     return ok
 
 
+# 0) 快速门禁: 数据契约自测(含负例) + polish 单例
+run('数据契约自测(含负例)', ['scripts/data_io.py'], expect='NEGATIVE-CASE SELF-TEST OK')
+run('polish 完美度门禁(单例)', ['scripts/polish.py', 'scripts/recipes/case_seg001.py'], expect='POLISH PASS')
+run('路由档案结构校验', ['scripts/check_routing.py'], expect='ROUTING CHECK OK')
+run('全库遮挡审计(基线防回退)', ['scripts/audit_gallery.py'], expect='GALLERY AUDIT OK')
+run('路由器评测冒烟', ['scripts/route_eval.py'], expect='可覆盖命中率')
+
 # 1) 全量重跑 + PNG 完整性
 run('全量重跑 + PNG 完整性', ['scripts/audit_stage_a.py'], expect='STAGE A DONE')
 
@@ -82,4 +89,4 @@ print('\n===== 回归总结 =====')
 if FAILS:
     print('FAILED:', FAILS)
     sys.exit(1)
-print('ALL CHECKS PASSED (146 案例, 5 条审计线)')
+print('ALL CHECKS PASSED (146 案例, 10 条审计线)')

@@ -5,11 +5,18 @@ purpose: [趋势变化]
 data: 自变量,HR,95%CI,两个P值
 input: long (reference/data-schemas.json #066)
 journal: Nature
+wow: 2
 recipe: scripts/recipes/case_seg066.py
 preview: ../case_seg066.png
 ---
 
 **一句话**：RCS剂量风险曲线（Nature 风格）
+
+**高级感**：★★ 有设计感
+
+**适用场景**：流行病学/临床队列：连续暴露变量（血细胞计数、CRP 等）与发病/死亡风险 HR 的非线性剂量-反应关系
+
+**有什么用**：血液指标和患病风险不是直线关系：四张小图各画一条风险曲线，横轴是指标水平、纵轴是风险倍数，风险从哪个水平开始抬升、有没有拐点一眼看清。
 
 **部件亮点**
 - 结构布局：2×2四面板,各含左上内嵌小图

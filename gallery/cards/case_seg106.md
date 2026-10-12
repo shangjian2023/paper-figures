@@ -5,11 +5,18 @@ purpose: [相关关系]
 data: 状态×因子active/repressed%+显著性
 input: matrix (reference/data-schemas.json #106)
 journal: Cell
+wow: 1
 recipe: scripts/recipes/case_seg106.py
 preview: ../case_seg106.png
 ---
 
 **一句话**：多面板热图（Cell 风格）
+
+**高级感**：★ 常规扎实
+
+**适用场景**：同一批 行(细胞状态/样本)×列(转录因子/因子组合) 有两个互补测量：%active 和 %repressed，上下两排热图各用独立色标（激活橙黑、抑制蓝绿）
+
+**有什么用**：颜色越亮代表调控作用越强：上排看每个因子对每类细胞的激活程度，下排看抑制程度，带白点的格子是统计上可靠的。下方还有一块放大图细看单因子效果。
 
 **部件亮点**
 - 结构布局：2行×3列+下方放大面板

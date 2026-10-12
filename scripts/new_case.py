@@ -40,14 +40,18 @@ def main():
     # 脚手架可能被复制到技能目录外使用: 注入技能 scripts 绝对路径, 保证 paper_style 可导入
     skill_scripts = os.path.abspath(os.path.join(HERE))
     old_head = "sys.path.insert(0, os.path.join(HERE, '..'))"
-    new_head = ("HERE = os.path.dirname(os.path.abspath(__file__))  # 用户目录(产物)\n"
-                "sys.path.insert(0, r'%s')  # 技能 scripts 目录(绝对路径, 移动脚本也不失效)" % skill_scripts)
+    new_head = ("sys.path.insert(0, r'%s')  # 技能 scripts 目录(绝对路径, 移动脚本也不失效)" % skill_scripts)
     if old_head in head:
         head = head.replace(old_head, new_head)
+    # 高危防护: 原配方 save() 不带 dirs 会写进技能 gallery 并覆盖验收图。
+    # 脚手架统一改写为: 文件名用新案例名, 产物落到"脚本所在目录的 figures/"
+    import re
+    head = re.sub(r"save\(fig,\s*['\"]case_seg\d+\.png['\"]\s*(,[^)]*)?\)",
+                  "save(fig, '%s.png', dirs='figures')" % args.name, head)
     marker = '"""'
     if marker in head:
         i = head.index(marker)
-        head = head[:i] + '"""%s — %s\n改自 case_seg%s.py (%s)。数据段待替换为真实数据。\n参考:' % (
+        head = head[:i] + '"""%s — %s\n改自 case_seg%s.py (%s)。数据段待替换为真实数据。\n产物落到本脚本所在目录的 figures/。\n参考:' % (
             args.name, args.title or '（待补标题）', src_seg, date.today().isoformat()) + head[i + 3:]
         open(dst, 'w', encoding='utf-8').write(head)
 
@@ -61,7 +65,7 @@ def main():
     print('  recipe:', dst)
     print('  card  :', card)
     print('next steps:')
-    print('  1) 编辑配方替换数据段并渲染自检')
+    print('  1) 编辑配方替换数据段并渲染自检(产物默认落到脚本所在目录的 figures/)')
     print('  2) 在 catalog.json 登记条目(新 seg 号或替换旧条目)')
     print('  3) python scripts/gen_cards.py && python scripts/build_index.py')
 

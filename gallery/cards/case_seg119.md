@@ -5,11 +5,18 @@ purpose: [相关关系]
 data: 60×60相关矩阵+p值+签名注释
 input: matrix (reference/data-schemas.json #119)
 journal: Cell
+wow: 2
 recipe: scripts/recipes/case_seg119.py
 preview: ../case_seg119.png
 ---
 
 **一句话**：点阵相关矩阵热图（Cell 风格）
+
+**高级感**：★★ 有设计感
+
+**适用场景**：展示 30-80 个变量（基因签名/通路/指标）两两之间的 Spearman 或 Pearson 相关，矩阵大到方格里标不下数字
+
+**有什么用**：把几十个指标两两之间的相关强弱画成一张大方格点阵：蓝点越深越正相关、红点越深越负相关，点越大越可信，同类指标抱成块，一眼看出哪些指标总是一起变化。
 
 **部件亮点**
 - 结构布局：单面板

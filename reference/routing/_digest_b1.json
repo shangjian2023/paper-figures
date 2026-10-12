@@ -1,0 +1,494 @@
+[
+ {
+  "seg": 1,
+  "title": "Nature 柱形图",
+  "type_zh": "柱形图+抖动散点",
+  "type_en": "bar chart with jittered dots",
+  "family": "bar",
+  "journal": "Nature",
+  "features": "3组柱:Cont黑描边白底、处理组绿描边;均值±SEM误差棒+柱内外散点;***与ns横线支架;y轴# INL PCNA+ cells/300um 0-400;基因名斜体",
+  "data": "分组(3组)×细胞计数,Cont约13个、处理组8-15个重复",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)",
+   "pair_id(string)"
+  ]
+ },
+ {
+  "seg": 2,
+  "title": "Lancet PCoA图",
+  "type_zh": "PCoA排序图+边际箱线图",
+  "type_en": "PCoA ordination scatter with marginal boxplots",
+  "family": "scatter",
+  "journal": "Lancet",
+  "features": "3组散点(橙HC/蓝T1D/红T2D)+置信椭圆;上/右边际箱线图;右上PERMANOVA P=0.0029框;轴标注PCo1 25.44%/PCo2 11.79%",
+  "data": "样本×PCo1/PCo2得分,3组各约50样本",
+  "wow": 2,
+  "input_format": "xy",
+  "input_columns": [
+   "PC1(number*)",
+   "PC2(number*)",
+   "group(category*)"
+  ]
+ },
+ {
+  "seg": 3,
+  "title": "Nature PCoA图",
+  "type_zh": "PCoA散点+边缘箱线组合",
+  "type_en": "PCoA scatter with corner marginal boxplots",
+  "family": "scatter",
+  "journal": "Nature",
+  "features": "圆=control三角=IBD,色按6个研究;右侧Study/Group箱线;底部横箱线;左上PERMANOVA p=0.001;轴PCo1[15.9%]/PCo2[10.2%]",
+  "data": "约1500样本×PCo1/PCo2,研究来源(6)×组别(2)",
+  "wow": 2,
+  "input_format": "xy",
+  "input_columns": [
+   "PC1(number*)",
+   "PC2(number*)",
+   "group(category*)",
+   "study(category*)"
+  ]
+ },
+ {
+  "seg": 4,
+  "title": "Nature 折线图",
+  "type_zh": "分组折线图+内嵌柱形图",
+  "type_en": "line chart with error bars and inset bars",
+  "family": "curve",
+  "journal": "Nature",
+  "features": "4组折线(蓝红青黄)空心圆点±SEM;20天黑虚线+右侧灰底区;内嵌条形带散点***;右侧显著性括号;图例顶部",
+  "data": "4组×7时间点(0-35天)×体重变化%,每组10-15",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "time(number*)",
+   "value(number*)",
+   "group(category*)",
+   "err(number)"
+  ]
+ },
+ {
+  "seg": 5,
+  "title": "Nature 云雨图",
+  "type_zh": "云雨图",
+  "type_en": "raincloud (half-violin+box+jitter)",
+  "family": "distribution",
+  "journal": "Nature",
+  "features": "每组:左抖动散点+中央半小提琴+白底窄箱线;绿/红/橙/灰4色;右上图例框;Y轴0-30;仅左下轴线",
+  "data": "4物种×每基因组BGC数",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)"
+  ]
+ },
+ {
+  "seg": 6,
+  "title": "Nature 分组柱形图",
+  "type_zh": "分组柱形图+散点",
+  "type_en": "grouped bar with dot overlay",
+  "family": "bar",
+  "journal": "Nature",
+  "features": "4基因×3基因型(黑/橙/青)柱,叠空心圆散点,柱顶±SEM,竖排P值;右侧图例Day15;Y轴0-2.5",
+  "data": "4基因×3基因型×6-10次qPCR,以WT=1",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)",
+   "pair_id(string)"
+  ]
+ },
+ {
+  "seg": 7,
+  "title": "Nature 截断+分组柱形图",
+  "type_zh": "截断Y轴分组柱形图",
+  "type_en": "broken-axis grouped bar",
+  "family": "bar",
+  "journal": "Nature",
+  "features": "Y轴截断(0-2/1000-4000带断裂斜线);2条件×3基因型柱+散点±SEM;*与n.s.括号;图例左上;灰/橙/紫",
+  "data": "2处理×3基因型×6-8重复",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)",
+   "pair_id(string)"
+  ]
+ },
+ {
+  "seg": 8,
+  "title": "Nature 分组柱形图",
+  "type_zh": "分组柱形图+P值标签",
+  "type_en": "grouped bar with P-value labels",
+  "family": "bar",
+  "journal": "Nature",
+  "features": "7变体×4条件柱(深灰/浅灰/蓝/橙),误差线+空心圆点;每柱竖排P值;FC=1黑虚线;顶部横排图例框",
+  "data": "7个变体×4处理×3重复,倍数变化",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)",
+   "pair_id(string)"
+  ]
+ },
+ {
+  "seg": 9,
+  "title": "Nature 双Y轴图",
+  "type_zh": "双Y轴分组柱形图",
+  "type_en": "dual-axis grouped bar",
+  "family": "bar",
+  "journal": "Nature",
+  "features": "17样本并列双柱:左轴蓝OD600、右轴米色药物浓度;±SEM;红/蓝横向阈值线;p<0.05;顶部图例",
+  "data": "17菌株×2指标×3重复",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)",
+   "pair_id(string)"
+  ]
+ },
+ {
+  "seg": 10,
+  "title": "Nature 双Y轴图",
+  "type_zh": "双Y轴柱线组合图",
+  "type_en": "dual-axis bar+line combo",
+  "family": "bar",
+  "journal": "Nature",
+  "features": "20个GO条目:棕褐柱=基因数(顶标数值,左轴)+绿色点虚线=-Log10P(右轴);X标签45°;顶部图例框;总标题",
+  "data": "20条目×(基因数,P值)",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)",
+   "pair_id(string)"
+  ]
+ },
+ {
+  "seg": 11,
+  "title": "Nature 气泡热图",
+  "type_zh": "气泡热图(点阵热图)",
+  "type_en": "bubble heatmap / dot plot",
+  "family": "heatmap",
+  "journal": "Nature",
+  "features": "26基因×14细胞类型:点径=表达核比例,绿色深浅=平均表达;左侧分组灰条;右侧色条+尺寸图例",
+  "data": "26基因×14细胞×(平均表达,表达比例)",
+  "wow": 2,
+  "input_format": "matrix",
+  "input_columns": [
+   "row(string*)",
+   "col(string*)",
+   "value(number*)",
+   "pvalue(number)"
+  ]
+ },
+ {
+  "seg": 12,
+  "title": "Nature 系统发育树圈图(一)",
+  "type_zh": "环形系统发育树+注释环",
+  "type_en": "circular phylo tree with annotation rings",
+  "family": "tree_geo",
+  "journal": "Nature",
+  "features": "环形树枝按10门着色;外3环:Type(黑/橙/蓝)、Phylum色块、Occurrence绿白格;右侧3组图例含N计数",
+  "data": "约60叶Newick树+每叶(测序类型,门,出现环)",
+  "wow": 3,
+  "input_format": "newick",
+  "input_columns": [
+   "newick(string*)"
+  ]
+ },
+ {
+  "seg": 13,
+  "title": "Nature 系统发育树圈图(二)",
+  "type_zh": "环形发育树+柱状/热图环",
+  "type_en": "circular phylo tree with bar/heatmap rings",
+  "family": "tree_geo",
+  "journal": "Nature",
+  "features": "黑色环形树;扇形底色区分4环境;外侧红蓝柱状环;内层Presence灰白热图环;放射刻度0-0.6",
+  "data": "Newick树+叶(门,丰度0-0.6,4环境有无)",
+  "wow": 3,
+  "input_format": "newick",
+  "input_columns": [
+   "newick(string*)"
+  ]
+ },
+ {
+  "seg": 14,
+  "title": "Nature 系统发育树圈图(三)",
+  "type_zh": "环形发育树+ASV热图环",
+  "type_en": "circular phylo tree with heatmap ring",
+  "family": "tree_geo",
+  "journal": "Nature",
+  "features": "枝按门填色+叶端黑点=ASV大小;外环ΔNiche红白热图;ASV编号放射标注;右侧门图例+色条",
+  "data": "约90个ASV的树+ASV名,门,大小,ΔNiche",
+  "wow": 3,
+  "input_format": "newick",
+  "input_columns": [
+   "newick(string*)"
+  ]
+ },
+ {
+  "seg": 15,
+  "title": "Nature 系统发育树圈图(四)",
+  "type_zh": "环形发育树+双注释环",
+  "type_en": "circular phylo tree with ring heatmap",
+  "family": "tree_geo",
+  "journal": "Nature",
+  "features": "枝色=门,属名沿弧标注;外环1红渐变=BBAA比例,外环2蓝/白=bsh有无;属区填色",
+  "data": "Newick树+叶(门,属,bsh有无,BBAA 0-0.6)",
+  "wow": 3,
+  "input_format": "newick",
+  "input_columns": [
+   "newick(string*)"
+  ]
+ },
+ {
+  "seg": 16,
+  "title": "Nature 分组山脊图",
+  "type_zh": "分组山脊图",
+  "type_en": "grouped ridgeline",
+  "family": "ridge",
+  "journal": "Nature",
+  "features": "6条分布水平堆叠,绿系与紫系两版,0ns→24ns峰右移;仅顶部填充+底部细基线;X=Core RMSD",
+  "data": "2组×6时间点×RMSD分布",
+  "wow": 3,
+  "input_format": "long",
+  "input_columns": [
+   "row(category*)",
+   "value(number*)",
+   "facet(category)"
+  ]
+ },
+ {
+  "seg": 17,
+  "title": "Nature 分面山脊图",
+  "type_zh": "分面山脊图",
+  "type_en": "faceted ridgeline",
+  "family": "ridge",
+  "journal": "Nature",
+  "features": "6列标记分面×8行亚群山脊,色按c1-c8(紫蓝绿黄);每格竖线=中位数;底部2个放大分面;X=Expression",
+  "data": "12标记×9亚群×单细胞表达",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "row(category*)",
+   "value(number*)",
+   "facet(category)"
+  ]
+ },
+ {
+  "seg": 18,
+  "title": "Nature 分组+分面山脊图",
+  "type_zh": "分组分面山脊图",
+  "type_en": "grouped faceted ridgeline",
+  "family": "ridge",
+  "journal": "Nature",
+  "features": "4列细胞因子分面×9行亚群;行左+/−标记,色按ILC3至LT-ILC1(绿蓝灰青红紫粉);右侧彩色图例;对数X轴",
+  "data": "4细胞因子×9亚群×荧光强度",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "row(category*)",
+   "value(number*)",
+   "facet(category)"
+  ]
+ },
+ {
+  "seg": 19,
+  "title": "Nature 热图",
+  "type_zh": "注释热图",
+  "type_en": "annotated heatmap",
+  "family": "heatmap",
+  "journal": "Nature",
+  "features": "43胆汁酸×8受体:红=上调、蓝绿=下调、白=无,显著格*号;顶部Fold Change对数色条;行按类别分组留白",
+  "data": "43代谢物×8受体×(fold change,显著性)",
+  "wow": 1,
+  "input_format": "matrix",
+  "input_columns": [
+   "row(string*)",
+   "col(string*)",
+   "value(number*)",
+   "pvalue(number)"
+  ]
+ },
+ {
+  "seg": 20,
+  "title": "Nature 散点图(R 版本)",
+  "type_zh": "散点图+边际直方图",
+  "type_en": "scatter with marginal histograms + inset",
+  "family": "scatter",
+  "journal": "Nature",
+  "features": "log-log散点3组(蓝/橙/灰)+红色虚线拟合;边际直方图带轮廓;右下残差箱线内嵌***;顶部图例",
+  "data": "约5600点(总大小bp,CDS数,3组别)",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "x(number*)",
+   "y(number*)",
+   "group(category*)"
+  ]
+ },
+ {
+  "seg": 21,
+  "title": "Nature 散点图(Python 版本)",
+  "type_zh": "散点图+边际KDE",
+  "type_en": "scatter with marginal KDE + inset",
+  "family": "scatter",
+  "journal": "Nature",
+  "features": "log-log散点(蓝/紫/黑半透明)+红虚线拟合;边际平滑KDE填充;灰虚参考线;右下残差箱线内嵌;图例左上",
+  "data": "约5600点(总大小bp,CDS数,3组别)",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "x(number*)",
+   "y(number*)",
+   "group(category*)"
+  ]
+ },
+ {
+  "seg": 22,
+  "title": "Nature 相关性热图",
+  "type_zh": "相关性点阵热图",
+  "type_en": "lower-triangle correlation dot heatmap",
+  "family": "heatmap",
+  "journal": "Nature",
+  "features": "下三角点阵:点径=|r|,蓝白红渐变;行名按5类着色;右侧紫/绿丰度条形图;45°列名",
+  "data": "47×47相关矩阵+丰度+类别标签",
+  "wow": 2,
+  "input_format": "matrix",
+  "input_columns": [
+   "row(string*)",
+   "col(string*)",
+   "value(number*)",
+   "pvalue(number)"
+  ]
+ },
+ {
+  "seg": 23,
+  "title": "Nature 相关性热图",
+  "type_zh": "三角相关聚类热图",
+  "type_en": "triangular clustered correlation heatmap",
+  "family": "heatmap",
+  "journal": "Nature",
+  "features": "下三角红白蓝相关热图;顶部模块聚类树+灰底模块标签;基因名沿对角线放射;右下ρ色条",
+  "data": "约90基因相关矩阵+模块归属",
+  "wow": 2,
+  "input_format": "matrix",
+  "input_columns": [
+   "row(string*)",
+   "col(string*)",
+   "value(number*)",
+   "pvalue(number)"
+  ]
+ },
+ {
+  "seg": 24,
+  "title": "Nature 折线图与柱形图",
+  "type_zh": "折线+柱形双面板",
+  "type_en": "line plot and bar chart panels",
+  "family": "curve",
+  "journal": "Nature",
+  "features": "左:双组折线(黑圆/红方)±SEM,点上方竖排P值;右:Fat/Lean柱+散点,显著性线;图例左上",
+  "data": "2组×11周体重曲线+2体成分指标",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "time(number*)",
+   "value(number*)",
+   "group(category*)",
+   "err(number)"
+  ]
+ },
+ {
+  "seg": 25,
+  "title": "Nature 云雨图",
+  "type_zh": "堆叠云雨图",
+  "type_en": "stacked raincloud",
+  "family": "distribution",
+  "journal": "Nature",
+  "features": "上半填充KDE山脊,下半箱线图,下挂雨滴;X=kyr BP反转15→0;蓝/卡其/绿/红/黑;区域名左上",
+  "data": "5区域×样本年代值",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)"
+  ]
+ },
+ {
+  "seg": 26,
+  "title": "Nature 分组散点图",
+  "type_zh": "分组散点+均值误差菱形",
+  "type_en": "grouped scatter with mean error diamonds",
+  "family": "scatter",
+  "journal": "Nature",
+  "features": "5粒径组散点(深蓝/浅蓝/绿/黄/橙半透明)+黑菱形均值带XY误差棒;黑粗虚线theory;图例左上",
+  "data": "5组×约50点(能量,寿命)+均值±SD",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "x(number*)",
+   "y(number*)",
+   "group(category)",
+   "label(string)",
+   "xerr(number)",
+   "yerr(number)"
+  ]
+ },
+ {
+  "seg": 27,
+  "title": "Nature 和弦图",
+  "type_zh": "和弦图",
+  "type_en": "chord diagram",
+  "family": "flow",
+  "journal": "Nature",
+  "features": "环形和弦:节点弧+贝塞尔带,带色=源节点;用 helpers.chord.chord_diagram",
+  "data": "节点×节点流量方阵",
+  "wow": 3,
+  "input_format": "edges",
+  "input_columns": [
+   "source(string*)",
+   "target(string*)",
+   "value(number*)"
+  ]
+ },
+ {
+  "seg": 28,
+  "title": "Science 火山图",
+  "type_zh": "火山图+基因集条纹带",
+  "type_en": "volcano with gene-set track",
+  "family": "volcano",
+  "journal": "Science",
+  "features": "灰空心点;左右Top200虚线框;橙点=显著;关键基因气泡标签;α=0.05虚线;底部UP/DN条纹+ES/pval",
+  "data": "约5000基因(log2FC,adjP)+基因集",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "feature(string*)",
+   "log2fc(number*)",
+   "padj(number*)"
+  ]
+ },
+ {
+  "seg": 29,
+  "title": "Cell 小提琴图",
+  "type_zh": "分面小提琴图",
+  "type_en": "violin panels",
+  "family": "distribution",
+  "journal": "Cell",
+  "features": "灰Reference vs 彩色Specialized(青/紫/红);内含中位数与四分位虚线;顶部彩色标签条;P值括号;面板底色渐变",
+  "data": "3年龄类×2组×约1000值",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)"
+  ]
+ }
+]

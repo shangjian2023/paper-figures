@@ -1,8 +1,49 @@
+<div align="center">
+  <img src="assets/readme/hero.png" alt="paper-figures 图库拼贴：3D 悬空地图 / 双环和弦图 / 发育树圈图 / 云雨图 / 桑基图 / 山脊图" width="100%">
+</div>
+
 # paper-figures — 期刊级科研绘图 skill（146 顶刊案例配方库）
+
+**看图选图、照图画图的论文绘图闭环。** 不让用户用文字描述"要什么图"，而是把 146 张
+Nature/Science/Cell 风格的成品图摆成样板册让用户挑，支持自由组合（A 的布局 + C 的配色），
+再用用户的数据画出来，并与参考图并排品评。每张成品配鉴赏卡片与可独立运行的配方。
 
 > 本仓库即 skill 源：`python install.py --all --commands` 可安装到各终端 agent（详见下文）。
 
-来源：`D:\edge默认下载\47b602a7f4c1687294ad243b193f977e.mp4`（33.5s，146 个镜头段，覆盖原视频案例 1-151，缺编号 43/54/55/136/138/141；seg49/50 为案例 50 两个变体；seg139/140 为"普通版 vs 顶刊版"对比帧）。
+## 工作流（下图由本 skill 自绘 —— [scripts/make_readme_figs.py](scripts/make_readme_figs.py)）
+
+<div align="center">
+  <img src="assets/readme/workflow.png" alt="四阶段闭环：鉴赏 → 共鸣 → 演绎 → 品评 → 回到共鸣" width="85%">
+</div>
+
+| 阶段 | 做什么 | 细则 |
+|---|---|---|
+| **Appreciation** 鉴赏 | 看懂图库每张图（卡片+索引）；加图、删图、去重 | `stages/1-appreciation.md` |
+| **Resonance** 共鸣 | 把候选图摆成样板册，和用户一起选出方向 | `stages/2-resonance.md` |
+| **Rendition** 演绎 | 用用户的数据把选中的图画出来 | `stages/3-rendition.md` |
+| **Appraisal** 品评 | 对照参考检查、并排比较给用户、决定是否入库 | `stages/4-appraisal.md` |
+
+## 案例精选（全部出自图库，300 dpi，点开即原图）
+
+<table>
+  <tr>
+    <td align="center" width="33%"><a href="gallery/case_seg143.png"><img src="gallery/case_seg143.png" alt="3D 悬空地图"></a><br><b>seg143 · 3D 悬空地图</b><br><sub>降雨–径流双层悬空面板，"顶刊版"空间数据画法（点击看 300 dpi 原图）</sub></td>
+    <td align="center" width="33%"><a href="gallery/case_seg027.png"><img src="gallery/case_seg027.png" alt="双环和弦图"></a><br><b>seg027 · 双环和弦图</b><br><sub>外环处理 × 内环土壤因子，流向关系一图说尽</sub></td>
+    <td align="center" width="33%"><a href="gallery/case_seg012.png"><img src="gallery/case_seg012.png" alt="发育树圈图"></a><br><b>seg012 · 发育树圈图</b><br><sub>圈图发育树 + 物种/丰度多环注释</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="gallery/case_seg005.png"><img src="gallery/case_seg005.png" alt="云雨图"></a><br><b>seg005 · 云雨图</b><br><sub>散点 + 半小提琴 + 窄箱线，组比较的顶刊标配</sub></td>
+    <td align="center"><a href="gallery/case_seg045.png"><img src="gallery/case_seg045.png" alt="桑基图"></a><br><b>seg045 · 桑基图</b><br><sub>三列流向，多对多映射的组成/通路故事</sub></td>
+    <td align="center"><a href="gallery/case_seg016.png"><img src="gallery/case_seg016.png" alt="山脊图"></a><br><b>seg016 · 山脊图</b><br><sub>分布随时间漂移，一页六个山头</sub></td>
+  </tr>
+</table>
+
+146 张全部按同一风格铁律产出（Arial · 8pt · 去顶右轴 · 数据说话 · 300 dpi PNG），
+完整清单见 `catalog.json`，按用途检索见 `reference/gallery-index.md`。
+
+## 来源
+
+`D:\edge默认下载\47b602a7f4c1687294ad243b193f977e.mp4`（33.5s，146 个镜头段，覆盖原视频案例 1-151，缺编号 43/54/55/136/138/141；seg49/50 为案例 50 两个变体；seg139/140 为"普通版 vs 顶刊版"对比帧）。
 
 ## 目录
 
@@ -11,19 +52,28 @@ catalog.json            146 案例目录（seg/标题/期刊/family/features/dat
 frames/                 视频逐段代表帧 seg_001..146.jpg（复现时的参考原图）
 scripts/
   paper_style.py        全局期刊风格（set_style/pal/sig_bracket/save 等）
-  helpers/              ternary/chord/sankey/upset/newick/geo 六个特殊图型助手
+  helpers/              ternary/chord/sankey/upset/newick/geo/stats 特殊图型助手
   recipes/              case_segNNN.py ×146，每个可独立运行出图
+  make_readme_figs.py   重新生成本 README 的 hero 拼贴与 workflow 元图
   audit_stage_a.py      全量重跑 + PNG 完整性审计
   audit_skill.py        skill 产物终审
 gallery/                146 张成品 PNG（300 dpi，全部经视觉验收）
-assets/map_data/        world.geo.json / china.geo.json
+  cards/                每图一张鉴赏卡片
+assets/
+  map_data/             world.geo.json / china.geo.json
+  readme/               本 README 的 hero/workflow 图（make_readme_figs.py 生成）
 ```
 
 ## 运行
 
 ```bash
+pip install -r requirements.txt               # 依赖(含路由器用的 jieba/rank_bm25, 纯 Python)
+python scripts/doctor.py                      # 环境自检(缺什么会给出 pip 命令)
+python scripts/route.py "三组比较, 要显著性" --n 9 --log   # 场景路由器: 一句话 → 跨家族候选
 cd scripts/recipes && python case_seg001.py   # 输出 gallery/case_seg001.png
+python scripts/polish.py scripts/recipes/case_seg001.py   # 成品完美度门禁
 python ../audit_stage_a.py                    # 全量重跑验证
+python scripts/make_readme_figs.py            # 重新生成 README 展示图
 ```
 
 ## 多 agent 安装（按 vercel-labs/skills 框架）

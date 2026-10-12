@@ -115,6 +115,7 @@ for ax, style_list, sign in ((axL, left_style, -1), (axR, right_style, 1)):
 axL.set_xticks([-100, -80, -60, -40, -20, 0])
 axL.set_xticklabels(['100', '80', '60', '40', '20', '0'])
 axR.set_xticks([0, 20, 40, 60, 80, 100])
+axR.set_xticklabels(['', '20', '40', '60', '80', '100'])   # 中线 '0' 由左轴标, 避免双 '0' 叠字
 
 # 端部计数数字(条形外端之外, 参考 Figure 布局)
 for y, (nm, col, lc, rc) in zip(ys, rows):

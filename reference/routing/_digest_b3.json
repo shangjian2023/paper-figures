@@ -1,0 +1,521 @@
+[
+ {
+  "seg": 59,
+  "title": "Nature 多边形雷达图",
+  "type_zh": "地图+雷达内嵌",
+  "type_en": "radar insets on world map",
+  "family": "polar",
+  "journal": "Nature",
+  "features": "浅灰世界地图为底,10个山脉位置各嵌小雷达+引线标签;每雷达6轴按山脉配色;顶点标数值",
+  "data": "10山脉×6属性+坐标",
+  "wow": 3,
+  "input_format": "long",
+  "input_columns": [
+   "axis(category*)",
+   "series(category)",
+   "value(number*)",
+   "sig(string)"
+  ]
+ },
+ {
+  "seg": 60,
+  "title": "Nature 多边形雷达图",
+  "type_zh": "五边形雷达对比",
+  "type_en": "pentagon radar comparison",
+  "family": "polar",
+  "journal": "Nature",
+  "features": "5轴=折射率/热导/硬度/杨氏模量/电阻;粉红大五边形 vs 蓝色小五边形;顶点白字数值;底部双行图例",
+  "data": "两材料×5属性",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "axis(category*)",
+   "series(category)",
+   "value(number*)",
+   "sig(string)"
+  ]
+ },
+ {
+  "seg": 61,
+  "title": "Cancer Cell 拟合散点图",
+  "type_zh": "拟合散点图",
+  "type_en": "fitted scatter",
+  "family": "scatter",
+  "journal": "Cancer Cell",
+  "features": "彩色散点(Set3系)+黑回归线灰置信带;0处横竖虚线;轴两端彩色箭头注方向;标签带引线;右上r=0.64、P=8.6e-08",
+  "data": "亚群×(分数x,指数y,类型色)",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "x(number*)",
+   "y(number*)",
+   "group(category)",
+   "label(string)",
+   "xerr(number)",
+   "yerr(number)"
+  ]
+ },
+ {
+  "seg": 62,
+  "title": "Nature 拟合气泡图",
+  "type_zh": "拟合气泡图 2×2",
+  "type_en": "fitted bubble scatter 2x2",
+  "family": "scatter",
+  "journal": "Nature",
+  "features": "气泡大小=深度3档,色=8站点;a/b虚线1:1线,c/d黑拟合线+灰置信带",
+  "data": "每点:两观测值,站点,深度",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "x(number*)",
+   "y(number*)",
+   "group(category)",
+   "label(string)",
+   "xerr(number)",
+   "yerr(number)"
+  ]
+ },
+ {
+  "seg": 63,
+  "title": "Nature 平滑曲线图(一)",
+  "type_zh": "平滑曲线+散点",
+  "type_en": "smoothed curve (spline)",
+  "family": "curve",
+  "journal": "Nature",
+  "features": "空心圆散点+样条平滑线:品红400 nN、青绿0 nN;双峰;图例左上线-圆符号;仅左下spine",
+  "data": "两组波长-强度各约300点",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "time(number*)",
+   "value(number*)",
+   "group(category*)",
+   "err(number)"
+  ]
+ },
+ {
+  "seg": 64,
+  "title": "Nature 平滑曲线图(二)",
+  "type_zh": "平滑曲线图",
+  "type_en": "smoothed curve",
+  "family": "curve",
+  "journal": "Nature",
+  "features": "3条平滑曲线+空心圆标记(深蓝/绿/红);峰下彩色光晕椭圆;图例右上",
+  "data": "3组浓度-电导率各十余点",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "time(number*)",
+   "value(number*)",
+   "group(category*)",
+   "err(number)"
+  ]
+ },
+ {
+  "seg": 65,
+  "title": "Nature 平滑曲线图(三)",
+  "type_zh": "剂量-响应曲线",
+  "type_en": "dose-response curve",
+  "family": "curve",
+  "journal": "Nature",
+  "features": "x对数10^-9~10^-4;橙圆与蓝方两组Sigmoid拟合;图例左上含KD标注",
+  "data": "两组浓度-响应各8-9点",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "time(number*)",
+   "value(number*)",
+   "group(category*)",
+   "err(number)"
+  ]
+ },
+ {
+  "seg": 66,
+  "title": "Nature 限制性立方样条(RCS)",
+  "type_zh": "RCS剂量风险曲线",
+  "type_en": "restricted cubic spline",
+  "family": "curve",
+  "journal": "Nature",
+  "features": "HR实线+同色CI带(绿/黄/粉/橙),HR=1黑虚线;内嵌Mortality曲线灰带;注Pnon-linear与Poverall",
+  "data": "自变量,HR,95%CI,两个P值",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "x(number*)",
+   "hr(number*)",
+   "lo(number*)",
+   "hi(number*)",
+   "facet(string)"
+  ]
+ },
+ {
+  "seg": 67,
+  "title": "Nature 蝴蝶状&堆积条形图",
+  "type_zh": "镜像堆积条形图",
+  "type_en": "mirrored stacked bar (butterfly)",
+  "family": "bar",
+  "journal": "Nature",
+  "features": "水平堆积镜像:蓝Protective+红Risk;x=癌种数10-0-10;红虚线框高亮首行;图例左下",
+  "data": "9细胞态×(PFS,OS)×正负计数",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "cellstate(string*)",
+   "outcome(category*)",
+   "direction(category*)",
+   "count(number*)"
+  ]
+ },
+ {
+  "seg": 68,
+  "title": "Cancer Cell 蝴蝶状&小提琴图",
+  "type_zh": "镜像小提琴图",
+  "type_en": "mirrored violin plot",
+  "family": "distribution",
+  "journal": "Cancer Cell",
+  "features": "镜像小提琴内嵌白箱线,0-1.5镜像轴;马卡龙多色;基因名按类着色;红虚线阈值",
+  "data": "11基因签名×M1/M2得分分布",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "gene(string*)",
+   "score(number*)",
+   "side(category*)"
+  ]
+ },
+ {
+  "seg": 69,
+  "title": "Nature 差异云雨图(一)",
+  "type_zh": "云雨图",
+  "type_en": "raincloud plot",
+  "family": "distribution",
+  "journal": "Nature",
+  "features": "两组:外侧半小提琴(紫/黄)+中间箱线+内侧点阵雨;顶部p<2.22e-16支架线",
+  "data": "两组各数百值",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)"
+  ]
+ },
+ {
+  "seg": 70,
+  "title": "Nature 差异云雨图(二)",
+  "type_zh": "分半小提琴云雨图",
+  "type_en": "split-violin raincloud",
+  "family": "distribution",
+  "journal": "Nature",
+  "features": "背靠背半小提琴(淡紫/粉红)+箱线+抖动散点;**与****支架;图例左上;y=P_AD 0-1",
+  "data": "两组×两状态概率值",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)"
+  ]
+ },
+ {
+  "seg": 71,
+  "title": "Nature 差异云雨图(三)",
+  "type_zh": "水平云雨图",
+  "type_en": "horizontal raincloud",
+  "family": "distribution",
+  "journal": "Nature",
+  "features": "水平半小提琴+箱线+抖动点;配对灰线连接(黑=P<0.05,灰=NS);注KS与Wilcoxon P;右侧图例",
+  "data": "两分期组×距离值,配对关系",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)"
+  ]
+ },
+ {
+  "seg": 72,
+  "title": "Nature 堆积柱形图(一)",
+  "type_zh": "百分比堆积柱形图",
+  "type_en": "100% stacked bar",
+  "family": "bar",
+  "journal": "Nature",
+  "features": "黑M+0/青M+1/粉M+2三段堆积至100%,段上黑误差棒;顶部****与ns支架;图例左侧;斜体斜排x标签",
+  "data": "14列×3分数均值±SEM+显著性",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)",
+   "pair_id(string)"
+  ]
+ },
+ {
+  "seg": 73,
+  "title": "Nature 堆积柱形图(二)",
+  "type_zh": "纵向分块堆积柱形图",
+  "type_en": "longitudinal stacked bar",
+  "family": "bar",
+  "journal": "Nature",
+  "features": "堆叠%:红/橙/蓝(主体)/黄,后期顶部品红段;每段误差棒;块间点状竖虚线;x标签斜排",
+  "data": "18列×5亚群百分比±SEM",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "block(string*)",
+   "mouse(string*)",
+   "subgroup(category*)",
+   "pct(number*)"
+  ]
+ },
+ {
+  "seg": 74,
+  "title": "Nature 空转&组合图",
+  "type_zh": "哑铃+点阵+条形组合",
+  "type_en": "composite dumbbell, dot matrix and bar",
+  "family": "tree_geo",
+  "journal": "Nature",
+  "features": "左哑铃(WT黑/KO青圆连线);中点阵(色=表达量黄-红,大小=占比);右横条KS差异蓝/橙/灰;底部四组图例",
+  "data": "行×(两条件值,表达占比矩阵,KS值)",
+  "wow": 3,
+  "input_format": "long",
+  "input_columns": [
+   "name(string*)",
+   "lon(number)",
+   "lat(number)",
+   "value(number)",
+   "composition(string)"
+  ]
+ },
+ {
+  "seg": 75,
+  "title": "Plant Bio. J. 相关性矩阵图+拟合散点",
+  "type_zh": "pairs图+拟合散点",
+  "type_en": "pairs plot + fitted scatters",
+  "family": "heatmap",
+  "journal": "Plant Bio. J.",
+  "features": "对角直方图+密度线(红/绿/黄/紫);上三角色块注R²/P/ns;下三角灰点+红虚线拟合;b列彩色点带方程",
+  "data": "4变量×约200样本成对值+年份",
+  "wow": 2,
+  "input_format": "matrix",
+  "input_columns": [
+   "row(string*)",
+   "col(string*)",
+   "value(number*)",
+   "pvalue(number)"
+  ]
+ },
+ {
+  "seg": 76,
+  "title": "New Phytol. 相关性网络&散点矩阵",
+  "type_zh": "相关网络+散点矩阵",
+  "type_en": "correlation network + scatter matrix",
+  "family": "flow",
+  "journal": "New Phytol.",
+  "features": "对角盒节点,弧线蓝r≥0红r<0、实线P<0.05虚线NS;上三角散点黑拟合线;点色=4样地,形=叶型",
+  "data": "6变量×约90观测+r/P矩阵",
+  "wow": 2,
+  "input_format": "matrix",
+  "input_columns": [
+   "var_a(string*)",
+   "var_b(string*)",
+   "r(number*)",
+   "p(number*)"
+  ]
+ },
+ {
+  "seg": 77,
+  "title": "Nature 时间序列图(一)",
+  "type_zh": "时间序列折线图",
+  "type_en": "time-course line plot",
+  "family": "curve",
+  "journal": "Nature",
+  "features": "黑圆Vehicle/金黄圆chABC+误差棒;浅紫竖带Basal与Clamp两阶段;逐点*/**,Clamp上***横括",
+  "data": "两组×16时间点GIR均值±SEM",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "time(number*)",
+   "value(number*)",
+   "group(category*)",
+   "err(number)"
+  ]
+ },
+ {
+  "seg": 78,
+  "title": "Nature 时间序列图(二)",
+  "type_zh": "多面板时间序列",
+  "type_en": "multi-panel time-course",
+  "family": "curve",
+  "journal": "Nature",
+  "features": "灰ACSF/橙红SHU9119均值线+阴影SEM带;0处黑虚线;↑cAMP箭头;面板标题Mouse 1-3",
+  "data": "2条件×3只×时间均值+SEM",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "time(number*)",
+   "value(number*)",
+   "group(category*)",
+   "err(number)"
+  ]
+ },
+ {
+  "seg": 79,
+  "title": "Nature 时间序列图(三)",
+  "type_zh": "small-multiple时间序列",
+  "type_en": "small-multiple time-course",
+  "family": "curve",
+  "journal": "Nature",
+  "features": "四脑区比值轨迹(紫/蓝/绿/红)+淡色SEM带;t=0阶跃;大图紫色放大重绘;线段式图例",
+  "data": "4脑区×时间比值均值±SEM",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "time(number*)",
+   "value(number*)",
+   "group(category*)",
+   "err(number)"
+  ]
+ },
+ {
+  "seg": 80,
+  "title": "Nature 时间序列图(四)",
+  "type_zh": "事件对齐时间序列",
+  "type_en": "event-aligned time-course",
+  "family": "curve",
+  "journal": "Nature",
+  "features": "棕褐4weeks与紫Fasted均值线+置信带;0与10s两条灰虚线夹事件窗;图例右上;y=ΔF/F(%)",
+  "data": "两处理×时间ΔF/F均值+CI",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "time(number*)",
+   "value(number*)",
+   "group(category*)",
+   "err(number)"
+  ]
+ },
+ {
+  "seg": 81,
+  "title": "Nature FC-FC",
+  "type_zh": "FC-FC四象限散点",
+  "type_en": "FC-FC quadrant scatter",
+  "family": "scatter",
+  "journal": "Nature",
+  "features": "两轴log2FC;0横虚线与±0.5竖虚线;紫(同向)/品红/蓝(反向)/灰(NS);四角↑↓注Discordant/Concordant",
+  "data": "每基因两条件log2FC+分类",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "x(number*)",
+   "y(number*)",
+   "group(category)",
+   "label(string)",
+   "xerr(number)",
+   "yerr(number)"
+  ]
+ },
+ {
+  "seg": 82,
+  "title": "Nature FC-FC",
+  "type_zh": "对角带FC散点",
+  "type_en": "diagonal-band FC scatter",
+  "family": "scatter",
+  "journal": "Nature",
+  "features": "对角线±0.5平行带内着色(绿2317/深绿1633/红52/暗红151/蓝8);±0.5十字灰区;基因名红箭头标注",
+  "data": "每基因两log2FC;六类分类",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "x(number*)",
+   "y(number*)",
+   "group(category)",
+   "label(string)",
+   "xerr(number)",
+   "yerr(number)"
+  ]
+ },
+ {
+  "seg": 83,
+  "title": "Nature 小提琴图&NMDS图",
+  "type_zh": "小提琴+NMDS散点",
+  "type_en": "violin + NMDS ordination",
+  "family": "distribution",
+  "journal": "Nature",
+  "features": "A对数轴4小提琴(黄/红/浅黄/暗红)白中位点;B/C散点+彩色半透明凸包;图例含n",
+  "data": "4组值;样本NMDS1/2坐标+分组",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)"
+  ]
+ },
+ {
+  "seg": 84,
+  "title": "Nature 蜂群图",
+  "type_zh": "水平渐隐蜂群图",
+  "type_en": "horizontal fading beeswarm",
+  "family": "distribution",
+  "journal": "Nature",
+  "features": "每行左红右紫蜂群+半小提琴,近0渐透明;0处竖虚线;左轴类型色条;底部双向箭头log(FC)",
+  "data": "行×单细胞logFC值",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)"
+  ]
+ },
+ {
+  "seg": 85,
+  "title": "Nature 蜂群图",
+  "type_zh": "配对面板蜂群图",
+  "type_en": "paired-panel beeswarm",
+  "family": "distribution",
+  "journal": "Nature",
+  "features": "红/蓝/紫三组对比;25行细胞;0处黑粗虚线;左括号分Chondrogenic/Osteogenic",
+  "data": "行×细胞logFC,两套对比",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)"
+  ]
+ },
+ {
+  "seg": 86,
+  "title": "Nature 拟合散点图",
+  "type_zh": "2×3拟合散点",
+  "type_en": "multi-panel fitted scatter",
+  "family": "scatter",
+  "journal": "Nature",
+  "features": "上排变化量vs初始碳库:线性拟合、25%/75%虚线参考、R²/P注记;下排vs时长:指数衰减+CI带;点色=干扰类型",
+  "data": "样地×(初始C,变化量,时长,干扰)",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "ecosystem(category*)",
+   "initial_C(number*)",
+   "loss(number*)",
+   "duration(number*)",
+   "disturbance(category*)"
+  ]
+ },
+ {
+  "seg": 87,
+  "title": "Nature 一维变量的相关性热图",
+  "type_zh": "下三角相关热图",
+  "type_en": "lower-triangle correlation heatmap",
+  "family": "heatmap",
+  "journal": "Nature",
+  "features": "39变量全下三角;灰阶=正相关、红阶=负相关;变量名按4组着色(微生物紫/样地青/土地橙/流域蓝)",
+  "data": "39×39相关矩阵+变量分组",
+  "wow": 1,
+  "input_format": "matrix",
+  "input_columns": [
+   "row(string*)",
+   "col(string*)",
+   "value(number*)",
+   "pvalue(number)"
+  ]
+ }
+]

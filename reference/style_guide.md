@@ -10,6 +10,14 @@
 - 原始数据优先：柱/箱上叠散点（`jitter()` 抖动）；误差棒注明 SEM 或 SD；显著性标注分工——**vs 对照的柱顶星号**沿用所改配方的既有骨架（多为 `ax.text` 柱顶式），**任意两柱/两组之间的支架线**用 `sig_bracket(ax, x1, x2, y, '***')`；星号由实算 p 值生成：`helpers.stats.vs_control(groups, control=0)`（Welch t + Bonferroni，装了 statsmodels 自动升 Dunnett）+ `p_to_stars(p)`，换真实数据后不要沿用写死的星号。
 - 基因名斜体 `italic_gene('KRAS')` → `$\it{KRAS}$`。
 - 面板编号 `panel_label(ax, 'a')`；导出 `save(fig, 'name.png')`（300dpi 自动落 gallery），矢量用 `fig.savefig('name.pdf')`。
+- 成品自检 `audit(fig)`：返回四类机器可查问题的清单（空=通过）——①文字两两重叠；
+  ②导出必截断的文字（tight bbox 外的 in_layout=False）；③字号事故(<3pt)；
+  ④**遮挡**：文字压散点/曲线且无白描边或底衬保护（`path_effects.withStroke`/半透明 bbox 即豁免）、
+  图例框盖住 ≥3 个数据点。`save()` 在 `PF_AUDIT=1`（由 `scripts/polish.py` 自动设置）时保存后
+  自动打印 `AUDIT:` 行。**交付门禁**：`python scripts/polish.py figures/xxx.py`——实跑脚本+查
+  PNG 元数据（dpi≈300、可解码、尺寸），POLISH FAIL 先修再交付；确属刻意叠放（镜像轴同位刻度、
+  带保护的云上标签）复核后说明放行。全库层面 `python scripts/audit_gallery.py` 对照
+  `gallery/_audit_issues.txt` 基线防回退（新问题=FAIL，修好的自动从清单划掉）。
 
 ## 二、助手 API
 
@@ -92,4 +100,4 @@ china_map(ax, ...)                       # props.get('name')=省名; extent 默�
 16. 双 Y 轴 twinx 记得让两轴网格二选一（另一轴 `grid(False)`），图例合并放顶部。
 17. 山脊图：从上往下画、zorder 递减，后行遮前行形成 ridge；每行配细基线。
 18. 密度等高线先画、散点后画（否则散点被盖）；KDE 网格要掩膜到坐标区内部（如三元三角）。
-19. Arial 无 ∝/≈ 等 Unicode 符号字形（渲染成豆腐块）——用 mathtext `$\propto$`/`$pprox$` 表达。
+19. Arial 无 ∝/≈ 等 Unicode 符号字形（渲染成豆腐块）——用 mathtext `$\propto$`/`$\approx$` 表达。

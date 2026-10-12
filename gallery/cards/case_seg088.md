@@ -5,11 +5,18 @@ purpose: [相关关系]
 data: 相关矩阵+聚类树+行分组
 input: matrix (reference/data-schemas.json #088)
 journal: Nature
+wow: 2
 recipe: scripts/recipes/case_seg088.py
 preview: ../case_seg088.png
 ---
 
 **一句话**：聚类相关热图（Nature 风格）
+
+**高级感**：★★ 有设计感
+
+**适用场景**：有一张行列都较多的相关矩阵（约 20×20 到 40×40），想让行列树状图自动把高相关的变量聚成模块、一眼看出结构
+
+**有什么用**：把几十种细胞和几十个活性因子的相关强弱铺成色块矩阵，行列自动按相似程度聚成一团团，一眼看出哪类细胞抱哪组因子、哪些是负相关。
 
 **部件亮点**
 - 结构布局：单面板

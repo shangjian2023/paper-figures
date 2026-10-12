@@ -5,11 +5,18 @@ purpose: [构成占比, 相关关系]
 data: 三维得分+年龄数值
 input: long (reference/data-schemas.json #126)
 journal: Nature
+wow: 2
 recipe: scripts/recipes/case_seg126.py
 preview: ../case_seg126.png
 ---
 
 **一句话**：三元散点(连续着色)（Nature 风格）
+
+**高级感**：★★ 有设计感
+
+**适用场景**：每个样本/细胞有 TH1/TH2/TH17 这类三个加和为100%的状态得分，想看落点如何随年龄、剂量等连续变量渐变
+
+**有什么用**：把每个人的三种状态打分画进三角形，点的颜色由年龄决定：蓝是四十岁、红是九十岁；一眼看出年纪越大，整团点往哪个方向漂移。
 
 **部件亮点**
 - 结构布局：单面板

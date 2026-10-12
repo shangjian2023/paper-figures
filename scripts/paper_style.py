@@ -96,14 +96,186 @@ def despine(ax, left=False, bottom=True):
 
 
 def save(fig, name, dpi=300, dirs=None):
-    """保存到 gallery/(或指定 dirs, 自动创建)并关闭 figure。"""
+    """保存到 gallery/(或指定 dirs, 自动创建)并关闭 figure。
+
+    环境变量 PF_AUDIT=1 时(如经 scripts/polish.py 调起)保存前先跑 audit(fig),
+    结果以 'AUDIT:' 行打印, 供 polish 解析判 PASS/FAIL。"""
     out_dir = dirs or GALLERY
     os.makedirs(out_dir, exist_ok=True)
     out = os.path.join(out_dir, name)
     fig.savefig(out, dpi=dpi, bbox_inches='tight', facecolor='white')
+    if os.environ.get('PF_AUDIT') == '1':
+        issues = audit(fig)
+        print('AUDIT: %s' % ('clean' if not issues else '%d issue(s)' % len(issues)))
+        for msg in issues:
+            print('AUDIT: ' + msg)
     _plt.close(fig)
     print('saved:', out)
     return out
+
+
+def audit(fig, iou=0.35, tol=2.0, cap=8):
+    """成品视觉自检(机器能查的部分): 文字两两重叠 / 导出必截断的文字 / 字号过小。
+
+    返回 issue 描述列表(空 = 通过)。交给 polish 门禁用; 日常手动调用:
+        from paper_style import audit; print(audit(fig))
+    刻意叠放(镜像轴同位刻度等)若误报, 复核后说明即可, 不要为消 warning 改坏图。"""
+    fig.canvas.draw()
+    ren = fig.canvas.get_renderer()
+    texts = []
+    for ax in fig.axes:
+        items = list(ax.texts) + [ax.title, ax.xaxis.label, ax.yaxis.label]
+        if getattr(ax, 'axison', True):   # 轴关了(axison=False)的刻度标签不会被画, 不算
+            items += ax.get_xticklabels() + ax.get_yticklabels()
+        lg = ax.get_legend()
+        if lg is not None:
+            items += lg.get_texts()
+        for t in items:
+            if t is None or not str(t.get_text()).strip() or not t.get_visible():
+                continue
+            try:
+                bb = t.get_window_extent(renderer=ren)
+            except Exception:
+                continue
+            if bb.width > 0 and bb.height > 0:
+                texts.append((t, bb))
+    # 完全同位同文(镜像/双子轴共享标签)视为同一处, 消误报
+    uniq = []
+    for t, bb in texts:
+        if not any(t.get_text() == t2.get_text() and abs(bb.x0 - b2.x0) < 1
+                   and abs(bb.y0 - b2.y0) < 1 for t2, b2 in uniq):
+            uniq.append((t, bb))
+    issues = []
+    # 1) 文字两两重叠(占较小者面积 >iou)
+    n = len(uniq)
+    for i in range(n):
+        for j in range(i + 1, n):
+            a, b = uniq[i][1], uniq[j][1]
+            ix = min(a.x1, b.x1) - max(a.x0, b.x0)
+            iy = min(a.y1, b.y1) - max(a.y0, b.y0)
+            if ix <= 0 or iy <= 0:
+                continue
+            smaller = min(a.width * a.height, b.width * b.height)
+            frac = (ix * iy) / smaller if smaller > 0 else 0
+            if frac > iou:
+                issues.append('text overlap: %r x %r (%.0f%%)'
+                              % (str(uniq[i][0].get_text())[:28], str(uniq[j][0].get_text())[:28], frac * 100))
+    # 2) 导出必截断: 只查 in_layout=False 的文字——matplotlib 的 tight bbox 本身就
+    #    把它们排除在外, 落在 tight bbox 之外就一定被裁。其余文字 tight bbox 会自动
+    #    扩进来, 不会截。
+    tb = fig.get_tightbbox(ren)
+    dpi = fig.dpi
+    tx0, ty0 = tb.x0 * dpi - tol, tb.y0 * dpi - tol
+    tx1, ty1 = tb.x1 * dpi + tol, tb.y1 * dpi + tol
+    for t, bb in uniq:
+        if not t.get_in_layout():
+            if bb.x0 < tx0 or bb.y0 < ty0 or bb.x1 > tx1 or bb.y1 > ty1:
+                issues.append('text clipped on export: %r' % str(t.get_text())[:28])
+    # 3) 字号事故(≥3pt 的小字可能是刻意设计, 不报; 全库验收过的最小 3.8pt)
+    for t, bb in uniq:
+        fs = t.get_fontsize()
+        if fs and fs < 3.0:
+            issues.append('tiny font %.1fpt: %r' % (fs, str(t.get_text())[:24]))
+    # 4) 遮挡: 文字压散点/曲线(无白描边或底衬保护时) / 图例盖住数据
+    issues += _audit_occlusion(fig, ren, uniq)
+    dedup = []
+    for s in issues:
+        if s not in dedup:
+            dedup.append(s)
+    return dedup[:cap]
+
+
+def _protected_text(t):
+    """文字带白描边或半透明以上底衬时, 压在数据上仍可读, 视为受保护。"""
+    import matplotlib.patheffects as _pe
+    for e in (t.get_path_effects() or []):
+        if isinstance(e, _pe.withStroke):
+            return True
+    bp = t.get_bbox_patch()
+    if bp is not None:
+        fc = bp.get_facecolor()
+        if len(fc) >= 4 and fc[3] > 0.5:
+            return True
+    return False
+
+
+def _ax_data_points(ax, ren, per_artist_cap=600):
+    """轴上散点/曲线的采样点(显示坐标)。柱形等 patch 不算——数值标在柱上是常规画法。"""
+    pts = []
+    td = getattr(ax, 'transData', None)
+    if td is None:
+        return pts
+    try:
+        for coll in ax.collections:
+            off = coll.get_offsets()
+            if off is not None and len(off):
+                pts.append(td.transform(off[:per_artist_cap]))
+        for ln in ax.lines:
+            xy = ln.get_xydata()
+            if xy is not None and len(xy):
+                step = max(1, len(xy) // per_artist_cap)
+                pts.append(td.transform(xy[::step]))
+    except Exception:
+        pass
+    return [p for p in pts if len(p)]
+
+
+def _inside_count(pts2d, bb):
+    if not len(pts2d):
+        return 0
+    m = (pts2d[:, 0] >= bb.x0) & (pts2d[:, 0] <= bb.x1) & \
+        (pts2d[:, 1] >= bb.y0) & (pts2d[:, 1] <= bb.y1)
+    return int(m.sum())
+
+
+def _audit_occlusion(fig, ren, uniq, min_hits=3, cap=6):
+    """文字压数据: 文本框内落进 >=min_hits 个散点/曲线采样点且文字无保护 → issue。
+    图例盖数据: 图例框内落进 >=min_hits 个数据点 → issue(图例内文字由此覆盖, 不重复报)。"""
+    out = []
+    shown = 0
+    for ax in fig.axes:
+        pts_list = _ax_data_points(ax, ren)
+        if not pts_list:
+            continue
+        lg = ax.get_legend()
+        lg_texts = set(lg.get_texts()) if lg is not None else set()
+        if lg is not None:
+            try:
+                lb = lg.get_window_extent(renderer=ren)
+                n = sum(_inside_count(p, lb) for p in pts_list)
+                if n >= min_hits:
+                    out.append('legend covers data: %d pts under legend' % n)
+                    shown += 1
+            except Exception:
+                pass
+        for t, bb in uniq:
+            if shown >= cap:
+                break
+            if t in lg_texts or not _owned_by(ax, t):
+                continue
+            if _protected_text(t):
+                continue
+            n = sum(_inside_count(p, bb) for p in pts_list)
+            if n >= min_hits:
+                out.append('text over data (no stroke/bbox): %r (%d pts)' % (str(t.get_text())[:24], n))
+                shown += 1
+        if shown >= cap:
+            break
+    return out
+
+
+def _owned_by(ax, t):
+    """文字确实属于该轴(tick/title/label/text), 避免 Twin 轴重复计数。"""
+    if t in ax.texts:
+        return True
+    if t is ax.title or t is ax.xaxis.label or t is ax.yaxis.label:
+        return True
+    if getattr(ax, 'axison', True) and (t in ax.get_xticklabels() or t in ax.get_yticklabels()):
+        return True
+    lg = ax.get_legend()
+    if lg is not None and t in lg.get_texts():
+        return True
+    return False
 
 
 def rng(seed):

@@ -35,13 +35,19 @@ def build_index(cat, purpose_map, preview_prefix):
     out = ['# Gallery 索引 — %d 个案例参考图\n\n' % len(cat['cases']),
            '用途词（grep 这些词筛图）：%s\n\n' % '、'.join(
                '%s(%d)' % (k, v) for k, v in sorted(purpose_cnt.items(), key=lambda kv: -kv[1]))]
+    # 高级感速查(wow=3): 用户要"高级/惊艳"时从这里起手
+    wow3 = sorted((c for c in cat['cases'] if c.get('wow', 1) >= 3), key=lambda c: c['seg'])
+    out.append('高级感 TOP（wow=3 镇场级，%d 张；下表类型栏标 ★）：\n\n' % len(wow3))
+    out.append('、'.join('%03d %s' % (c['seg'], c['type_zh']) for c in wow3))
+    out.append('\n\n')
     for fam in ['bar', 'distribution', 'scatter', 'heatmap', 'volcano', 'curve', 'ridge', 'flow', 'polar', 'tree_geo']:
         cs = sorted(fams[fam], key=lambda c: c['seg'])
         out.append('\n## %s（%s，%d 例）\n\n' % (fam, FAM_NAMES[fam], len(cs)))
         out.append('| seg | 案例 | 类型 | 用途 | 参考 |\n|---|---|---|---|---|\n')
         for c in cs:
-            out.append('| %03d | %s | %s | %s | [%s](%sgallery/case_seg%03d.png) |\n' % (
-                c['seg'], c['case'], c['type_zh'],
+            star = ' ★' if c.get('wow', 1) >= 3 else ''
+            out.append('| %03d | %s | %s%s | %s | [%s](%sgallery/case_seg%03d.png) |\n' % (
+                c['seg'], c['case'], c['type_zh'], star,
                 '、'.join(purposes_of(c['seg'], purpose_map)) or '组间比较',
                 c.get('preview', 'gallery/case_seg%03d.png' % c['seg']), preview_prefix, c['seg']))
     return ''.join(out)

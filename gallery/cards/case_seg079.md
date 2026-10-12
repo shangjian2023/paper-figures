@@ -5,11 +5,18 @@ purpose: [趋势变化]
 data: 4脑区×时间比值均值±SEM
 input: long (reference/data-schemas.json #079)
 journal: Nature
+wow: 1
 recipe: scripts/recipes/case_seg079.py
 preview: ../case_seg079.png
 ---
 
 **一句话**：small-multiple时间序列（Nature 风格）
+
+**高级感**：★ 常规扎实
+
+**适用场景**：展示 3-6 个脑区/通道各自的均值±SEM 时间轨迹，t=0 处有刺激或事件引起的阶跃
+
+**有什么用**：四个脑区各画一个小图看各自的变化节奏，再挑一个放大成大图看细节，一眼看出刺激发生后哪个脑区降得多、波动有多大。
 
 **部件亮点**
 - 结构布局：上排4小面板+下方1大面板

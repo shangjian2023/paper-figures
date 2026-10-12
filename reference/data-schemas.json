@@ -2120,8 +2120,8 @@
      "desc": "显著性字母/星号"
     }
    ],
-   "notes": "10山脉×6属性+坐标",
-   "source_text": "10山脉×6属性+坐标"
+   "notes": "11山脉×6属性+坐标",
+   "source_text": "11山脉×6属性+坐标"
   },
   "060": {
    "case": "案例62",
@@ -4367,43 +4367,43 @@
   },
   "118": {
    "case": "案例120",
-   "title": "PNAS 中国地图(二)",
-   "family": "tree_geo",
+   "title": "Sci. Adv 曼哈顿式气泡图",
+   "family": "volcano",
    "format": "long",
    "columns": [
     {
-     "name": "name",
+     "name": "order",
      "type": "string",
      "required": true,
-     "desc": "地点/类群名"
+     "desc": "目级分类名(决定 x 位次与颜色)"
     },
     {
-     "name": "lon",
-     "type": "number",
-     "required": false,
-     "desc": "经度"
-    },
-    {
-     "name": "lat",
-     "type": "number",
-     "required": false,
-     "desc": "纬度"
-    },
-    {
-     "name": "value",
-     "type": "number",
-     "required": false,
-     "desc": "数量/丰度"
-    },
-    {
-     "name": "composition",
+     "name": "comparison",
      "type": "string",
+     "required": true,
+     "desc": "比较组/面板名(如 Antibiotics vs Ctrl)"
+    },
+    {
+     "name": "log2fc",
+     "type": "number",
+     "required": true,
+     "desc": "Log2 倍数变化(y 轴)"
+    },
+    {
+     "name": "abundance",
+     "type": "number",
      "required": false,
-     "desc": "构成(如 A:B:C=5:3:2)"
+     "desc": "丰度(气泡大小)"
+    },
+    {
+     "name": "rank",
+     "type": "number",
+     "required": false,
+     "desc": "目内位次(x 顺序, 缺省按 order 出现序)"
     }
    ],
-   "notes": "地图类需 lon/lat 或国家/省名; 发育树类另备 Newick 文件 | 省界;城市:经纬度,亏缺量分档",
-   "source_text": "省界;城市:经纬度,亏缺量分档"
+   "notes": "每行=某比较组里的某个目; 3 面板共享目的排序与配色; 注意与 116 曼哈顿气泡的区别: 本图按目分节、面板分层",
+   "source_text": "目级分类×比较组: 每行=目+比较组+Log2FC+丰度(气泡大小)+目内位次"
   },
   "119": {
    "case": "案例121",

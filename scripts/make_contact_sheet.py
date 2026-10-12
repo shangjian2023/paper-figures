@@ -19,7 +19,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, '..'))
 THUMB = 420
 FONT_CANDS = ['C:/Windows/Fonts/msyh.ttc', 'C:/Windows/Fonts/simhei.ttf',
-              'C:/Windows/Fonts/arial.ttf']
+              'C:/Windows/Fonts/arial.ttf',
+              '/System/Library/Fonts/PingFang.ttc',                 # macOS
+              '/System/Library/Fonts/STHeiti Light.ttc',
+              '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc',   # Linux
+              '/usr/share/fonts/truetype/wqy/wqy-microhei.ttc',
+              '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf']
 
 
 def load_font(size):
@@ -110,6 +115,8 @@ def main():
     sh.add_argument('--out', required=True)
     sh.add_argument('--family', default=None)
     sh.add_argument('--sample', type=int, default=0, help='按家族随机抽几张')
+    sh.add_argument('--min-wow', type=int, default=0, choices=[1, 2, 3],
+                    help='只摆高级感 >= 该级的案例(跨家族; 配 --sample 9 即高级感样板册)')
     sh.add_argument('--open', action='store_true', help='生成后用系统看图器打开(供 TUI 用户查看)')
     sh.add_argument('items', nargs='*', help='"seg::标签" 或 "seg"')
     cp = sub.add_parser('compare')
@@ -156,19 +163,28 @@ def main():
             items.append((int(s), lab))
         else:
             items.append((int(it), None))
-    if args.family:
+    if args.family or getattr(args, 'min_wow', 0):
         cat = None
         for p in (os.path.join(ROOT, 'catalog.json'),
                   os.path.join(ROOT, 'reference', 'catalog.json')):
             if os.path.exists(p):
                 cat = json.load(open(p, encoding='utf-8'))
                 break
-        segs = [c['seg'] for c in cat['cases'] if c['family'] == args.family]
+        pool = cat['cases']
+        if getattr(args, 'min_wow', 0):
+            pool = [c for c in pool if c.get('wow', 1) >= args.min_wow]
+        if args.family:
+            pool = [c for c in pool if c['family'] == args.family]
+        # wow 候选按 seg 稳定排序(可复现), --family 沿用随机抽样
         if args.sample:
-            import random
-            random.seed(0)
-            segs = random.sample(segs, min(args.sample, len(segs)))
-        items += [(s, args.family) for s in segs]
+            if getattr(args, 'min_wow', 0):
+                step = max(1, len(pool) // args.sample)
+                pool = pool[::step][:args.sample]
+            else:
+                import random
+                random.seed(0)
+                pool = random.sample(pool, min(args.sample, len(pool)))
+        items += [(c['seg'], c['type_zh'] + (' ★' * (c.get('wow', 1) >= 3))) for c in pool]
     sheet(items, args.out)
     if args.open:
         from show import open_file

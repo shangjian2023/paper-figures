@@ -5,11 +5,18 @@ purpose: [趋势变化]
 data: 2组×11周体重曲线+2体成分指标
 input: long (reference/data-schemas.json #024)
 journal: Nature
+wow: 1
 recipe: scripts/recipes/case_seg024.py
 preview: ../case_seg024.png
 ---
 
 **一句话**：折线+柱形双面板（Nature 风格）
+
+**高级感**：★ 常规扎实
+
+**适用场景**：两组（对照 vs 敲除/处理）8-12 周体重或指标曲线 ±SEM，逐时间点在点上方标 P 值
+
+**有什么用**：左图画两条随时间上升的线（黑白对比），在时间点上标出两组差异是否显著；右图换成柱子比终点的脂肪与瘦肉量，散点是个体数据。
 
 **部件亮点**
 - 结构布局：左右两面板

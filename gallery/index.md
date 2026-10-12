@@ -1,6 +1,10 @@
 # Gallery 索引 — 146 个案例参考图
 
-用途词（grep 这些词筛图）：组间比较(41)、相关关系(35)、分布形态(31)、差异展示(26)、排序(19)、多指标综合(14)、趋势变化(13)、网络与流向(13)、空间分布(11)、构成占比(11)、排序降维(7)
+用途词（grep 这些词筛图）：组间比较(41)、相关关系(35)、分布形态(31)、差异展示(27)、排序(20)、多指标综合(14)、趋势变化(13)、网络与流向(13)、构成占比(11)、空间分布(10)、排序降维(7)
+
+高级感 TOP（wow=3 镇场级，32 张；下表类型栏标 ★）：
+
+012 环形系统发育树+注释环、013 环形发育树+柱状/热图环、014 环形发育树+ASV热图环、015 环形发育树+双注释环、016 分组山脊图、027 和弦图、032 山脊图+侧边条形图、035 circos弦图+富集网络、045 三层桑基图、046 四层桑基图、048 多环参与者环形图、051 世界地图+饼图、052 世界地图+采样饼图、053 世界地图+大饼图、056 放射状网络气泡图、059 地图+雷达内嵌、074 哑铃+点阵+条形组合、089 Mantel相关组合热图、091 冲击图/桑基图、092 半圆极坐标小提琴图、093 扇形极坐标箱线图、100 环状条形图(渐变)、101 环状条形图(双系列)、117 中国地图+饼图、127 三元气泡图、128 三元气泡图(属水平)、129 三元核密度图、133 环形热图+UpSet内嵌、134 UMAP+环形注释、135 双曲线边界火山图、139 内向环形堆叠图(顶刊版)、143 3D双层填充地图
 
 
 ## bar（柱形/条形，14 例）
@@ -64,7 +68,7 @@
 | 086 | 案例88 | 2×3拟合散点 | 相关关系 | [gallery/case_seg086.png](../gallery/case_seg086.png) |
 | 104 | 案例106 | 分组strip散点图 | 组间比较、差异展示 | [gallery/case_seg104.png](../gallery/case_seg104.png) |
 | 105 | 案例107 | 气泡图 | 相关关系 | [gallery/case_seg105.png](../gallery/case_seg105.png) |
-| 134 | 案例137 | UMAP+环形注释 | 排序降维 | [gallery/case_seg134.png](../gallery/case_seg134.png) |
+| 134 | 案例137 | UMAP+环形注释 ★ | 排序降维 | [gallery/case_seg134.png](../gallery/case_seg134.png) |
 | 140 | 案例145 | UMAP标签框注释(顶刊版) | 排序降维 | [gallery/case_seg140.png](../gallery/case_seg140.png) |
 | 141 | 案例146 | UMAP标签框注释 | 排序降维 | [gallery/case_seg141.png](../gallery/case_seg141.png) |
 
@@ -81,7 +85,7 @@
 | 075 | 案例77 | pairs图+拟合散点 | 相关关系 | [gallery/case_seg075.png](../gallery/case_seg075.png) |
 | 087 | 案例89 | 下三角相关热图 | 相关关系 | [gallery/case_seg087.png](../gallery/case_seg087.png) |
 | 088 | 案例90 | 聚类相关热图 | 相关关系 | [gallery/case_seg088.png](../gallery/case_seg088.png) |
-| 089 | 案例91 | Mantel相关组合热图 | 相关关系 | [gallery/case_seg089.png](../gallery/case_seg089.png) |
+| 089 | 案例91 | Mantel相关组合热图 ★ | 相关关系 | [gallery/case_seg089.png](../gallery/case_seg089.png) |
 | 096 | 案例98 | 相关矩阵点图 | 相关关系 | [gallery/case_seg096.png](../gallery/case_seg096.png) |
 | 097 | 案例99 | 相关矩阵点图(双面板) | 相关关系 | [gallery/case_seg097.png](../gallery/case_seg097.png) |
 | 106 | 案例108 | 多面板热图 | 相关关系 | [gallery/case_seg106.png](../gallery/case_seg106.png) |
@@ -90,10 +94,10 @@
 | 120 | 案例122 | 双色点阵相关矩阵 | 相关关系 | [gallery/case_seg120.png](../gallery/case_seg120.png) |
 | 130 | 案例132 | 配对相关矩阵图 | 相关关系 | [gallery/case_seg130.png](../gallery/case_seg130.png) |
 | 131 | 案例133 | 配对相关矩阵图(Python风格) | 相关关系 | [gallery/case_seg131.png](../gallery/case_seg131.png) |
-| 133 | 案例135 | 环形热图+UpSet内嵌 | 网络与流向 | [gallery/case_seg133.png](../gallery/case_seg133.png) |
+| 133 | 案例135 | 环形热图+UpSet内嵌 ★ | 网络与流向 | [gallery/case_seg133.png](../gallery/case_seg133.png) |
 | 145 | 案例150 | 氨基酸突变能量热图 | 相关关系 | [gallery/case_seg145.png](../gallery/case_seg145.png) |
 
-## volcano（火山/森林/曼哈顿/富集，14 例）
+## volcano（火山/森林/曼哈顿/富集，15 例）
 
 | seg | 案例 | 类型 | 用途 | 参考 |
 |---|---|---|---|---|
@@ -106,7 +110,8 @@
 | 112 | 案例114 | 火山+富集条形 | 差异展示、排序 | [gallery/case_seg112.png](../gallery/case_seg112.png) |
 | 113 | 案例115 | 火山+发散条形 | 差异展示、排序 | [gallery/case_seg113.png](../gallery/case_seg113.png) |
 | 116 | 案例118 | 曼哈顿式气泡图 | 差异展示、排序 | [gallery/case_seg116.png](../gallery/case_seg116.png) |
-| 135 | 案例139 | 双曲线边界火山图 | 差异展示、排序、趋势变化 | [gallery/case_seg135.png](../gallery/case_seg135.png) |
+| 118 | 案例120 | 曼哈顿式气泡图(3层面板) | 差异展示、排序 | [gallery/case_seg118.png](../gallery/case_seg118.png) |
+| 135 | 案例139 | 双曲线边界火山图 ★ | 差异展示、排序、趋势变化 | [gallery/case_seg135.png](../gallery/case_seg135.png) |
 | 136 | 案例140 | 火山图(框式标签) | 差异展示、排序 | [gallery/case_seg136.png](../gallery/case_seg136.png) |
 | 142 | 案例147 | 森林图(表格风) | 差异展示、排序 | [gallery/case_seg142.png](../gallery/case_seg142.png) |
 | 144 | 案例149 | 森林图(背景色带) | 差异展示、排序 | [gallery/case_seg144.png](../gallery/case_seg144.png) |
@@ -132,10 +137,10 @@
 
 | seg | 案例 | 类型 | 用途 | 参考 |
 |---|---|---|---|---|
-| 016 | 案例16 | 分组山脊图 | 分布形态、组间比较 | [gallery/case_seg016.png](../gallery/case_seg016.png) |
+| 016 | 案例16 | 分组山脊图 ★ | 分布形态、组间比较 | [gallery/case_seg016.png](../gallery/case_seg016.png) |
 | 017 | 案例17 | 分面山脊图 | 分布形态、组间比较 | [gallery/case_seg017.png](../gallery/case_seg017.png) |
 | 018 | 案例18 | 分组分面山脊图 | 分布形态、组间比较 | [gallery/case_seg018.png](../gallery/case_seg018.png) |
-| 032 | 案例32 | 山脊图+侧边条形图 | 分布形态、组间比较 | [gallery/case_seg032.png](../gallery/case_seg032.png) |
+| 032 | 案例32 | 山脊图+侧边条形图 ★ | 分布形态、组间比较 | [gallery/case_seg032.png](../gallery/case_seg032.png) |
 | 038 | 案例38 | 密度+箱线蜂群组合 | 分布形态、组间比较 | [gallery/case_seg038.png](../gallery/case_seg038.png) |
 | 043 | 案例44 | 联合密度+边际直方图 | 分布形态、组间比较 | [gallery/case_seg043.png](../gallery/case_seg043.png) |
 | 102 | 案例104 | 渐变等高线密度图 | 分布形态、组间比较 | [gallery/case_seg102.png](../gallery/case_seg102.png) |
@@ -145,56 +150,55 @@
 
 | seg | 案例 | 类型 | 用途 | 参考 |
 |---|---|---|---|---|
-| 027 | 案例27 | 和弦图 | 网络与流向 | [gallery/case_seg027.png](../gallery/case_seg027.png) |
-| 035 | 案例35 | circos弦图+富集网络 | 网络与流向 | [gallery/case_seg035.png](../gallery/case_seg035.png) |
-| 045 | 案例46 | 三层桑基图 | 网络与流向 | [gallery/case_seg045.png](../gallery/case_seg045.png) |
-| 046 | 案例47 | 四层桑基图 | 网络与流向 | [gallery/case_seg046.png](../gallery/case_seg046.png) |
+| 027 | 案例27 | 和弦图 ★ | 网络与流向 | [gallery/case_seg027.png](../gallery/case_seg027.png) |
+| 035 | 案例35 | circos弦图+富集网络 ★ | 网络与流向 | [gallery/case_seg035.png](../gallery/case_seg035.png) |
+| 045 | 案例46 | 三层桑基图 ★ | 网络与流向 | [gallery/case_seg045.png](../gallery/case_seg045.png) |
+| 046 | 案例47 | 四层桑基图 ★ | 网络与流向 | [gallery/case_seg046.png](../gallery/case_seg046.png) |
 | 055 | 案例57 | 放射状网络条形图 | 网络与流向 | [gallery/case_seg055.png](../gallery/case_seg055.png) |
-| 056 | 案例58 | 放射状网络气泡图 | 网络与流向 | [gallery/case_seg056.png](../gallery/case_seg056.png) |
+| 056 | 案例58 | 放射状网络气泡图 ★ | 网络与流向 | [gallery/case_seg056.png](../gallery/case_seg056.png) |
 | 076 | 案例78 | 相关网络+散点矩阵 | 网络与流向、相关关系 | [gallery/case_seg076.png](../gallery/case_seg076.png) |
-| 091 | 案例93 | 冲击图/桑基图 | 网络与流向 | [gallery/case_seg091.png](../gallery/case_seg091.png) |
+| 091 | 案例93 | 冲击图/桑基图 ★ | 网络与流向 | [gallery/case_seg091.png](../gallery/case_seg091.png) |
 | 114 | 案例116 | UpSet图 | 网络与流向 | [gallery/case_seg114.png](../gallery/case_seg114.png) |
 | 115 | 案例117 | UpSet图 | 网络与流向 | [gallery/case_seg115.png](../gallery/case_seg115.png) |
 | 124 | 案例126 | 三元散点图 | 构成占比、相关关系 | [gallery/case_seg124.png](../gallery/case_seg124.png) |
 | 125 | 案例127 | 三元散点图(两组) | 构成占比、相关关系 | [gallery/case_seg125.png](../gallery/case_seg125.png) |
 | 126 | 案例128 | 三元散点(连续着色) | 构成占比、相关关系 | [gallery/case_seg126.png](../gallery/case_seg126.png) |
-| 127 | 案例129 | 三元气泡图 | 构成占比、相关关系 | [gallery/case_seg127.png](../gallery/case_seg127.png) |
-| 128 | 案例130 | 三元气泡图(属水平) | 构成占比、相关关系 | [gallery/case_seg128.png](../gallery/case_seg128.png) |
-| 129 | 案例131 | 三元核密度图 | 构成占比、相关关系、分布形态 | [gallery/case_seg129.png](../gallery/case_seg129.png) |
+| 127 | 案例129 | 三元气泡图 ★ | 构成占比、相关关系 | [gallery/case_seg127.png](../gallery/case_seg127.png) |
+| 128 | 案例130 | 三元气泡图(属水平) ★ | 构成占比、相关关系 | [gallery/case_seg128.png](../gallery/case_seg128.png) |
+| 129 | 案例131 | 三元核密度图 ★ | 构成占比、相关关系、分布形态 | [gallery/case_seg129.png](../gallery/case_seg129.png) |
 
 ## polar（极坐标/雷达/环形，16 例）
 
 | seg | 案例 | 类型 | 用途 | 参考 |
 |---|---|---|---|---|
-| 048 | 案例49 | 多环参与者环形图 | 多指标综合 | [gallery/case_seg048.png](../gallery/case_seg048.png) |
+| 048 | 案例49 | 多环参与者环形图 ★ | 多指标综合 | [gallery/case_seg048.png](../gallery/case_seg048.png) |
 | 049 | 案例50a | 环状分组柱形图 | 多指标综合 | [gallery/case_seg049.png](../gallery/case_seg049.png) |
 | 050 | 案例50b | 环状分组柱形图 | 多指标综合 | [gallery/case_seg050.png](../gallery/case_seg050.png) |
 | 057 | 案例59 | 圆形雷达图(3组) | 多指标综合 | [gallery/case_seg057.png](../gallery/case_seg057.png) |
 | 058 | 案例60 | 多雷达+放大面板 | 多指标综合 | [gallery/case_seg058.png](../gallery/case_seg058.png) |
-| 059 | 案例61 | 地图+雷达内嵌 | 空间分布、多指标综合 | [gallery/case_seg059.png](../gallery/case_seg059.png) |
+| 059 | 案例61 | 地图+雷达内嵌 ★ | 空间分布、多指标综合 | [gallery/case_seg059.png](../gallery/case_seg059.png) |
 | 060 | 案例62 | 五边形雷达对比 | 多指标综合 | [gallery/case_seg060.png](../gallery/case_seg060.png) |
-| 092 | 案例94 | 半圆极坐标小提琴图 | 分布形态、组间比较 | [gallery/case_seg092.png](../gallery/case_seg092.png) |
-| 093 | 案例95 | 扇形极坐标箱线图 | 分布形态、组间比较 | [gallery/case_seg093.png](../gallery/case_seg093.png) |
+| 092 | 案例94 | 半圆极坐标小提琴图 ★ | 分布形态、组间比较 | [gallery/case_seg092.png](../gallery/case_seg092.png) |
+| 093 | 案例95 | 扇形极坐标箱线图 ★ | 分布形态、组间比较 | [gallery/case_seg093.png](../gallery/case_seg093.png) |
 | 094 | 案例96 | 环状柱形图(SD) | 多指标综合 | [gallery/case_seg094.png](../gallery/case_seg094.png) |
 | 095 | 案例97 | 环状折线图 | 多指标综合、趋势变化 | [gallery/case_seg095.png](../gallery/case_seg095.png) |
 | 098 | 案例100 | 雷达图(20轴) | 差异展示、排序、多指标综合 | [gallery/case_seg098.png](../gallery/case_seg098.png) |
 | 099 | 案例101 | 雷达图(14轴) | 差异展示、排序、多指标综合 | [gallery/case_seg099.png](../gallery/case_seg099.png) |
-| 100 | 案例102 | 环状条形图(渐变) | 多指标综合 | [gallery/case_seg100.png](../gallery/case_seg100.png) |
-| 101 | 案例103 | 环状条形图(双系列) | 多指标综合 | [gallery/case_seg101.png](../gallery/case_seg101.png) |
-| 139 | 案例144 | 内向环形堆叠图(顶刊版) | 多指标综合 | [gallery/case_seg139.png](../gallery/case_seg139.png) |
+| 100 | 案例102 | 环状条形图(渐变) ★ | 多指标综合 | [gallery/case_seg100.png](../gallery/case_seg100.png) |
+| 101 | 案例103 | 环状条形图(双系列) ★ | 多指标综合 | [gallery/case_seg101.png](../gallery/case_seg101.png) |
+| 139 | 案例144 | 内向环形堆叠图(顶刊版) ★ | 多指标综合 | [gallery/case_seg139.png](../gallery/case_seg139.png) |
 
-## tree_geo（发育树/地图/组合，11 例）
+## tree_geo（发育树/地图/组合，10 例）
 
 | seg | 案例 | 类型 | 用途 | 参考 |
 |---|---|---|---|---|
-| 012 | 案例12 | 环形系统发育树+注释环 | 空间分布 | [gallery/case_seg012.png](../gallery/case_seg012.png) |
-| 013 | 案例13 | 环形发育树+柱状/热图环 | 空间分布 | [gallery/case_seg013.png](../gallery/case_seg013.png) |
-| 014 | 案例14 | 环形发育树+ASV热图环 | 空间分布 | [gallery/case_seg014.png](../gallery/case_seg014.png) |
-| 015 | 案例15 | 环形发育树+双注释环 | 空间分布 | [gallery/case_seg015.png](../gallery/case_seg015.png) |
-| 051 | 案例51 | 世界地图+饼图 | 空间分布 | [gallery/case_seg051.png](../gallery/case_seg051.png) |
-| 052 | 案例52 | 世界地图+采样饼图 | 空间分布 | [gallery/case_seg052.png](../gallery/case_seg052.png) |
-| 053 | 案例53 | 世界地图+大饼图 | 空间分布 | [gallery/case_seg053.png](../gallery/case_seg053.png) |
-| 074 | 案例76 | 哑铃+点阵+条形组合 | 相关关系、组间比较、差异展示 | [gallery/case_seg074.png](../gallery/case_seg074.png) |
-| 117 | 案例119 | 中国地图+饼图 | 空间分布 | [gallery/case_seg117.png](../gallery/case_seg117.png) |
-| 118 | 案例120 | 中国地图+气泡图 | 空间分布 | [gallery/case_seg118.png](../gallery/case_seg118.png) |
-| 143 | 案例148 | 3D双层填充地图 | 空间分布 | [gallery/case_seg143.png](../gallery/case_seg143.png) |
+| 012 | 案例12 | 环形系统发育树+注释环 ★ | 空间分布 | [gallery/case_seg012.png](../gallery/case_seg012.png) |
+| 013 | 案例13 | 环形发育树+柱状/热图环 ★ | 空间分布 | [gallery/case_seg013.png](../gallery/case_seg013.png) |
+| 014 | 案例14 | 环形发育树+ASV热图环 ★ | 空间分布 | [gallery/case_seg014.png](../gallery/case_seg014.png) |
+| 015 | 案例15 | 环形发育树+双注释环 ★ | 空间分布 | [gallery/case_seg015.png](../gallery/case_seg015.png) |
+| 051 | 案例51 | 世界地图+饼图 ★ | 空间分布 | [gallery/case_seg051.png](../gallery/case_seg051.png) |
+| 052 | 案例52 | 世界地图+采样饼图 ★ | 空间分布 | [gallery/case_seg052.png](../gallery/case_seg052.png) |
+| 053 | 案例53 | 世界地图+大饼图 ★ | 空间分布 | [gallery/case_seg053.png](../gallery/case_seg053.png) |
+| 074 | 案例76 | 哑铃+点阵+条形组合 ★ | 相关关系、组间比较、差异展示 | [gallery/case_seg074.png](../gallery/case_seg074.png) |
+| 117 | 案例119 | 中国地图+饼图 ★ | 空间分布 | [gallery/case_seg117.png](../gallery/case_seg117.png) |
+| 143 | 案例148 | 3D双层填充地图 ★ | 空间分布 | [gallery/case_seg143.png](../gallery/case_seg143.png) |

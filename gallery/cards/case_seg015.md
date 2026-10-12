@@ -5,11 +5,18 @@ purpose: [空间分布]
 data: Newick树+叶(门,属,bsh有无,BBAA 0-0.6)
 input: newick (reference/data-schemas.json #015)
 journal: Nature
+wow: 3
 recipe: scripts/recipes/case_seg015.py
 preview: ../case_seg015.png
 ---
 
 **一句话**：环形发育树+双注释环（Nature 风格）
+
+**高级感**：★★★ 镇场级（用户要"高级/惊艳"时优先摆）
+
+**适用场景**：进化树要按属/支系分块填浅色底，并把属名沿弧线排布标注
+
+**有什么用**：一圈按'家族'分块上色的家谱树，属名直接沿弧线写在树上；外面绕两圈：一圈红格深浅表示某项比例的高低，一圈蓝白格子表示有没有目标基因。
 
 **部件亮点**
 - 结构布局：单面板

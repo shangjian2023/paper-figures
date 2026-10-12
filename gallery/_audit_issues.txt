@@ -1,0 +1,294 @@
+# 图库遮挡审计基线 — 由 scripts/audit_gallery.py --update-baseline 生成
+# 用途: 存量问题登记(待增量修复)。全库重跑 audit 后, 基线外新问题 = 回退, 判 FAIL。
+# 修一张划一张: 改配方 -> polish 到 PASS -> 重渲染 -> compare 复核 -> 更新基线。
+
+seg003
+    legend covers data: 6 pts under legend
+    text over data (no stroke/bbox): 'PERMANOVA\np=0.001' (9 pts)
+    text over data (no stroke/bbox): 'PCo1 [15.9%]' (5 pts)
+    text over data (no stroke/bbox): 'Study' (4 pts)
+    text over data (no stroke/bbox): 'Group' (6 pts)
+seg009
+    text overlap: 'Srdi-' x 'Srdi-idt1' (40%)
+    text overlap: 'Srdi-' x 'Srdi-' (50%)
+    text overlap: 'Srdi-idt1' x 'Srdi-' (100%)
+    text overlap: 'Srdi-idt1' x 'Srdi-idt1' (50%)
+    text overlap: 'Srdi-idt2' x 'Srdi-idt1' (80%)
+    text overlap: 'Srdi-idt2' x 'Srdi-idt2' (50%)
+    text overlap: 'Srdi-idt3' x 'Srdi-idt2' (80%)
+    text overlap: 'Srdi-idt3' x 'Srdi-idt3' (50%)
+seg010
+    text overlap: 'defense response' x 'response to biotic stimulus' (100%)
+    text overlap: 'defense response' x 'response to other organism' (67%)
+    text overlap: 'defense response' x 'defense response' (58%)
+    text overlap: 'response to biotic stimulus' x 'response to other organism' (76%)
+    text overlap: 'response to biotic stimulus' x 'defense response' (89%)
+    text overlap: 'response to biotic stimulus' x 'response to biotic stimulus' (55%)
+    text overlap: 'response to other organism' x 'response to bacterium' (67%)
+    text overlap: 'response to other organism' x 'defense response' (95%)
+seg015
+    text overlap: 'Bifidobacterium' x 'Collinsella' (56%)
+    text over data (no stroke/bbox): 'Bifidobacterium' (4 pts)
+    text over data (no stroke/bbox): 'Collinsella' (4 pts)
+    text over data (no stroke/bbox): 'Bacteroides' (6 pts)
+    text over data (no stroke/bbox): 'Enterococcus' (17 pts)
+    text over data (no stroke/bbox): 'Clostridium' (6 pts)
+    text over data (no stroke/bbox): 'Fusobacterium' (7 pts)
+seg022
+    text overlap: 'Arg-dihydroxylated BA 1' x 'Arg-dihydroxylated BA 2' (81%)
+    text overlap: 'Arg-dihydroxylated BA 1' x 'Asn-dihydroxylated BA 1' (62%)
+    text overlap: 'Arg-dihydroxylated BA 1' x 'Asn-dihydroxylated BA 2' (43%)
+    text overlap: 'Arg-dihydroxylated BA 2' x 'Asn-dihydroxylated BA 1' (81%)
+    text overlap: 'Arg-dihydroxylated BA 2' x 'Asn-dihydroxylated BA 2' (62%)
+    text overlap: 'Arg-dihydroxylated BA 2' x 'Ser-dihydroxylated BA' (46%)
+    text overlap: 'Asn-dihydroxylated BA 1' x 'Asn-dihydroxylated BA 2' (81%)
+    text overlap: 'Asn-dihydroxylated BA 1' x 'Ser-dihydroxylated BA' (68%)
+seg023
+    text overlap: 'Cdkn1a' x 'Utrn' (58%)
+    text overlap: 'Utrn' x 'Apod' (42%)
+    text overlap: 'Apod' x 'Mmp14' (54%)
+    text overlap: 'Mmp14' x 'Cnn2' (55%)
+    text overlap: 'Cnn2' x 'Adamts6' (62%)
+    text overlap: 'Adamts6' x 'Esr1' (61%)
+    text overlap: 'Esr1' x 'Stat3' (41%)
+    text overlap: 'Stat3' x 'Mtor' (43%)
+seg025
+    text over data (no stroke/bbox): 'Western Europe' (64 pts)
+    text over data (no stroke/bbox): 'Central/Eastern Europe' (96 pts)
+    text over data (no stroke/bbox): 'Southern Europe' (67 pts)
+    text over data (no stroke/bbox): 'Northern Europe' (66 pts)
+    text over data (no stroke/bbox): 'Central/Western Asia' (58 pts)
+seg031
+    text overlap: 'Immune\n(human)' x 'Immune\n(human/mouse)' (49%)
+seg035
+    text over data (no stroke/bbox): 'beta cells' (7 pts)
+    text over data (no stroke/bbox): 'Per cent of genes from:' (3 pts)
+seg036
+    text overlap: '$\\it{CD163}$' x '$\\it{SAP30}$' (45%)
+    text overlap: '$\\it{CCL3L3}$' x '-1' (100%)
+    text over data (no stroke/bbox): '$\\it{TSC22D3}$' (3 pts)
+    text over data (no stroke/bbox): '$\\it{CD163}$' (7 pts)
+    text over data (no stroke/bbox): '$\\it{DDIT4}$' (3 pts)
+    text over data (no stroke/bbox): '$\\it{ZFP36L2}$' (18 pts)
+    text over data (no stroke/bbox): '$\\it{SAP30}$' (4 pts)
+    text over data (no stroke/bbox): '$\\it{PER1}$' (7 pts)
+seg047
+    text overlap: 'Okinawa-A' x 'Kumamoto-A' (66%)
+    text overlap: 'Saga-A' x 'Fukuoka-G' (71%)
+    text overlap: 'Fukuoka-G' x 'Fukuoka-E' (50%)
+    text overlap: 'Fukuoka-E' x 'Fukuoka-D' (51%)
+    text overlap: 'Fukuoka-D' x 'Fukuoka-C' (50%)
+    text overlap: 'Fukuoka-C' x 'Fukuoka-B' (50%)
+    text overlap: 'Fukuoka-B' x 'Fukuoka-A' (50%)
+    text overlap: 'Kochi-A' x 'Ehime-A' (41%)
+seg048
+    text overlap: 'ZTERJVYF' x 'ZQSYFXMU' (40%)
+    text overlap: 'ZQSYFXMU' x 'ZDAXCSFM' (40%)
+    text overlap: 'ZDAXCSFM' x 'ZKDXXSNP' (41%)
+    text overlap: 'ZKDXXSNP' x 'ZAEQSDAR' (42%)
+    text overlap: 'ZAEQSDAR' x 'ZRVPFBQU' (42%)
+    text overlap: 'ZRVPFBQU' x 'ZEEAMEBF' (43%)
+    text overlap: 'ZEEAMEBF' x 'ZCVPQMSQ' (44%)
+    text overlap: 'ZCVPQMSQ' x 'ZRYYMVCC' (42%)
+seg049
+    text overlap: 'a' x 'SurfArea(cm$^2$)' (100%)
+    text overlap: 'a' x 'RootVolume(cm$^3$)' (100%)
+seg050
+    text overlap: 'd' x '30' (82%)
+    text overlap: 'd' x '280' (69%)
+    text overlap: 'c' x '30' (67%)
+    text overlap: 'a' x 'APX(U mg$^{-1}$)' (53%)
+    text overlap: 'a' x 'GSH(mg g$^{-1}$)' (100%)
+    text overlap: 'a' x 'GPX(U mg$^{-1}$)' (63%)
+    text over data (no stroke/bbox): 'b' (4 pts)
+    text over data (no stroke/bbox): '25' (5 pts)
+seg055
+    text overlap: 'Oxoproline metabolism' x 'Ascorbate transport' (76%)
+    text overlap: 'Oxoproline metabolism' x 'SigB' (58%)
+    text overlap: 'Ascorbate transport' x 'SigB' (100%)
+    text overlap: 'Vras2_2' x 'SigS' (44%)
+    text overlap: 'BelR' x 'Beta lactam resistance' (72%)
+    text overlap: 'ManR' x 'Uncharacterized_1' (43%)
+    text overlap: 'Uncharacterized_1' x 'Uncharacterized_7' (64%)
+    text overlap: 'Uncharacterized_1' x 'Uncharacterized_2' (36%)
+seg056
+    text overlap: 'CtsR' x 'ILVopor' (37%)
+    text overlap: 'ILVopor' x 'PyrR' (50%)
+    text overlap: 'PyrR' x 'Purine' (44%)
+    text overlap: 'Purine' x 'ArgR' (45%)
+    text overlap: 'PurR accessory' x 'CcpA_1' (60%)
+    text overlap: 'CcpA_2' x 'CggR' (46%)
+    text overlap: 'Autolysin' x 'LTA' (35%)
+    text overlap: 'Fur_1' x 'Rex_1' (35%)
+seg059
+    text overlap: 'Scandinavian\nMountains' x '152' (100%)
+    text over data (no stroke/bbox): 'Chilean Andes' (5 pts)
+    text over data (no stroke/bbox): '7.8' (3 pts)
+seg061
+    text over data (no stroke/bbox): 'c73_ADAMEC1$^+$ Fibro' (6 pts)
+    text over data (no stroke/bbox): 'c74_C7$^+$ Fibro' (3 pts)
+    text over data (no stroke/bbox): 'c64_SPP1$^+$ Mph' (8 pts)
+seg066
+    text over data (no stroke/bbox): 'P$_{non-linear}$=0.5779\n' (12 pts)
+seg072
+    text overlap: '$\\it{+A38}$-$\\it{WT}$' x '$\\it{+A38}$-$\\it{R134C}$' (40%)
+seg075
+    text over data (no stroke/bbox): 'y = −0.1783x + 373.5' (11 pts)
+    text over data (no stroke/bbox): 'R$^2$ = 0.1897   ****' (14 pts)
+    text over data (no stroke/bbox): 'y = −0.0086x + 25.316' (6 pts)
+    text over data (no stroke/bbox): 'R$^2$ = 0.0097   ns' (36 pts)
+    text over data (no stroke/bbox): 'y = −0.0005x + 2.4625' (7 pts)
+    text over data (no stroke/bbox): 'R$^2$ = 0.0004   ns' (31 pts)
+seg078
+    text over data (no stroke/bbox): 'SHU9119' (34 pts)
+seg081
+    text over data (no stroke/bbox): 'Concordant' (3 pts)
+seg082
+    legend covers data: 24 pts under legend
+    text over data (no stroke/bbox): '$\\it{Atf5}$' (20 pts)
+    text over data (no stroke/bbox): '$\\it{Atf3}$' (7 pts)
+    text over data (no stroke/bbox): '$\\it{Atf4}$' (14 pts)
+    text over data (no stroke/bbox): '$\\it{Chop}$' (14 pts)
+    text over data (no stroke/bbox): '$\\it{Sox5}$' (4 pts)
+seg083
+    text overlap: '1.00' x '-1.5' (62%)
+    text overlap: '1.00' x '-1.5' (64%)
+    text overlap: '-1.5' x '-1.5' (37%)
+seg087
+    text overlap: 'MAG richness' x 'MAG Shannon diversity' (64%)
+    text overlap: 'MAG Shannon diversity' x 'Gene richness' (100%)
+    text overlap: 'MAG Shannon diversity' x 'Gene Shannon diversity' (53%)
+    text overlap: 'Gene richness' x 'Gene Shannon diversity' (64%)
+    text overlap: 'Gene Shannon diversity' x 'Aerobic Microaerophillic' (79%)
+    text overlap: 'Gene Shannon diversity' x 'Light driven' (100%)
+    text overlap: 'Gene Shannon diversity' x 'N reducer' (65%)
+    text overlap: 'Aerobic Microaerophillic' x 'Light driven' (100%)
+seg089
+    text overlap: 'NO$_2^-$-N' x 'TN' (57%)
+    text overlap: 'Moisture' x 'TOC' (45%)
+seg092
+    text overlap: '290.9' x 'SARS-CoV-2 Beta' (43%)
+    text overlap: '235.0' x 'SARS-CoV-2 Beta' (37%)
+    text overlap: '311.8' x 'Pangolin CoV GL' (51%)
+seg093
+    text overlap: '235.0' x 'SARS-CoV-2 Beta' (100%)
+    text overlap: '291.5' x 'Pangolin CoV GL' (76%)
+    text over data (no stroke/bbox): 'SARS-CoV-2 Beta' (3 pts)
+    text over data (no stroke/bbox): '233.1' (4 pts)
+seg096
+    text overlap: '16S-ARG' x 'Shotgun-ARG' (58%)
+    text overlap: 'Shotgun-ARG' x '16S-Beta.lactam' (58%)
+    text overlap: '16S-Beta.lactam' x 'Shotgun-Beta.lactam' (75%)
+    text overlap: 'Shotgun-Beta.lactam' x '16S-Glycopeptide' (53%)
+    text overlap: '16S-Glycopeptide' x 'Shotgun-Glycopeptide' (76%)
+    text overlap: 'Shotgun-Glycopeptide' x '16S-Tetracycline' (49%)
+    text overlap: '16S-Tetracycline' x 'Shotgun-Tetracycline' (74%)
+    text overlap: 'Shotgun-Tetracycline' x '16S-Aminoglycoside' (58%)
+seg097
+    text overlap: 'Chrom. Gain' x 'Chrom. Loss' (42%)
+    text overlap: 'Arm Loss' x 'Segment Gain' (72%)
+    text overlap: 'Segment Gain' x 'Segment Loss' (49%)
+seg101
+    text overlap: 'DNMT1' x 'MLL3 Complex' (59%)
+    text overlap: 'MLL3 Complex' x 'PRMT8' (60%)
+    text overlap: 'MLL2 Complex' x 'SUV39H2' (60%)
+    text overlap: 'DNMT3b' x 'NSD2 (E1099K)' (71%)
+    text overlap: 'NSD2 (T1150A)' x 'SET1b Complex' (42%)
+    text overlap: 'D2S' x 'N neuronal alpha' (92%)
+    text overlap: 'M3 (h)' x 'CCK1 (h)' (39%)
+    text overlap: 'alpha 2A' x 'BZD (central)' (53%)
+seg102
+    text over data (no stroke/bbox): '$\\it{TMEM100}$' (6 pts)
+    text over data (no stroke/bbox): '$\\it{MYL1}$' (18 pts)
+    text over data (no stroke/bbox): '$\\it{TIMP3}$' (8 pts)
+    text over data (no stroke/bbox): '$\\it{C5orf52}$' (5 pts)
+    text over data (no stroke/bbox): '$\\it{LAMP3}$' (12 pts)
+    text over data (no stroke/bbox): '$\\it{S100A14}$' (5 pts)
+seg109
+    text overlap: '$\\it{Cybb}$' x '$\\it{Zbp1}$' (61%)
+    text overlap: '$\\it{Xkr41}$' x '$\\it{Ccl5}$' (73%)
+    text overlap: '$\\it{Ccl5}$' x '$\\it{Zfp185}$' (43%)
+    text overlap: '$\\it{Napsa1}$' x '$\\it{Il2rb}$' (58%)
+    text over data (no stroke/bbox): '$\\it{Cd3d}$' (9 pts)
+    text over data (no stroke/bbox): '$\\it{Gzma}$' (3 pts)
+    text over data (no stroke/bbox): '$\\it{Tgtp1}$' (4 pts)
+    text over data (no stroke/bbox): '$\\it{Napsa1}$' (9 pts)
+seg110
+    text over data (no stroke/bbox): '$\\it{S100A9}$' (8 pts)
+    text over data (no stroke/bbox): '$\\it{S100A8}$' (6 pts)
+    text over data (no stroke/bbox): '$\\it{CST7}$' (3 pts)
+    text over data (no stroke/bbox): '$\\it{LYZ}$' (3 pts)
+    text over data (no stroke/bbox): '$\\it{S100A9}$' (4 pts)
+    text over data (no stroke/bbox): '$\\it{AQP3}$' (3 pts)
+seg111
+    text over data (no stroke/bbox): '$\\it{IFI27}$' (6 pts)
+    text over data (no stroke/bbox): '$\\it{TFF1}$' (84 pts)
+    text over data (no stroke/bbox): '$\\it{ICAM1}$' (76 pts)
+seg113
+    legend covers data: 71 pts under legend
+    text over data (no stroke/bbox): '$\\it{VSIG4}$' (16 pts)
+    text over data (no stroke/bbox): '$\\it{MIF4GD}$' (16 pts)
+    text over data (no stroke/bbox): '$\\it{CD163}$' (25 pts)
+    text over data (no stroke/bbox): '$\\it{ARHGEF1}$' (17 pts)
+    text over data (no stroke/bbox): '$\\it{APOA1}$' (8 pts)
+seg114
+    text overlap: '450' x 'Set size' (99%)
+seg115
+    text overlap: '700' x 'Set size' (68%)
+seg117
+    text overlap: 'Xizang' x 'Temperate forest grassland' (79%)
+seg118
+    text overlap: '-6' x '6' (69%)
+seg123
+    legend covers data: 4 pts under legend
+    text over data (no stroke/bbox): 'Cold Surge' (22 pts)
+    text over data (no stroke/bbox): 'Sandstorm' (14 pts)
+    text over data (no stroke/bbox): 'Typhoon' (12 pts)
+    text over data (no stroke/bbox): 'Heatwave' (20 pts)
+    text over data (no stroke/bbox): 'Rainstorm' (4 pts)
+seg124
+    text overlap: '20' x 'EPI.score.norm' (98%)
+    text overlap: '20' x 'TE.score.norm' (100%)
+    text overlap: '20' x 'PrE.score.norm' (51%)
+    text over data (no stroke/bbox): 'EPI.score.norm' (5 pts)
+    text over data (no stroke/bbox): 'TE.score.norm' (6 pts)
+seg125
+    text overlap: '40' x '$T_{H}2$ state' (63%)
+    text overlap: '40' x '$T_{H}1$ state' (35%)
+seg134
+    text overlap: 'Monocyte macrophage' x 'T cell' (70%)
+    text overlap: 'Neutrophil' x 'T cell' (72%)
+seg135
+    legend covers data: 49 pts under legend
+    text over data (no stroke/bbox): '$\\it{PIGT}$' (4 pts)
+    text over data (no stroke/bbox): '$\\it{PIGL}$' (4 pts)
+    text over data (no stroke/bbox): '$\\it{PIGS_P}$' (3 pts)
+    text over data (no stroke/bbox): '$\\it{PIGQ}$' (5 pts)
+    text over data (no stroke/bbox): '$\\it{UFC1}$' (11 pts)
+seg137
+    text overlap: 'Histology' x 'Stage' (69%)
+    text overlap: 'Stage' x 'Smoking' (67%)
+    text overlap: 'Smoking' x '0' (36%)
+seg139
+    text over data (no stroke/bbox): 'brain' (11 pts)
+    text over data (no stroke/bbox): 'liver' (10 pts)
+    text over data (no stroke/bbox): 'spleen' (15 pts)
+    text over data (no stroke/bbox): 'muscle' (18 pts)
+    text over data (no stroke/bbox): 'artery' (12 pts)
+    text over data (no stroke/bbox): 'pancreas' (17 pts)
+seg145
+    text overlap: 'A172' x 'A172' (68%)
+    text overlap: 'C77' x 'A172' (50%)
+    text overlap: 'C77' x 'C77' (72%)
+    text overlap: 'C77' x 'D189' (57%)
+    text overlap: 'D189' x 'D189' (68%)
+    text overlap: 'D189' x 'E167' (48%)
+    text overlap: 'E167' x 'D189' (54%)
+    text overlap: 'E167' x 'E167' (68%)
+seg146
+    text over data (no stroke/bbox): '$\\it{HMGA2}$' (3 pts)
+    text over data (no stroke/bbox): '$\\it{TMEM156}$' (6 pts)
+    text over data (no stroke/bbox): '$\\it{NAV3}$' (7 pts)
+    text over data (no stroke/bbox): '$\\it{GALNT3}$' (3 pts)
+    text over data (no stroke/bbox): '$\\it{EXOC3L1}$' (6 pts)
+    text over data (no stroke/bbox): '$\\it{SCRN1}$' (5 pts)

@@ -1,0 +1,462 @@
+{
+ "protocol": "v3",
+ "note": "路由档案 生产+审计+终审 波次状态。in-session 会话与定时自动化共用。实际并发上限=2（3 并发会 user concurrency limit exceeded）：全局同时 running 的分片（生产+审计+终审合计）不得超过 2。派发前先数 running；分片 status 以磁盘实际产物为准核销。终审分片只在 生产+审计 全部 done（146 份档案且 plain/caption 齐全）后才可派。",
+ "plan": [
+  [
+   1,
+   29
+  ],
+  [
+   30,
+   58
+  ],
+  [
+   59,
+   87
+  ],
+  [
+   88,
+   117
+  ],
+  [
+   118,
+   146
+  ]
+ ],
+ "audit_plan": [
+  [
+   1,
+   15
+  ],
+  [
+   16,
+   29
+  ],
+  [
+   30,
+   44
+  ],
+  [
+   45,
+   58
+  ],
+  [
+   59,
+   73
+  ],
+  [
+   74,
+   87
+  ],
+  [
+   88,
+   102
+  ],
+  [
+   103,
+   117
+  ],
+  [
+   118,
+   132
+  ],
+  [
+   133,
+   146
+  ]
+ ],
+ "audit_note": "审计=给档案补 plain(直白解释)/caption(文档图题) 两字段并质检; 5 批×2=10 个分片",
+ "waves": [
+  {
+   "wave": 1,
+   "digest": "_digest_b1.json",
+   "chunks": [
+    {
+     "segs": [
+      1,
+      10
+     ],
+     "status": "done"
+    },
+    {
+     "segs": [
+      11,
+      20
+     ],
+     "status": "done"
+    },
+    {
+     "segs": [
+      21,
+      29
+     ],
+     "status": "done"
+    }
+   ],
+   "launched_at": "2026-10-11T23:30:00+08:00",
+   "status": "done"
+  },
+  {
+   "wave": 2,
+   "digest": "_digest_b2.json",
+   "chunks": [
+    {
+     "segs": [
+      30,
+      39
+     ],
+     "status": "done"
+    },
+    {
+     "segs": [
+      40,
+      49
+     ],
+     "status": "done"
+    },
+    {
+     "segs": [
+      50,
+      58
+     ],
+     "status": "done"
+    }
+   ],
+   "launched_at": "2026-10-12T00:55:00+08:00",
+   "status": "running"
+  },
+  {
+   "wave": 3,
+   "digest": "_digest_b3.json",
+   "chunks": [
+    {
+     "segs": [
+      59,
+      68
+     ],
+     "status": "done"
+    },
+    {
+     "segs": [
+      69,
+      78
+     ],
+     "status": "done"
+    },
+    {
+     "segs": [
+      79,
+      87
+     ],
+     "status": "done"
+    }
+   ],
+   "launched_at": "2026-10-12T01:23:41+08:00",
+   "status": "running"
+  },
+  {
+   "wave": 4,
+   "digest": "_digest_b4.json",
+   "chunks": [
+    {
+     "segs": [
+      88,
+      97
+     ],
+     "status": "done"
+    },
+    {
+     "segs": [
+      98,
+      108
+     ],
+     "status": "done"
+    },
+    {
+     "segs": [
+      109,
+      117
+     ],
+     "status": "done"
+    }
+   ],
+   "launched_at": "2026-10-12T02:43:06+08:00",
+   "status": "running"
+  },
+  {
+   "wave": 5,
+   "digest": "_digest_b5.json",
+   "chunks": [
+    {
+     "segs": [
+      118,
+      125
+     ],
+     "status": "done"
+    },
+    {
+     "segs": [
+      126,
+      136
+     ],
+     "status": "done"
+    },
+    {
+     "segs": [
+      137,
+      146
+     ],
+     "status": "done"
+    }
+   ],
+   "launched_at": "2026-10-12T02:48:53+08:00",
+   "status": "running"
+  }
+ ],
+ "audits": [
+  {
+   "segs": [
+    1,
+    15
+   ],
+   "status": "done"
+  },
+  {
+   "segs": [
+    16,
+    29
+   ],
+   "status": "done"
+  },
+  {
+   "segs": [
+    30,
+    44
+   ],
+   "status": "done",
+   "launched_at": "2026-10-12T02:49:56+08:00"
+  },
+  {
+   "segs": [
+    45,
+    58
+   ],
+   "status": "done",
+   "launched_at": "2026-10-12T02:54:24+08:00"
+  },
+  {
+   "segs": [
+    59,
+    73
+   ],
+   "status": "done",
+   "launched_at": "2026-10-12T02:56:54+08:00"
+  },
+  {
+   "segs": [
+    74,
+    87
+   ],
+   "status": "done",
+   "launched_at": "2026-10-12T02:59:25+08:00"
+  },
+  {
+   "segs": [
+    88,
+    102
+   ],
+   "status": "done",
+   "launched_at": "2026-10-12T03:03:01+08:00"
+  },
+  {
+   "segs": [
+    103,
+    117
+   ],
+   "status": "done",
+   "launched_at": "2026-10-12T03:06:01+08:00"
+  },
+  {
+   "segs": [
+    118,
+    132
+   ],
+   "status": "done",
+   "launched_at": "2026-10-12T03:09:38+08:00"
+  },
+  {
+   "segs": [
+    133,
+    146
+   ],
+   "status": "done",
+   "launched_at": "2026-10-12T03:15:38+08:00"
+  }
+ ],
+ "review_plan": [
+  [
+   1,
+   15
+  ],
+  [
+   16,
+   29
+  ],
+  [
+   30,
+   44
+  ],
+  [
+   45,
+   58
+  ],
+  [
+   59,
+   73
+  ],
+  [
+   74,
+   87
+  ],
+  [
+   88,
+   102
+  ],
+  [
+   103,
+   117
+  ],
+  [
+   118,
+   132
+  ],
+  [
+   133,
+   146
+  ]
+ ],
+ "review_note": "终审=逐份档案与原图/卡片交叉核对(看图核文、就地修正、可疑上报), 10 个内容分片 + 1 个 tooling/docs 分片; 全部通过后 check_routing --strict + run_all_checks 收尾",
+ "final_review": [
+  {
+   "segs": [
+    1,
+    15
+   ],
+   "kind": "content",
+   "status": "done",
+   "launched_at": "2026-10-12T03:23:04+08:00"
+  },
+  {
+   "segs": [
+    16,
+    29
+   ],
+   "kind": "content",
+   "status": "done",
+   "launched_at": "2026-10-12T03:23:04+08:00"
+  },
+  {
+   "segs": [
+    30,
+    44
+   ],
+   "kind": "content",
+   "status": "done",
+   "launched_at": "2026-10-12T03:32:05+08:00"
+  },
+  {
+   "segs": [
+    45,
+    58
+   ],
+   "kind": "content",
+   "status": "done",
+   "launched_at": "2026-10-12T03:32:58+08:00"
+  },
+  {
+   "segs": [
+    59,
+    73
+   ],
+   "kind": "content",
+   "status": "done",
+   "launched_at": "2026-10-12T03:43:44+08:00"
+  },
+  {
+   "segs": [
+    74,
+    87
+   ],
+   "kind": "content",
+   "status": "done",
+   "launched_at": "2026-10-12T03:44:42+08:00"
+  },
+  {
+   "segs": [
+    88,
+    102
+   ],
+   "kind": "content",
+   "status": "done",
+   "launched_at": "2026-10-12T03:53:45+08:00"
+  },
+  {
+   "segs": [
+    103,
+    117
+   ],
+   "kind": "content",
+   "status": "done",
+   "launched_at": "2026-10-12T04:04:42+08:00"
+  },
+  {
+   "segs": [
+    118,
+    132
+   ],
+   "kind": "content",
+   "status": "done",
+   "launched_at": "2026-10-12T04:12:30+08:00"
+  },
+  {
+   "segs": [
+    133,
+    146
+   ],
+   "kind": "content",
+   "status": "done",
+   "launched_at": "2026-10-12T04:24:50+08:00"
+  },
+  {
+   "segs": [
+    "docs"
+   ],
+   "kind": "docs",
+   "status": "done",
+   "launched_at": "2026-10-12T04:33:16+08:00"
+  }
+ ],
+ "phase": "pipeline",
+ "phase_note": "phase: research(子代理调研,优先占用并发) -> iterate(本地五轮迭代,无智能体) -> pipeline(恢复 v3 生产/审计/终审) -> done。phase=research/iterate 期间定时任务只报告不派流水线分片。",
+ "research": [
+  {
+   "topic": "semantic-routing",
+   "status": "done"
+  },
+  {
+   "topic": "recsys-diversity-rerank",
+   "status": "done"
+  },
+  {
+   "topic": "nl2vis-chart-rec",
+   "status": "done"
+  },
+  {
+   "topic": "chinese-lexical-ranking",
+   "status": "done"
+  }
+ ],
+ "review_extra": "终审智能体在核对每份档案时, 顺带给 anti_when 里的可判定界限补机器字段 \"constraints\": [{\"dim\":\"组数\",\"op\":\">\",\"val\":8,\"text\":\"组数 >8\"}] (dim∈组数/变量数/类别数/时间点/样本数; 没有可解析界限就不加), query.py 的 constraint_penalty 已支持优先读该字段。",
+ "research_note": "四路调研全部完成, 报告在 reference/routing/_research_*.md; 五轮迭代定稿见 _iteration_log.md",
+ "done": true
+}

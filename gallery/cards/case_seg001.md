@@ -5,11 +5,18 @@ purpose: [组间比较]
 data: 分组(3组)×细胞计数,Cont约13个、处理组8-15个重复
 input: long (reference/data-schemas.json #001)
 journal: Nature
+wow: 1
 recipe: scripts/recipes/case_seg001.py
 preview: ../case_seg001.png
 ---
 
 **一句话**：柱形图+抖动散点（Nature 风格）
+
+**高级感**：★ 常规扎实
+
+**适用场景**：比较 3 组左右单因素实验的细胞计数/测量值，突出处理组显著低于对照组
+
+**有什么用**：用柱子代表每组的平均值，柱上叠出每个样本的真实数据点，再用星号标出哪两组差异明显、哪里其实没差别。想比较几种处理的效果、每组样本又不多时，最先想到它。
 
 **部件亮点**
 - 结构布局：单面板

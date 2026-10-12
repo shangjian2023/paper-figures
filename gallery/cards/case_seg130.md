@@ -5,11 +5,18 @@ purpose: [相关关系]
 data: 7变量相关矩阵+变量对原始数据
 input: matrix (reference/data-schemas.json #130)
 journal: Nature
+wow: 1
 recipe: scripts/recipes/case_seg130.py
 preview: ../case_seg130.png
 ---
 
 **一句话**：配对相关矩阵图（Nature 风格）
+
+**高级感**：★ 常规扎实
+
+**适用场景**：5-8 个连续变量两两相关，想一图同时给出 r 值色块（上三角）和每对变量的 2D 密度散点（下三角）
+
+**有什么用**：几个指标两两关系一图看完：右上方块的颜色和数字给出相关强弱，左下每格画出两两数据的实际分布形状，既能看关系强弱又能发现异常点。
 
 **部件亮点**
 - 结构布局：单面板

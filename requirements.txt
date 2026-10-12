@@ -3,3 +3,10 @@ numpy>=1.26
 pillow>=10.0
 scipy>=1.11
 networkx>=3.0
+openpyxl>=3.1
+
+# 路由器(意图理解)运行依赖 — 纯 Python, 无模型
+jieba>=0.42
+rank_bm25>=0.2.2
+# 可选语义增强(默认关闭, 不装不影响任何功能):
+# pip install sentence-transformers modelscope  → 在 _weights.json 把 sem 调到 >0

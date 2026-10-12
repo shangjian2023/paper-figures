@@ -189,7 +189,8 @@
    "preview": "gallery/case_seg001.png",
    "runtime_s": 1.0,
    "helpers": [],
-   "lines": 47
+   "lines": 47,
+   "wow": 1
   },
   {
    "seg": 2,
@@ -205,7 +206,8 @@
    "preview": "gallery/case_seg002.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 109
+   "lines": 109,
+   "wow": 2
   },
   {
    "seg": 3,
@@ -221,7 +223,8 @@
    "preview": "gallery/case_seg003.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 145
+   "lines": 145,
+   "wow": 2
   },
   {
    "seg": 4,
@@ -237,7 +240,8 @@
    "preview": "gallery/case_seg004.png",
    "runtime_s": 1.0,
    "helpers": [],
-   "lines": 100
+   "lines": 100,
+   "wow": 1
   },
   {
    "seg": 5,
@@ -252,7 +256,8 @@
    "preview": "gallery/case_seg005.png",
    "runtime_s": 2.6,
    "helpers": [],
-   "lines": 73
+   "lines": 73,
+   "wow": 2
   },
   {
    "seg": 6,
@@ -267,7 +272,8 @@
    "preview": "gallery/case_seg006.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 71
+   "lines": 71,
+   "wow": 1
   },
   {
    "seg": 7,
@@ -282,7 +288,8 @@
    "preview": "gallery/case_seg007.png",
    "runtime_s": 1.0,
    "helpers": [],
-   "lines": 85
+   "lines": 85,
+   "wow": 1
   },
   {
    "seg": 8,
@@ -297,7 +304,8 @@
    "preview": "gallery/case_seg008.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 77
+   "lines": 77,
+   "wow": 1
   },
   {
    "seg": 9,
@@ -312,7 +320,8 @@
    "preview": "gallery/case_seg009.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 80
+   "lines": 80,
+   "wow": 1
   },
   {
    "seg": 10,
@@ -327,7 +336,8 @@
    "preview": "gallery/case_seg010.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 78
+   "lines": 78,
+   "wow": 1
   },
   {
    "seg": 11,
@@ -342,7 +352,8 @@
    "preview": "gallery/case_seg011.png",
    "runtime_s": 1.6,
    "helpers": [],
-   "lines": 116
+   "lines": 116,
+   "wow": 2
   },
   {
    "seg": 12,
@@ -357,7 +368,8 @@
    "preview": "gallery/case_seg012.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 161
+   "lines": 161,
+   "wow": 3
   },
   {
    "seg": 13,
@@ -372,7 +384,8 @@
    "preview": "gallery/case_seg013.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 166
+   "lines": 166,
+   "wow": 3
   },
   {
    "seg": 14,
@@ -387,7 +400,8 @@
    "preview": "gallery/case_seg014.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 176
+   "lines": 176,
+   "wow": 3
   },
   {
    "seg": 15,
@@ -402,7 +416,8 @@
    "preview": "gallery/case_seg015.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 156
+   "lines": 156,
+   "wow": 3
   },
   {
    "seg": 16,
@@ -417,7 +432,8 @@
    "preview": "gallery/case_seg016.png",
    "runtime_s": 3.2,
    "helpers": [],
-   "lines": 60
+   "lines": 60,
+   "wow": 3
   },
   {
    "seg": 17,
@@ -432,7 +448,8 @@
    "preview": "gallery/case_seg017.png",
    "runtime_s": 5.7,
    "helpers": [],
-   "lines": 99
+   "lines": 99,
+   "wow": 2
   },
   {
    "seg": 18,
@@ -447,7 +464,8 @@
    "preview": "gallery/case_seg018.png",
    "runtime_s": 4.3,
    "helpers": [],
-   "lines": 88
+   "lines": 88,
+   "wow": 1
   },
   {
    "seg": 19,
@@ -462,7 +480,8 @@
    "preview": "gallery/case_seg019.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 131
+   "lines": 131,
+   "wow": 1
   },
   {
    "seg": 20,
@@ -478,7 +497,8 @@
    "preview": "gallery/case_seg020.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 119
+   "lines": 119,
+   "wow": 2
   },
   {
    "seg": 21,
@@ -494,7 +514,8 @@
    "preview": "gallery/case_seg021.png",
    "runtime_s": 2.5,
    "helpers": [],
-   "lines": 121
+   "lines": 121,
+   "wow": 2
   },
   {
    "seg": 22,
@@ -510,7 +531,8 @@
    "preview": "gallery/case_seg022.png",
    "runtime_s": 1.8,
    "helpers": [],
-   "lines": 158
+   "lines": 158,
+   "wow": 2
   },
   {
    "seg": 23,
@@ -526,7 +548,8 @@
    "preview": "gallery/case_seg023.png",
    "runtime_s": 4.1,
    "helpers": [],
-   "lines": 142
+   "lines": 142,
+   "wow": 2
   },
   {
    "seg": 24,
@@ -542,7 +565,8 @@
    "preview": "gallery/case_seg024.png",
    "runtime_s": 1.0,
    "helpers": [],
-   "lines": 87
+   "lines": 87,
+   "wow": 1
   },
   {
    "seg": 25,
@@ -558,7 +582,8 @@
    "preview": "gallery/case_seg025.png",
    "runtime_s": 2.6,
    "helpers": [],
-   "lines": 72
+   "lines": 72,
+   "wow": 2
   },
   {
    "seg": 26,
@@ -573,7 +598,8 @@
    "preview": "gallery/case_seg026.png",
    "runtime_s": 0.9,
    "helpers": [],
-   "lines": 66
+   "lines": 66,
+   "wow": 1
   },
   {
    "seg": 27,
@@ -590,7 +616,8 @@
    "helpers": [
     "chord"
    ],
-   "lines": 136
+   "lines": 136,
+   "wow": 3
   },
   {
    "seg": 28,
@@ -606,7 +633,8 @@
    "preview": "gallery/case_seg028.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 100
+   "lines": 100,
+   "wow": 2
   },
   {
    "seg": 29,
@@ -622,7 +650,8 @@
    "preview": "gallery/case_seg029.png",
    "runtime_s": 2.4,
    "helpers": [],
-   "lines": 80
+   "lines": 80,
+   "wow": 1
   },
   {
    "seg": 30,
@@ -638,7 +667,8 @@
    "preview": "gallery/case_seg030.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 69
+   "lines": 69,
+   "wow": 1
   },
   {
    "seg": 31,
@@ -653,7 +683,8 @@
    "preview": "gallery/case_seg031.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 191
+   "lines": 191,
+   "wow": 1
   },
   {
    "seg": 32,
@@ -669,7 +700,8 @@
    "preview": "gallery/case_seg032.png",
    "runtime_s": 3.8,
    "helpers": [],
-   "lines": 112
+   "lines": 112,
+   "wow": 3
   },
   {
    "seg": 33,
@@ -685,7 +717,8 @@
    "preview": "gallery/case_seg033.png",
    "runtime_s": 1.4,
    "helpers": [],
-   "lines": 134
+   "lines": 134,
+   "wow": 2
   },
   {
    "seg": 34,
@@ -701,7 +734,8 @@
    "preview": "gallery/case_seg034.png",
    "runtime_s": 2.3,
    "helpers": [],
-   "lines": 187
+   "lines": 187,
+   "wow": 2
   },
   {
    "seg": 35,
@@ -717,7 +751,8 @@
    "preview": "gallery/case_seg035.png",
    "runtime_s": 1.7,
    "helpers": [],
-   "lines": 187
+   "lines": 187,
+   "wow": 3
   },
   {
    "seg": 36,
@@ -732,7 +767,8 @@
    "preview": "gallery/case_seg036.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 93
+   "lines": 93,
+   "wow": 1
   },
   {
    "seg": 37,
@@ -747,7 +783,8 @@
    "preview": "gallery/case_seg037.png",
    "runtime_s": 1.7,
    "helpers": [],
-   "lines": 108
+   "lines": 108,
+   "wow": 1
   },
   {
    "seg": 38,
@@ -763,7 +800,8 @@
    "preview": "gallery/case_seg038.png",
    "runtime_s": 2.5,
    "helpers": [],
-   "lines": 113
+   "lines": 113,
+   "wow": 2
   },
   {
    "seg": 39,
@@ -779,7 +817,8 @@
    "preview": "gallery/case_seg039.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 111
+   "lines": 111,
+   "wow": 2
   },
   {
    "seg": 40,
@@ -794,7 +833,8 @@
    "preview": "gallery/case_seg040.png",
    "runtime_s": 2.2,
    "helpers": [],
-   "lines": 166
+   "lines": 166,
+   "wow": 2
   },
   {
    "seg": 41,
@@ -810,7 +850,8 @@
    "preview": "gallery/case_seg041.png",
    "runtime_s": 2.3,
    "helpers": [],
-   "lines": 70
+   "lines": 70,
+   "wow": 1
   },
   {
    "seg": 42,
@@ -825,7 +866,8 @@
    "preview": "gallery/case_seg042.png",
    "runtime_s": 0.9,
    "helpers": [],
-   "lines": 53
+   "lines": 53,
+   "wow": 1
   },
   {
    "seg": 43,
@@ -841,7 +883,8 @@
    "preview": "gallery/case_seg043.png",
    "runtime_s": 2.8,
    "helpers": [],
-   "lines": 87
+   "lines": 87,
+   "wow": 2
   },
   {
    "seg": 44,
@@ -857,7 +900,8 @@
    "preview": "gallery/case_seg044.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 98
+   "lines": 98,
+   "wow": 2
   },
   {
    "seg": 45,
@@ -874,7 +918,8 @@
    "helpers": [
     "sankey"
    ],
-   "lines": 88
+   "lines": 88,
+   "wow": 3
   },
   {
    "seg": 46,
@@ -891,7 +936,8 @@
    "helpers": [
     "sankey"
    ],
-   "lines": 141
+   "lines": 141,
+   "wow": 3
   },
   {
    "seg": 47,
@@ -906,7 +952,8 @@
    "preview": "gallery/case_seg047.png",
    "runtime_s": 1.4,
    "helpers": [],
-   "lines": 117
+   "lines": 117,
+   "wow": 2
   },
   {
    "seg": 48,
@@ -921,7 +968,8 @@
    "preview": "gallery/case_seg048.png",
    "runtime_s": 1.8,
    "helpers": [],
-   "lines": 108
+   "lines": 108,
+   "wow": 3
   },
   {
    "seg": 49,
@@ -936,7 +984,8 @@
    "preview": "gallery/case_seg049.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 84
+   "lines": 84,
+   "wow": 2
   },
   {
    "seg": 50,
@@ -951,7 +1000,8 @@
    "preview": "gallery/case_seg050.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 106
+   "lines": 106,
+   "wow": 2
   },
   {
    "seg": 51,
@@ -966,7 +1016,8 @@
    "preview": "gallery/case_seg051.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 97
+   "lines": 97,
+   "wow": 3
   },
   {
    "seg": 52,
@@ -981,7 +1032,8 @@
    "preview": "gallery/case_seg052.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 66
+   "lines": 66,
+   "wow": 3
   },
   {
    "seg": 53,
@@ -996,7 +1048,8 @@
    "preview": "gallery/case_seg053.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 81
+   "lines": 81,
+   "wow": 3
   },
   {
    "seg": 54,
@@ -1011,7 +1064,8 @@
    "preview": "gallery/case_seg054.png",
    "runtime_s": 2.2,
    "helpers": [],
-   "lines": 93
+   "lines": 93,
+   "wow": 2
   },
   {
    "seg": 55,
@@ -1026,7 +1080,8 @@
    "preview": "gallery/case_seg055.png",
    "runtime_s": 2.5,
    "helpers": [],
-   "lines": 185
+   "lines": 185,
+   "wow": 2
   },
   {
    "seg": 56,
@@ -1041,7 +1096,8 @@
    "preview": "gallery/case_seg056.png",
    "runtime_s": 2.6,
    "helpers": [],
-   "lines": 183
+   "lines": 183,
+   "wow": 3
   },
   {
    "seg": 57,
@@ -1057,7 +1113,8 @@
    "preview": "gallery/case_seg057.png",
    "runtime_s": 0.9,
    "helpers": [],
-   "lines": 98
+   "lines": 98,
+   "wow": 2
   },
   {
    "seg": 58,
@@ -1073,7 +1130,8 @@
    "preview": "gallery/case_seg058.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 125
+   "lines": 125,
+   "wow": 2
   },
   {
    "seg": 59,
@@ -1090,7 +1148,8 @@
    "helpers": [
     "geo"
    ],
-   "lines": 87
+   "lines": 87,
+   "wow": 3
   },
   {
    "seg": 60,
@@ -1105,7 +1164,8 @@
    "preview": "gallery/case_seg060.png",
    "runtime_s": 1.0,
    "helpers": [],
-   "lines": 91
+   "lines": 91,
+   "wow": 1
   },
   {
    "seg": 61,
@@ -1120,7 +1180,8 @@
    "preview": "gallery/case_seg061.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 135
+   "lines": 135,
+   "wow": 1
   },
   {
    "seg": 62,
@@ -1136,7 +1197,8 @@
    "preview": "gallery/case_seg062.png",
    "runtime_s": 2.1,
    "helpers": [],
-   "lines": 98
+   "lines": 98,
+   "wow": 2
   },
   {
    "seg": 63,
@@ -1151,7 +1213,8 @@
    "preview": "gallery/case_seg063.png",
    "runtime_s": 1.6,
    "helpers": [],
-   "lines": 76
+   "lines": 76,
+   "wow": 1
   },
   {
    "seg": 64,
@@ -1166,7 +1229,8 @@
    "preview": "gallery/case_seg064.png",
    "runtime_s": 1.7,
    "helpers": [],
-   "lines": 64
+   "lines": 64,
+   "wow": 1
   },
   {
    "seg": 65,
@@ -1181,7 +1245,8 @@
    "preview": "gallery/case_seg065.png",
    "runtime_s": 1.0,
    "helpers": [],
-   "lines": 67
+   "lines": 67,
+   "wow": 1
   },
   {
    "seg": 66,
@@ -1197,7 +1262,8 @@
    "preview": "gallery/case_seg066.png",
    "runtime_s": 1.4,
    "helpers": [],
-   "lines": 92
+   "lines": 92,
+   "wow": 2
   },
   {
    "seg": 67,
@@ -1213,7 +1279,8 @@
    "preview": "gallery/case_seg067.png",
    "runtime_s": 1.0,
    "helpers": [],
-   "lines": 74
+   "lines": 74,
+   "wow": 2
   },
   {
    "seg": 68,
@@ -1229,7 +1296,8 @@
    "preview": "gallery/case_seg068.png",
    "runtime_s": 2.4,
    "helpers": [],
-   "lines": 86
+   "lines": 86,
+   "wow": 2
   },
   {
    "seg": 69,
@@ -1244,7 +1312,8 @@
    "preview": "gallery/case_seg069.png",
    "runtime_s": 2.0,
    "helpers": [],
-   "lines": 68
+   "lines": 68,
+   "wow": 2
   },
   {
    "seg": 70,
@@ -1259,7 +1328,8 @@
    "preview": "gallery/case_seg070.png",
    "runtime_s": 2.1,
    "helpers": [],
-   "lines": 75
+   "lines": 75,
+   "wow": 2
   },
   {
    "seg": 71,
@@ -1275,7 +1345,8 @@
    "preview": "gallery/case_seg071.png",
    "runtime_s": 2.3,
    "helpers": [],
-   "lines": 119
+   "lines": 119,
+   "wow": 2
   },
   {
    "seg": 72,
@@ -1291,7 +1362,8 @@
    "preview": "gallery/case_seg072.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 98
+   "lines": 98,
+   "wow": 1
   },
   {
    "seg": 73,
@@ -1307,7 +1379,8 @@
    "preview": "gallery/case_seg073.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 85
+   "lines": 85,
+   "wow": 1
   },
   {
    "seg": 74,
@@ -1323,7 +1396,8 @@
    "preview": "gallery/case_seg074.png",
    "runtime_s": 1.7,
    "helpers": [],
-   "lines": 140
+   "lines": 140,
+   "wow": 3
   },
   {
    "seg": 75,
@@ -1339,7 +1413,8 @@
    "preview": "gallery/case_seg075.png",
    "runtime_s": 2.5,
    "helpers": [],
-   "lines": 117
+   "lines": 117,
+   "wow": 2
   },
   {
    "seg": 76,
@@ -1355,7 +1430,8 @@
    "preview": "gallery/case_seg076.png",
    "runtime_s": 1.4,
    "helpers": [],
-   "lines": 160
+   "lines": 160,
+   "wow": 2
   },
   {
    "seg": 77,
@@ -1370,7 +1446,8 @@
    "preview": "gallery/case_seg077.png",
    "runtime_s": 1.0,
    "helpers": [],
-   "lines": 67
+   "lines": 67,
+   "wow": 1
   },
   {
    "seg": 78,
@@ -1386,7 +1463,8 @@
    "preview": "gallery/case_seg078.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 89
+   "lines": 89,
+   "wow": 1
   },
   {
    "seg": 79,
@@ -1402,7 +1480,8 @@
    "preview": "gallery/case_seg079.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 70
+   "lines": 70,
+   "wow": 1
   },
   {
    "seg": 80,
@@ -1417,7 +1496,8 @@
    "preview": "gallery/case_seg080.png",
    "runtime_s": 0.9,
    "helpers": [],
-   "lines": 58
+   "lines": 58,
+   "wow": 2
   },
   {
    "seg": 81,
@@ -1432,7 +1512,8 @@
    "preview": "gallery/case_seg081.png",
    "runtime_s": 1.0,
    "helpers": [],
-   "lines": 73
+   "lines": 73,
+   "wow": 2
   },
   {
    "seg": 82,
@@ -1447,7 +1528,8 @@
    "preview": "gallery/case_seg082.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 107
+   "lines": 107,
+   "wow": 2
   },
   {
    "seg": 83,
@@ -1463,7 +1545,8 @@
    "preview": "gallery/case_seg083.png",
    "runtime_s": 2.4,
    "helpers": [],
-   "lines": 115
+   "lines": 115,
+   "wow": 2
   },
   {
    "seg": 84,
@@ -1478,7 +1561,8 @@
    "preview": "gallery/case_seg084.png",
    "runtime_s": 2.3,
    "helpers": [],
-   "lines": 121
+   "lines": 121,
+   "wow": 2
   },
   {
    "seg": 85,
@@ -1494,7 +1578,8 @@
    "preview": "gallery/case_seg085.png",
    "runtime_s": 1.3,
    "helpers": [],
-   "lines": 153
+   "lines": 153,
+   "wow": 2
   },
   {
    "seg": 86,
@@ -1510,7 +1595,8 @@
    "preview": "gallery/case_seg086.png",
    "runtime_s": 1.4,
    "helpers": [],
-   "lines": 134
+   "lines": 134,
+   "wow": 1
   },
   {
    "seg": 87,
@@ -1525,7 +1611,8 @@
    "preview": "gallery/case_seg087.png",
    "runtime_s": 1.7,
    "helpers": [],
-   "lines": 104
+   "lines": 104,
+   "wow": 1
   },
   {
    "seg": 88,
@@ -1540,7 +1627,8 @@
    "preview": "gallery/case_seg088.png",
    "runtime_s": 1.8,
    "helpers": [],
-   "lines": 128
+   "lines": 128,
+   "wow": 2
   },
   {
    "seg": 89,
@@ -1556,7 +1644,8 @@
    "preview": "gallery/case_seg089.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 137
+   "lines": 137,
+   "wow": 3
   },
   {
    "seg": 90,
@@ -1572,7 +1661,8 @@
    "preview": "gallery/case_seg090.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 125
+   "lines": 125,
+   "wow": 2
   },
   {
    "seg": 91,
@@ -1589,7 +1679,8 @@
    "helpers": [
     "sankey"
    ],
-   "lines": 137
+   "lines": 137,
+   "wow": 3
   },
   {
    "seg": 92,
@@ -1604,7 +1695,8 @@
    "preview": "gallery/case_seg092.png",
    "runtime_s": 0.9,
    "helpers": [],
-   "lines": 93
+   "lines": 93,
+   "wow": 3
   },
   {
    "seg": 93,
@@ -1619,7 +1711,8 @@
    "preview": "gallery/case_seg093.png",
    "runtime_s": 0.9,
    "helpers": [],
-   "lines": 85
+   "lines": 85,
+   "wow": 3
   },
   {
    "seg": 94,
@@ -1634,7 +1727,8 @@
    "preview": "gallery/case_seg094.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 134
+   "lines": 134,
+   "wow": 2
   },
   {
    "seg": 95,
@@ -1649,7 +1743,8 @@
    "preview": "gallery/case_seg095.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 127
+   "lines": 127,
+   "wow": 2
   },
   {
    "seg": 96,
@@ -1664,7 +1759,8 @@
    "preview": "gallery/case_seg096.png",
    "runtime_s": 1.3,
    "helpers": [],
-   "lines": 88
+   "lines": 88,
+   "wow": 2
   },
   {
    "seg": 97,
@@ -1680,7 +1776,8 @@
    "preview": "gallery/case_seg097.png",
    "runtime_s": 1.5,
    "helpers": [],
-   "lines": 115
+   "lines": 115,
+   "wow": 2
   },
   {
    "seg": 98,
@@ -1695,7 +1792,8 @@
    "preview": "gallery/case_seg098.png",
    "runtime_s": 1.0,
    "helpers": [],
-   "lines": 93
+   "lines": 93,
+   "wow": 2
   },
   {
    "seg": 99,
@@ -1710,7 +1808,8 @@
    "preview": "gallery/case_seg099.png",
    "runtime_s": 1.0,
    "helpers": [],
-   "lines": 108
+   "lines": 108,
+   "wow": 2
   },
   {
    "seg": 100,
@@ -1725,7 +1824,8 @@
    "preview": "gallery/case_seg100.png",
    "runtime_s": 1.0,
    "helpers": [],
-   "lines": 92
+   "lines": 92,
+   "wow": 3
   },
   {
    "seg": 101,
@@ -1740,7 +1840,8 @@
    "preview": "gallery/case_seg101.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 170
+   "lines": 170,
+   "wow": 3
   },
   {
    "seg": 102,
@@ -1755,7 +1856,8 @@
    "preview": "gallery/case_seg102.png",
    "runtime_s": 3.6,
    "helpers": [],
-   "lines": 111
+   "lines": 111,
+   "wow": 2
   },
   {
    "seg": 103,
@@ -1771,7 +1873,8 @@
    "preview": "gallery/case_seg103.png",
    "runtime_s": 3.2,
    "helpers": [],
-   "lines": 85
+   "lines": 85,
+   "wow": 2
   },
   {
    "seg": 104,
@@ -1786,7 +1889,8 @@
    "preview": "gallery/case_seg104.png",
    "runtime_s": 1.0,
    "helpers": [],
-   "lines": 78
+   "lines": 78,
+   "wow": 1
   },
   {
    "seg": 105,
@@ -1801,7 +1905,8 @@
    "preview": "gallery/case_seg105.png",
    "runtime_s": 1.1,
    "helpers": [],
-   "lines": 71
+   "lines": 71,
+   "wow": 1
   },
   {
    "seg": 106,
@@ -1817,7 +1922,8 @@
    "preview": "gallery/case_seg106.png",
    "runtime_s": 1.3,
    "helpers": [],
-   "lines": 160
+   "lines": 160,
+   "wow": 1
   },
   {
    "seg": 107,
@@ -1832,7 +1938,8 @@
    "preview": "gallery/case_seg107.png",
    "runtime_s": 1.3,
    "helpers": [],
-   "lines": 94
+   "lines": 94,
+   "wow": 2
   },
   {
    "seg": 108,
@@ -1848,7 +1955,8 @@
    "preview": "gallery/case_seg108.png",
    "runtime_s": 1.7,
    "helpers": [],
-   "lines": 109
+   "lines": 109,
+   "wow": 1
   },
   {
    "seg": 109,
@@ -1864,7 +1972,8 @@
    "preview": "gallery/case_seg109.png",
    "runtime_s": 2.0,
    "helpers": [],
-   "lines": 145
+   "lines": 145,
+   "wow": 1
   },
   {
    "seg": 110,
@@ -1879,7 +1988,8 @@
    "preview": "gallery/case_seg110.png",
    "runtime_s": 1.4,
    "helpers": [],
-   "lines": 109
+   "lines": 109,
+   "wow": 2
   },
   {
    "seg": 111,
@@ -1895,7 +2005,8 @@
    "preview": "gallery/case_seg111.png",
    "runtime_s": 1.9,
    "helpers": [],
-   "lines": 222
+   "lines": 222,
+   "wow": 2
   },
   {
    "seg": 112,
@@ -1911,7 +2022,8 @@
    "preview": "gallery/case_seg112.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 106
+   "lines": 106,
+   "wow": 2
   },
   {
    "seg": 113,
@@ -1927,7 +2039,8 @@
    "preview": "gallery/case_seg113.png",
    "runtime_s": 1.4,
    "helpers": [],
-   "lines": 150
+   "lines": 150,
+   "wow": 2
   },
   {
    "seg": 114,
@@ -1944,7 +2057,8 @@
    "helpers": [
     "upset"
    ],
-   "lines": 170
+   "lines": 170,
+   "wow": 2
   },
   {
    "seg": 115,
@@ -1961,7 +2075,8 @@
    "helpers": [
     "upset"
    ],
-   "lines": 168
+   "lines": 168,
+   "wow": 2
   },
   {
    "seg": 116,
@@ -1977,7 +2092,8 @@
    "preview": "gallery/case_seg116.png",
    "runtime_s": 2.5,
    "helpers": [],
-   "lines": 97
+   "lines": 97,
+   "wow": 2
   },
   {
    "seg": 117,
@@ -1992,22 +2108,24 @@
    "preview": "gallery/case_seg117.png",
    "runtime_s": 2.0,
    "helpers": [],
-   "lines": 157
+   "lines": 157,
+   "wow": 3
   },
   {
    "seg": 118,
    "case": "案例120",
-   "title": "PNAS 中国地图(二)",
-   "journal": "PNAS",
-   "family": "tree_geo",
-   "type_zh": "中国地图+气泡图",
-   "type_en": "bubble map",
-   "features": "省界白底灰线,粉红城市气泡4档=亏缺量,绿色南北分界线,省名标注,指北针+比例尺+图例",
-   "data": "省界;城市:经纬度,亏缺量分档",
+   "title": "Sci. Adv 曼哈顿式气泡图",
+   "journal": "Sci. Adv",
+   "family": "volcano",
+   "type_zh": "曼哈顿式气泡图(3层面板)",
+   "type_en": "Manhattan-style grouped bubble plot",
+   "features": "3层堆叠面板=3个比较组;x=目级分类位次(灰竖线分目),气泡色=目、大小=丰度;0/±1虚线参考;底部彩点+旋转类目标签",
+   "data": "目级分类×比较组: 每行=目+比较组+Log2FC+丰度(气泡大小)+目内位次",
    "preview": "gallery/case_seg118.png",
    "runtime_s": 1.6,
    "helpers": [],
-   "lines": 85
+   "lines": 85,
+   "wow": 2
   },
   {
    "seg": 119,
@@ -2022,7 +2140,8 @@
    "preview": "gallery/case_seg119.png",
    "runtime_s": 1.6,
    "helpers": [],
-   "lines": 255
+   "lines": 255,
+   "wow": 2
   },
   {
    "seg": 120,
@@ -2037,7 +2156,8 @@
    "preview": "gallery/case_seg120.png",
    "runtime_s": 1.5,
    "helpers": [],
-   "lines": 98
+   "lines": 98,
+   "wow": 2
   },
   {
    "seg": 121,
@@ -2052,7 +2172,8 @@
    "preview": "gallery/case_seg121.png",
    "runtime_s": 2.2,
    "helpers": [],
-   "lines": 72
+   "lines": 72,
+   "wow": 1
   },
   {
    "seg": 122,
@@ -2068,7 +2189,8 @@
    "preview": "gallery/case_seg122.png",
    "runtime_s": 2.6,
    "helpers": [],
-   "lines": 92
+   "lines": 92,
+   "wow": 1
   },
   {
    "seg": 123,
@@ -2084,7 +2206,8 @@
    "preview": "gallery/case_seg123.png",
    "runtime_s": 2.4,
    "helpers": [],
-   "lines": 96
+   "lines": 96,
+   "wow": 2
   },
   {
    "seg": 124,
@@ -2102,7 +2225,8 @@
    "helpers": [
     "ternary"
    ],
-   "lines": 142
+   "lines": 142,
+   "wow": 2
   },
   {
    "seg": 125,
@@ -2119,7 +2243,8 @@
    "helpers": [
     "ternary"
    ],
-   "lines": 118
+   "lines": 118,
+   "wow": 2
   },
   {
    "seg": 126,
@@ -2136,7 +2261,8 @@
    "helpers": [
     "ternary"
    ],
-   "lines": 117
+   "lines": 117,
+   "wow": 2
   },
   {
    "seg": 127,
@@ -2153,7 +2279,8 @@
    "helpers": [
     "ternary"
    ],
-   "lines": 124
+   "lines": 124,
+   "wow": 3
   },
   {
    "seg": 128,
@@ -2170,7 +2297,8 @@
    "helpers": [
     "ternary"
    ],
-   "lines": 123
+   "lines": 123,
+   "wow": 3
   },
   {
    "seg": 129,
@@ -2187,7 +2315,8 @@
    "helpers": [
     "ternary"
    ],
-   "lines": 130
+   "lines": 130,
+   "wow": 3
   },
   {
    "seg": 130,
@@ -2202,7 +2331,8 @@
    "preview": "gallery/case_seg130.png",
    "runtime_s": 3.7,
    "helpers": [],
-   "lines": 99
+   "lines": 99,
+   "wow": 1
   },
   {
    "seg": 131,
@@ -2217,7 +2347,8 @@
    "preview": "gallery/case_seg131.png",
    "runtime_s": 3.8,
    "helpers": [],
-   "lines": 102
+   "lines": 102,
+   "wow": 1
   },
   {
    "seg": 132,
@@ -2233,7 +2364,8 @@
    "preview": "gallery/case_seg132.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 90
+   "lines": 90,
+   "wow": 1
   },
   {
    "seg": 133,
@@ -2248,7 +2380,8 @@
    "preview": "gallery/case_seg133.png",
    "runtime_s": 1.4,
    "helpers": [],
-   "lines": 128
+   "lines": 128,
+   "wow": 3
   },
   {
    "seg": 134,
@@ -2263,7 +2396,8 @@
    "preview": "gallery/case_seg134.png",
    "runtime_s": 1.0,
    "helpers": [],
-   "lines": 128
+   "lines": 128,
+   "wow": 3
   },
   {
    "seg": 135,
@@ -2278,7 +2412,8 @@
    "preview": "gallery/case_seg135.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 116
+   "lines": 116,
+   "wow": 3
   },
   {
    "seg": 136,
@@ -2293,7 +2428,8 @@
    "preview": "gallery/case_seg136.png",
    "runtime_s": 1.0,
    "helpers": [],
-   "lines": 77
+   "lines": 77,
+   "wow": 2
   },
   {
    "seg": 137,
@@ -2309,7 +2445,8 @@
    "preview": "gallery/case_seg137.png",
    "runtime_s": 1.9,
    "helpers": [],
-   "lines": 260
+   "lines": 260,
+   "wow": 2
   },
   {
    "seg": 138,
@@ -2325,7 +2462,8 @@
    "preview": "gallery/case_seg138.png",
    "runtime_s": 1.0,
    "helpers": [],
-   "lines": 73
+   "lines": 73,
+   "wow": 1
   },
   {
    "seg": 139,
@@ -2341,7 +2479,8 @@
    "preview": "gallery/case_seg139.png",
    "runtime_s": 1.4,
    "helpers": [],
-   "lines": 117
+   "lines": 117,
+   "wow": 3
   },
   {
    "seg": 140,
@@ -2357,7 +2496,8 @@
    "preview": "gallery/case_seg140.png",
    "runtime_s": 1.0,
    "helpers": [],
-   "lines": 75
+   "lines": 75,
+   "wow": 2
   },
   {
    "seg": 141,
@@ -2372,7 +2512,8 @@
    "preview": "gallery/case_seg141.png",
    "runtime_s": 1.0,
    "helpers": [],
-   "lines": 72
+   "lines": 72,
+   "wow": 2
   },
   {
    "seg": 142,
@@ -2387,7 +2528,8 @@
    "preview": "gallery/case_seg142.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 142
+   "lines": 142,
+   "wow": 2
   },
   {
    "seg": 143,
@@ -2403,7 +2545,8 @@
    "preview": "gallery/case_seg143.png",
    "runtime_s": 1.4,
    "helpers": [],
-   "lines": 136
+   "lines": 136,
+   "wow": 3
   },
   {
    "seg": 144,
@@ -2418,7 +2561,8 @@
    "preview": "gallery/case_seg144.png",
    "runtime_s": 1.3,
    "helpers": [],
-   "lines": 117
+   "lines": 117,
+   "wow": 2
   },
   {
    "seg": 145,
@@ -2433,7 +2577,8 @@
    "preview": "gallery/case_seg145.png",
    "runtime_s": 1.2,
    "helpers": [],
-   "lines": 83
+   "lines": 83,
+   "wow": 2
   },
   {
    "seg": 146,
@@ -2449,7 +2594,8 @@
    "preview": "gallery/case_seg146.png",
    "runtime_s": 1.3,
    "helpers": [],
-   "lines": 126
+   "lines": 126,
+   "wow": 2
   }
  ]
 }

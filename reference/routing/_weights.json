@@ -1,0 +1,17 @@
+{
+ "lex_linear": 2.2,
+ "lex2_linear": 0.0,
+ "bm25_k1": 1.2,
+ "bm25_b": 0.3,
+ "sem": 0.0,
+ "rrf_k": 60,
+ "mmr_lambda": 0.85,
+ "recency_penalty": 0.6,
+ "recency_halflife_days": 2.0,
+ "recency_cap": 2.5,
+ "recency_max_records": 6,
+ "taste_boost": 0.5,
+ "veto_penalty": 1.5,
+ "explore_slot": true,
+ "comment": "默认线性(rule + lex_linear×BM25, k1=1.2/b=0.3 短文档参数)。可选增强(默认关, 评测无增益但保留开关): lex2_linear>0 字符bigram容错通道 / sem>0 且本地有 bge 模型 → RRF 三通道。改动请跑 python scripts/route_eval.py 并记录 _iteration_log.md。"
+}

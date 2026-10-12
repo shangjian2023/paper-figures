@@ -1,0 +1,545 @@
+[
+ {
+  "seg": 88,
+  "title": "Nature 二维变量的相关性热图",
+  "type_zh": "聚类相关热图",
+  "type_en": "clustermap",
+  "family": "heatmap",
+  "journal": "Nature",
+  "features": "34×30行列树状图聚类;紫正绿负色标-0.5~0.5;行左侧组色条(上皮橙/间质黄/髓绿/内皮紫红/淋巴蓝)",
+  "data": "相关矩阵+聚类树+行分组",
+  "wow": 2,
+  "input_format": "matrix",
+  "input_columns": [
+   "row(string*)",
+   "col(string*)",
+   "value(number*)",
+   "pvalue(number)"
+  ]
+ },
+ {
+  "seg": 89,
+  "title": "Nature 多维变量的相关性热图",
+  "type_zh": "Mantel相关组合热图",
+  "type_en": "correlation heatmap + Mantel network",
+  "family": "heatmap",
+  "journal": "Nature",
+  "features": "矩阵格青=正红=负带*/**/***;曲线连边=Mantel,线色=p三档、线宽=r三档;右侧3组图例",
+  "data": "10变量Pearson r/p;4群落Mantel r/p",
+  "wow": 3,
+  "input_format": "matrix",
+  "input_columns": [
+   "var_a(string*)",
+   "var_b(string*)",
+   "r(number*)",
+   "p(number*)",
+   "mantel_r(number)",
+   "mantel_p(number)",
+   "community(string)"
+  ]
+ },
+ {
+  "seg": 90,
+  "title": "Cell 蝴蝶状&堆积柱形图",
+  "type_zh": "镜像100%堆积条形图",
+  "type_en": "mirrored 100% stacked bar",
+  "family": "bar",
+  "journal": "Cell",
+  "features": "水平100%堆积镜像:灰No Signal/紫Off-target/橙Mixed/绿On-target;中央彩色类型名;两端计数;右侧图例",
+  "data": "24行×7类占比+左右计数",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)",
+   "pair_id(string)"
+  ]
+ },
+ {
+  "seg": 91,
+  "title": "Cell 冲击图",
+  "type_zh": "冲击图/桑基图",
+  "type_en": "Alluvial diagram",
+  "family": "flow",
+  "journal": "Cell",
+  "features": "三列节点(Species→Specificity→Brightness),灰主流量+蓝高亮流,各流标n;用 helpers.sankey.sankey",
+  "data": "流向表source-target-count",
+  "wow": 3,
+  "input_format": "edges",
+  "input_columns": [
+   "source(string*)",
+   "target(string*)",
+   "value(number*)"
+  ]
+ },
+ {
+  "seg": 92,
+  "title": "Nature 半圆形&小提琴图",
+  "type_zh": "半圆极坐标小提琴图",
+  "type_en": "semicircular polar violin",
+  "family": "polar",
+  "journal": "Nature",
+  "features": "约12组小提琴沿180°弧排列,各色内嵌白色小箱线;径向轴0-4;外侧彩色类目标签+中位数标注",
+  "data": "长表group,value;各组中位数",
+  "wow": 3,
+  "input_format": "long",
+  "input_columns": [
+   "axis(category*)",
+   "series(category)",
+   "value(number*)",
+   "sig(string)"
+  ]
+ },
+ {
+  "seg": 93,
+  "title": "Nature 扇形&箱线图",
+  "type_zh": "扇形极坐标箱线图",
+  "type_en": "fan-shaped polar boxplot",
+  "family": "polar",
+  "journal": "Nature",
+  "features": "约12组沿扇形排列,箱线+抖动散点,浅灰同心网格,顶部弧形类目标签,中心留白孔",
+  "data": "分组连续数据长表",
+  "wow": 3,
+  "input_format": "long",
+  "input_columns": [
+   "axis(category*)",
+   "series(category)",
+   "value(number*)",
+   "sig(string)"
+  ]
+ },
+ {
+  "seg": 94,
+  "title": "Nature 环状柱形图",
+  "type_zh": "环状柱形图(SD)",
+  "type_en": "circular barplot",
+  "family": "polar",
+  "journal": "Nature",
+  "features": "约60指标径向柱,柱高=SD(-1.5~+1.5),红黄蓝渐变,星号显著性,中心圆分区注释,右上色条",
+  "data": "指标名,z值,星号,维度分类",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "axis(category*)",
+   "series(category)",
+   "value(number*)",
+   "sig(string)"
+  ]
+ },
+ {
+  "seg": 95,
+  "title": "Nature 环状折线图",
+  "type_zh": "环状折线图",
+  "type_en": "circular line chart",
+  "family": "polar",
+  "journal": "Nature",
+  "features": "4组线(蓝/橙/黄/粉)带圆点标记沿60指标环形排布,径向±1.5刻度,中心圆分区注释",
+  "data": "指标×4组z-score长表",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "axis(category*)",
+   "series(category)",
+   "value(number*)",
+   "sig(string)"
+  ]
+ },
+ {
+  "seg": 96,
+  "title": "Nature 相关性矩阵点图(一)",
+  "type_zh": "相关矩阵点图",
+  "type_en": "correlation matrix dot plot",
+  "family": "heatmap",
+  "journal": "Nature",
+  "features": "14行菌群×10列ARG:圆面积=丰度3档,填充红蓝=相关±0.8,*显著,列间竖分隔线,右侧双图例",
+  "data": "菌群×ARG:相关,p值,丰度",
+  "wow": 2,
+  "input_format": "matrix",
+  "input_columns": [
+   "row(string*)",
+   "col(string*)",
+   "value(number*)",
+   "pvalue(number)"
+  ]
+ },
+ {
+  "seg": 97,
+  "title": "Nature 相关性矩阵点图(二)",
+  "type_zh": "相关矩阵点图(双面板)",
+  "type_en": "correlation dot plot (2 panels)",
+  "family": "heatmap",
+  "journal": "Nature",
+  "features": "圆大小=-log10P,色=Spearman ρ红蓝,圆内*号,6列CNV事件,行按模块分框,右侧双图例",
+  "data": "签名×CNV事件:rho,p值,两组",
+  "wow": 2,
+  "input_format": "matrix",
+  "input_columns": [
+   "row(string*)",
+   "col(string*)",
+   "value(number*)",
+   "pvalue(number)"
+  ]
+ },
+ {
+  "seg": 98,
+  "title": "iMeta 差异雷达图(一)",
+  "type_zh": "雷达图(20轴)",
+  "type_en": "radar chart (20 axes)",
+  "family": "polar",
+  "journal": "iMeta",
+  "features": "20条组织轴,3系列填充多边形+圆点(暗紫/暗红/橄榄绿),虚线30%参考圆,轴标签按组织着色",
+  "data": "组织×3指标比率矩阵",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "axis(category*)",
+   "series(category)",
+   "value(number*)",
+   "sig(string)"
+  ]
+ },
+ {
+  "seg": 99,
+  "title": "Nature 差异雷达图(二)",
+  "type_zh": "雷达图(14轴)",
+  "type_en": "radar chart (14 axes)",
+  "family": "polar",
+  "journal": "Nature",
+  "features": "约14亚区轴,2系列(D1橙红/D2绿)线+点,径向400/800刻度,灰虚线环,*显著性,外圈黑弧分段标区名",
+  "data": "亚区×2组密度值+p值",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "axis(category*)",
+   "series(category)",
+   "value(number*)",
+   "sig(string)"
+  ]
+ },
+ {
+  "seg": 100,
+  "title": "ES&T 环状条形图",
+  "type_zh": "环状条形图(渐变)",
+  "type_en": "circular barplot (gradient)",
+  "family": "polar",
+  "journal": "ES&T",
+  "features": "约70城市环形柱,正值蓝/负值红黄按值渐变,中心竖直色条,右侧径向刻度线,标签旋转外侧",
+  "data": "城市名+CPUG值两列",
+  "wow": 3,
+  "input_format": "long",
+  "input_columns": [
+   "axis(category*)",
+   "series(category)",
+   "value(number*)",
+   "sig(string)"
+  ]
+ },
+ {
+  "seg": 101,
+  "title": "Nature 环状条形图",
+  "type_zh": "环状条形图(双系列)",
+  "type_en": "circular barplot (two panels)",
+  "family": "polar",
+  "journal": "Nature",
+  "features": "双系列:青绿MTase面板+深红Safety面板各占半环;径向条长=抑制值;内弧彩字面板名;标签旋转",
+  "data": "靶点名+抑制值+panel两列",
+  "wow": 3,
+  "input_format": "long",
+  "input_columns": [
+   "axis(category*)",
+   "series(category)",
+   "value(number*)",
+   "sig(string)"
+  ]
+ },
+ {
+  "seg": 102,
+  "title": "Nature 渐变型等高线图",
+  "type_zh": "渐变等高线密度图",
+  "type_en": "filled contour density",
+  "family": "ridge",
+  "journal": "Nature",
+  "features": "灰度填充+细线等高线,浅灰背景散点,黑/蓝/红虚斜线参考,绿红重点基因点带引线标注,右侧灰度色条0-3",
+  "data": "基因(x,y)坐标+KDE网格+高亮名单",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "row(category*)",
+   "value(number*)",
+   "facet(category)"
+  ]
+ },
+ {
+  "seg": 103,
+  "title": "Nature 填充型等高线图",
+  "type_zh": "填充等高线small multiples",
+  "type_en": "filled contour small multiples",
+  "family": "ridge",
+  "journal": "Nature",
+  "features": "各面板单色系填充等高线(蓝/紫/红/绿),右上括号样本计数,x=-log10P y=Length,共享轴",
+  "data": "各组(P值,长度)点集+样本数",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "row(category*)",
+   "value(number*)",
+   "facet(category)"
+  ]
+ },
+ {
+  "seg": 104,
+  "title": "Nature 散点图",
+  "type_zh": "分组strip散点图",
+  "type_en": "grouped strip plot",
+  "family": "scatter",
+  "journal": "Nature",
+  "features": "8细胞型×4组:空心圆=mock、实心=PCV13,蓝/绿双色,虚线竖线分组隔,均值短横线,*显著性,图例右上",
+  "data": "长表:细胞型,组别,MFI重复值",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "x(number*)",
+   "y(number*)",
+   "group(category)",
+   "label(string)",
+   "xerr(number)",
+   "yerr(number)"
+  ]
+ },
+ {
+  "seg": 105,
+  "title": "Nature 气泡图",
+  "type_zh": "气泡图",
+  "type_en": "bubble chart",
+  "family": "scatter",
+  "journal": "Nature",
+  "features": "x=18皮层柱,y=18抑制基序;气泡4档=Frac Syn,颜色随皮层彩虹渐变,灰竖线分层,右侧大小图例",
+  "data": "motif×layer比例矩阵",
+  "wow": 1,
+  "input_format": "matrix",
+  "input_columns": [
+   "motif(string*)",
+   "layer(string*)",
+   "frac(number*)"
+  ]
+ },
+ {
+  "seg": 106,
+  "title": "Cell 热图(一)",
+  "type_zh": "多面板热图",
+  "type_en": "multi-panel heatmap",
+  "family": "heatmap",
+  "journal": "Cell",
+  "features": "激活橙黑渐变、抑制蓝绿渐变,白点=显著,底部因子分类色条,右侧两色标",
+  "data": "状态×因子active/repressed%+显著性",
+  "wow": 1,
+  "input_format": "matrix",
+  "input_columns": [
+   "row(string*)",
+   "col(string*)",
+   "value(number*)",
+   "pvalue(number)"
+  ]
+ },
+ {
+  "seg": 107,
+  "title": "Cell 热图(二)",
+  "type_zh": "三角分割热图",
+  "type_en": "triangular split heatmap",
+  "family": "heatmap",
+  "journal": "Cell",
+  "features": "上三角%active黑红橙黄,下三角%repressed黑蓝绿,白色对角线,轴旋转基因名,右侧双色标,白点=显著",
+  "data": "TF×TF:active%,repressed%,p",
+  "wow": 2,
+  "input_format": "matrix",
+  "input_columns": [
+   "row(string*)",
+   "col(string*)",
+   "value(number*)",
+   "pvalue(number)"
+  ]
+ },
+ {
+  "seg": 108,
+  "title": "iMeta 多分组火山图(一)",
+  "type_zh": "多分组火山图",
+  "type_en": "faceted volcano plots",
+  "family": "volcano",
+  "journal": "iMeta",
+  "features": "蓝/粉底色标Down/Up区,分面彩色标题条,点色=组织,顶部Down/Up箭头",
+  "data": "长表:蛋白,log2FC,score,组织",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "feature(string*)",
+   "log2fc(number*)",
+   "pvalue(number*)",
+   "label(string)",
+   "group(category)"
+  ]
+ },
+ {
+  "seg": 109,
+  "title": "Nature 多分组火山图(二)",
+  "type_zh": "分面火山图",
+  "type_en": "faceted volcano plots",
+  "family": "volcano",
+  "journal": "Nature",
+  "features": "灰底点+每区彩色高亮DE基因带引线基因名,y=avg_log2FC带0虚线,x=表达百分比0-80",
+  "data": "长表:基因,脑区,log2FC,pct",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "feature(string*)",
+   "log2fc(number*)",
+   "pvalue(number*)",
+   "label(string)",
+   "group(category)"
+  ]
+ },
+ {
+  "seg": 110,
+  "title": "Clin.Transl.Med 多分组火山图(三)",
+  "type_zh": "水平分带差异图",
+  "type_en": "horizontal band volcano",
+  "family": "volcano",
+  "journal": "Clin.Transl.Med",
+  "features": "8个比较组水平条带,中央log2FC轴-5~7.5,左青点Down右深红点Up,灰带分组背景,基因名标注",
+  "data": "长表:比较组,基因,log2FC,方向",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "feature(string*)",
+   "log2fc(number*)",
+   "pvalue(number*)",
+   "label(string)",
+   "group(category)"
+  ]
+ },
+ {
+  "seg": 111,
+  "title": "Nature 火山图+富集图(一)",
+  "type_zh": "火山+富集网络",
+  "type_en": "volcano + enrichment network",
+  "family": "volcano",
+  "journal": "Nature",
+  "features": "火山红上/蓝下+基因名,x=-log10FDR含断轴;网络蓝红节点、灰边、椭圆功能群、大小=基因数色=FDR",
+  "data": "基因log2FC/FDR;通路-基因富集",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "feature(string*)",
+   "log2fc(number*)",
+   "pvalue(number*)",
+   "label(string)",
+   "group(category)"
+  ]
+ },
+ {
+  "seg": 112,
+  "title": "iMeta 火山图+富集图(二)",
+  "type_zh": "火山+富集条形",
+  "type_en": "volcano + enrichment barplot",
+  "family": "volcano",
+  "journal": "iMeta",
+  "features": "火山虚线阈值,深蓝下调/深红上调/灰NS;条形紫/绯红两色,通路条+成员基因文本+色标",
+  "data": "蛋白log2FC/p;富集通路p+基因",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "feature(string*)",
+   "log2fc(number*)",
+   "pvalue(number*)",
+   "label(string)",
+   "group(category)"
+  ]
+ },
+ {
+  "seg": 113,
+  "title": "Nature 火山图+富集图(三)",
+  "type_zh": "火山+发散条形",
+  "type_en": "volcano + diverging barplot",
+  "family": "volcano",
+  "journal": "Nature",
+  "features": "火山黄/绿、紫/淡紫标上下调+图例+基因标注;条形上调右bar下调左bar,x=-log10FDR",
+  "data": "两组蛋白log2FC/p;富集FDR",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "feature(string*)",
+   "log2fc(number*)",
+   "pvalue(number*)",
+   "label(string)",
+   "group(category)"
+  ]
+ },
+ {
+  "seg": 114,
+  "title": "Microbiome Upset图(一)",
+  "type_zh": "UpSet图",
+  "type_en": "UpSet plot",
+  "family": "flow",
+  "journal": "Microbiome",
+  "features": "顶部交集条形+数值,左侧setSize条形,8集合点阵连线;彩色版紫/橙条;用 helpers.upset.upset_plot_pro",
+  "data": "8集合元素交集计数",
+  "wow": 2,
+  "input_format": "sets",
+  "input_columns": [
+   "set_name(string*)",
+   "elements(string*)"
+  ]
+ },
+ {
+  "seg": 115,
+  "title": "Clin.Transl.Med Upset图(二)",
+  "type_zh": "UpSet图",
+  "type_en": "UpSet plot",
+  "family": "flow",
+  "journal": "Clin.Transl.Med",
+  "features": "交集条形计数330~4,点阵圆点连线8组,左侧setSize条;蓝/红条+行背景渐变+空心点阵",
+  "data": "8组DEG交集矩阵",
+  "wow": 2,
+  "input_format": "sets",
+  "input_columns": [
+   "set_name(string*)",
+   "elements(string*)"
+  ]
+ },
+ {
+  "seg": 116,
+  "title": "Sci. Adv 曼哈顿图",
+  "type_zh": "曼哈顿式气泡图",
+  "type_en": "Manhattan-style bubble",
+  "family": "volcano",
+  "journal": "Sci. Adv",
+  "features": "y=Log2FCs,x=目级分类位次,气泡色=目(彩虹)大小=丰度,灰竖分隔线,0/±1虚线,底部彩点+旋转标签",
+  "data": "目×3比较log2FC,丰度,类目",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "term(string*)",
+   "log2fc(number*)",
+   "abundance(number*)",
+   "group(category*)"
+  ]
+ },
+ {
+  "seg": 117,
+  "title": "Nat. Microbiol 中国地图(一)",
+  "type_zh": "中国地图+饼图",
+  "type_en": "choropleth map with pies",
+  "family": "tree_geo",
+  "journal": "Nat. Microbiol",
+  "features": "省填色=生态区划淡彩,采样点饼图大小=样本数、饼色=属,经纬网+指北针+双图例;用 helpers.geo.china_map",
+  "data": "省界+区划;样点:经纬度,数量,构成",
+  "wow": 3,
+  "input_format": "long",
+  "input_columns": [
+   "name(string*)",
+   "lon(number)",
+   "lat(number)",
+   "value(number)",
+   "composition(string)"
+  ]
+ }
+]

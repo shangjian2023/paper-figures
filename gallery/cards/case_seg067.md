@@ -5,11 +5,18 @@ purpose: [构成占比]
 data: 9细胞态×(PFS,OS)×正负计数
 input: long (reference/data-schemas.json #067)
 journal: Nature
+wow: 2
 recipe: scripts/recipes/case_seg067.py
 preview: ../case_seg067.png
 ---
 
 **一句话**：镜像堆积条形图（Nature 风格）
+
+**高级感**：★★ 有设计感
+
+**适用场景**：9-15 个类别（细胞态/基因/特征）在两个结局或队列中的'保护 vs 风险'证据数量盘点（如跨多少癌种显著）
+
+**有什么用**：左右两列背靠背的条形盘点：每行一种细胞态，蓝段是保护证据、红段是风险证据，条长等于覆盖的癌种数，哪类最全面、偏保护还是偏风险一眼分清。
 
 **部件亮点**
 - 结构布局：左右镜像,中央共享标签轴

@@ -40,7 +40,8 @@ def main():
     ok &= v >= (3, 9)
 
     missing = []
-    for mod in ['matplotlib', 'numpy', 'PIL', 'scipy', 'networkx']:
+    for mod in ['matplotlib', 'numpy', 'PIL', 'scipy', 'networkx',
+                'jieba', 'rank_bm25']:
         try:
             m = importlib.import_module(mod)
             print('dep         : %-11s %s' % (mod, getattr(m, '__version__', '?')))
@@ -49,7 +50,7 @@ def main():
             print('dep         : %-11s MISSING' % mod)
     ok &= not missing
     if missing:
-        print('              -> pip install %s' % ' '.join(['matplotlib', 'numpy', 'pillow', 'scipy', 'networkx']))
+        print('              -> pip install %s' % ' '.join(['matplotlib', 'numpy', 'pillow', 'scipy', 'networkx', 'jieba', 'rank_bm25']))
 
     # 字体
     fonts = [r'C:\Windows\Fonts\arial.ttf', '/System/Library/Fonts/Supplemental/Arial.ttf',
@@ -74,6 +75,8 @@ def main():
         print('recipes     : %d/146 配方 %s' % (n_rec, 'OK' if n_rec == 146 else 'INCOMPLETE'))
         print('cards       : %d/146 卡片 %s' % (n_cards, 'OK' if n_cards == 146 else 'INCOMPLETE'))
         print('reference   : %d 个文件 %s' % (n_ref, 'OK' if n_ref >= 3 else 'INCOMPLETE'))
+        n_route = count(os.path.join('reference', 'routing'), lambda f: f.startswith('seg') and f.endswith('.json'))
+        print('routing     : %d/146 场景档案 %s' % (n_route, 'OK' if n_route == 146 else '(补齐: 见 stages/2 路由流程)'))
         print('map assets  : %s' % ('OK' if geo else 'MISSING'))
         print('data schema : %s' % ('OK' if has_schema else 'MISSING (python scripts/build_schemas.py)'))
         ok &= n_rec == 146 and n_cards == 146 and geo and has_schema

@@ -1,0 +1,524 @@
+[
+ {
+  "seg": 118,
+  "title": "PNAS 中国地图(二)",
+  "type_zh": "中国地图+气泡图",
+  "type_en": "bubble map",
+  "family": "tree_geo",
+  "journal": "PNAS",
+  "features": "省界白底灰线,粉红城市气泡4档=亏缺量,绿色南北分界线,省名标注,指北针+比例尺+图例",
+  "data": "省界;城市:经纬度,亏缺量分档",
+  "wow": 3,
+  "input_format": "long",
+  "input_columns": [
+   "name(string*)",
+   "lon(number)",
+   "lat(number)",
+   "value(number)",
+   "composition(string)"
+  ]
+ },
+ {
+  "seg": 119,
+  "title": "Cell 上下双热图",
+  "type_zh": "点阵相关矩阵热图",
+  "type_en": "dot correlation heatmap",
+  "family": "heatmap",
+  "journal": "Cell",
+  "features": "60×60点阵:点色=Spearman(红白蓝,-1~1)、点径=显著性;对角深蓝;顶部类别色块;左侧分类色条;底部色标",
+  "data": "60×60相关矩阵+p值+签名注释",
+  "wow": 2,
+  "input_format": "matrix",
+  "input_columns": [
+   "row(string*)",
+   "col(string*)",
+   "value(number*)",
+   "pvalue(number)"
+  ]
+ },
+ {
+  "seg": 120,
+  "title": "上下双热图",
+  "type_zh": "双色点阵相关矩阵",
+  "type_en": "dual-colorscale dot heatmap",
+  "family": "heatmap",
+  "journal": "未标注",
+  "features": "57×57点阵:上M1绿-白-红、下M0黄-白-紫双色标,点径=|r|,对角灰色,底部双色标",
+  "data": "两套57×57相关矩阵+签名名",
+  "wow": 2,
+  "input_format": "matrix",
+  "input_columns": [
+   "row(string*)",
+   "col(string*)",
+   "value(number*)",
+   "pvalue(number)"
+  ]
+ },
+ {
+  "seg": 121,
+  "title": "cell 带显著性的小提琴图(一)",
+  "type_zh": "成对小提琴+显著性",
+  "type_en": "grouped violin with brackets",
+  "family": "distribution",
+  "journal": "Cell",
+  "features": "7组×2小提琴成对,顶部彩色组标签矩形,括号+P值,白点=中位数;粉=Active、深蓝=Repressive",
+  "data": "长表:7类×2区室×数值",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)"
+  ]
+ },
+ {
+  "seg": 122,
+  "title": "Nature 带显著性的小提琴图(二)",
+  "type_zh": "双面板小提琴+星号",
+  "type_en": "two-panel violins with asterisks",
+  "family": "distribution",
+  "journal": "Nature",
+  "features": "***星号+括号;底部CD4/Treg/CD8分组横线;图例右上;内嵌散点",
+  "data": "长表:10亚群×2状态×百分比",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)"
+  ]
+ },
+ {
+  "seg": 123,
+  "title": "Nature 带显著性的小提琴图(三)",
+  "type_zh": "叠加小提琴(实色+虚线轮廓)",
+  "type_en": "overlaid violins",
+  "family": "distribution",
+  "journal": "Nature",
+  "features": "实色小提琴+虚线轮廓小提琴叠加;实线=中位、虚线=四分位;红点划零线;灰/橙/绿/红/蓝/粉",
+  "data": "长表:区域×事件×时期×百分比",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)"
+  ]
+ },
+ {
+  "seg": 124,
+  "title": "Cell 三元图(1)",
+  "type_zh": "三元散点图",
+  "type_en": "ternary scatter",
+  "family": "flow",
+  "journal": "Cell",
+  "features": "顶点EPI/PrE/TE标100;散点按归属橙/蓝/绿;彩色虚线网格20-80;三边彩箭头;用 helpers.ternary.Ternary",
+  "data": "每细胞三维归一化得分+分组",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "TE(number*)",
+   "EPI(number*)",
+   "PrE(number*)",
+   "group(category)"
+  ]
+ },
+ {
+  "seg": 125,
+  "title": "Nature 三元图(2)",
+  "type_zh": "三元散点图(两组)",
+  "type_en": "ternary scatter (2 groups)",
+  "family": "flow",
+  "journal": "Nature",
+  "features": "灰色三角网格;红/绿/蓝点划参考线;三边彩箭头TH1/TH2/TH17;青色Young、棕橙Older带黑边",
+  "data": "三维状态得分+年龄组",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "TH1(number*)",
+   "TH2(number*)",
+   "TH17(number*)",
+   "group(category*)"
+  ]
+ },
+ {
+  "seg": 126,
+  "title": "Nature 三元图(3)",
+  "type_zh": "三元散点(连续着色)",
+  "type_en": "ternary scatter + colorbar",
+  "family": "flow",
+  "journal": "Nature",
+  "features": "散点颜色=年龄蓝(40)→黄→红(90)渐变;右侧Age色标;灰三角网格+三色点划线+边箭头",
+  "data": "三维得分+年龄数值",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "TH1(number*)",
+   "TH2(number*)",
+   "TH17(number*)",
+   "age(number*)"
+  ]
+ },
+ {
+  "seg": 127,
+  "title": "PNAS 三元图(4)",
+  "type_zh": "三元气泡图",
+  "type_en": "ternary bubble chart",
+  "family": "flow",
+  "journal": "PNAS",
+  "features": "气泡面积=丰度;颜色=富集生境(红/橙/绿),未富集灰;顶点标Nodule/Root/Rhizosphere计数",
+  "data": "OTU三维丰度+富集归属",
+  "wow": 3,
+  "input_format": "long",
+  "input_columns": [
+   "Nodule(number*)",
+   "Root(number*)",
+   "Rhizosphere(number*)",
+   "size(number*)",
+   "enriched(category)"
+  ]
+ },
+ {
+  "seg": 128,
+  "title": "Nature 三元图(5)",
+  "type_zh": "三元气泡图(属水平)",
+  "type_en": "ternary bubble by genus",
+  "family": "flow",
+  "journal": "Nature",
+  "features": "顶点Control/NPK/NPKM 0-100;气泡=丰度,色=属(红/蓝/绿),灰=低丰度;黑箭头注释重点属",
+  "data": "属级三处理丰度+分类",
+  "wow": 3,
+  "input_format": "long",
+  "input_columns": [
+   "Control(number*)",
+   "NPK(number*)",
+   "NPKM(number*)",
+   "size(number*)",
+   "genus(category*)"
+  ]
+ },
+ {
+  "seg": 129,
+  "title": "Nature 三元图(6)",
+  "type_zh": "三元核密度图",
+  "type_en": "ternary KDE density",
+  "family": "flow",
+  "journal": "Nature",
+  "features": "紫白渐变KDE等高线叠加灰细散点;三顶点0/1.0;三支彩色箭头;虚线中线;右上Probability色标",
+  "data": "三维概率向量",
+  "wow": 3,
+  "input_format": "long",
+  "input_columns": [
+   "ISC_TA(number*)",
+   "Diff_int(number*)",
+   "Non_canonical(number*)"
+  ]
+ },
+ {
+  "seg": 130,
+  "title": "Nature 相关性矩阵(R版)",
+  "type_zh": "配对相关矩阵图",
+  "type_en": "pairwise correlation matrix",
+  "family": "heatmap",
+  "journal": "Nature",
+  "features": "7×7:对角变量名+上三角色块按r值彩虹+标数值+下三角2D核密度散点;右侧竖色标",
+  "data": "7变量相关矩阵+变量对原始数据",
+  "wow": 1,
+  "input_format": "matrix",
+  "input_columns": [
+   "row(string*)",
+   "col(string*)",
+   "value(number*)",
+   "pvalue(number)"
+  ]
+ },
+ {
+  "seg": 131,
+  "title": "Nature 相关性矩阵(Python版)",
+  "type_zh": "配对相关矩阵图(Python风格)",
+  "type_en": "pairwise correlation matrix (Python)",
+  "family": "heatmap",
+  "journal": "Nature",
+  "features": "同R版布局但子图带刻度;jet色标右侧0.1-0.8;色块边框;下三角彩色密度散点",
+  "data": "同案例132",
+  "wow": 1,
+  "input_format": "matrix",
+  "input_columns": [
+   "row(string*)",
+   "col(string*)",
+   "value(number*)",
+   "pvalue(number)"
+  ]
+ },
+ {
+  "seg": 132,
+  "title": "Nature 点线图",
+  "type_zh": "点线图(普通vs顶刊对比)",
+  "type_en": "multi-curve line-dot plot",
+  "family": "curve",
+  "journal": "Nature",
+  "features": "上:线性x多彩曲线;下:log x,16条温度曲线52K-100K彩虹着色,空心/实心点+平滑线,右列图例",
+  "data": "16温度×频率扫描数值",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "freq(number*)",
+   "value(number*)",
+   "temp(number*)"
+  ]
+ },
+ {
+  "seg": 133,
+  "title": "Cell 环形热图",
+  "type_zh": "环形热图+UpSet内嵌",
+  "type_en": "circular heatmap with UpSet inset",
+  "family": "heatmap",
+  "journal": "Cell",
+  "features": "外圈6扇区弧形热图,蓝白红(-2~2)色标;基因名放射;扇区间留白+弧形通路名;中心UpSet交集柱+点阵",
+  "data": "基因×5样本矩阵+通路分组;交集矩阵",
+  "wow": 3,
+  "input_format": "matrix",
+  "input_columns": [
+   "row(string*)",
+   "col(string*)",
+   "value(number*)",
+   "pvalue(number)"
+  ]
+ },
+ {
+  "seg": 134,
+  "title": "Cell umap图",
+  "type_zh": "UMAP+环形注释",
+  "type_en": "UMAP with annotation rings",
+  "family": "scatter",
+  "journal": "Cell",
+  "features": "散点按13细胞类型着色;外圈三层弧形注释环(Celltype/Timepoint/Condition)分段着色+类名;右侧三块图例",
+  "data": "UMAP二维坐标+三列注释",
+  "wow": 3,
+  "input_format": "xy",
+  "input_columns": [
+   "umap_1(number*)",
+   "umap_2(number*)",
+   "celltype(category*)",
+   "timepoint(category)",
+   "condition(category)"
+  ]
+ },
+ {
+  "seg": 135,
+  "title": "双曲线火山图",
+  "type_zh": "双曲线边界火山图",
+  "type_en": "volcano with hyperbolic boundary",
+  "family": "volcano",
+  "journal": "未标注",
+  "features": "黑色虚线双曲线为显著性边界;非显著黑点居中;左侧浅蓝、右侧浅紫基因集;重点基因深蓝/橙/绿/紫大点+斜体标签",
+  "data": "基因:效应值+p值+重点名单",
+  "wow": 3,
+  "input_format": "long",
+  "input_columns": [
+   "feature(string*)",
+   "log2fc(number*)",
+   "pvalue(number*)",
+   "label(string)",
+   "group(category)"
+  ]
+ },
+ {
+  "seg": 136,
+  "title": "火山图",
+  "type_zh": "火山图(框式标签)",
+  "type_en": "volcano with boxed labels",
+  "family": "volcano",
+  "journal": "未标注",
+  "features": "粉色带黑边=显著点、灰=NS;竖虚线FC阈值、横虚线P阈值;关键基因大号深紫点+白底黑边斜体标签框",
+  "data": "基因log2FC与-log10P+关键子集",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "feature(string*)",
+   "log2fc(number*)",
+   "pvalue(number*)",
+   "label(string)",
+   "group(category)"
+  ]
+ },
+ {
+  "seg": 137,
+  "title": "泳道图(python)",
+  "type_zh": "泳道图",
+  "type_en": "swimmer plot",
+  "family": "bar",
+  "journal": "未标注",
+  "features": "患者行×天数;左3列注释色条;菱形=手术、圆点=时间点、色条=治疗、三角/方块=复发、X=死亡;顶部5组图例",
+  "data": "患者事件时间线+器官计数+配对数据",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "patient(string*)",
+   "start(number*)",
+   "end(number*)",
+   "event(category*)",
+   "note_col(category)"
+  ]
+ },
+ {
+  "seg": 138,
+  "title": "配对散点箱线图",
+  "type_zh": "配对散点箱线图",
+  "type_en": "paired boxplot with scatter",
+  "family": "distribution",
+  "journal": "未标注",
+  "features": "4组箱线+抖动散点;灰色虚线连接配对个体;组间显著性横线+精确p值;x标签45°;左蓝绿系右紫红橙系",
+  "data": "配对长表:患者×4组值",
+  "wow": 1,
+  "input_format": "long",
+  "input_columns": [
+   "group(category*)",
+   "value(number*)"
+  ]
+ },
+ {
+  "seg": 139,
+  "title": "普通条形图 vs Cell 内向环形图",
+  "type_zh": "内向环形堆叠图(顶刊版)",
+  "type_en": "inward polar stacked area",
+  "family": "polar",
+  "journal": "未标注",
+  "features": "极坐标堆叠面积向圆心填充,扇区间留白,外圈灰色刻度环(0-0.8),放射组织标签+右图例22组织×4亚型",
+  "data": "22组织×4亚型丰度矩阵(0~1)",
+  "wow": 3,
+  "input_format": "long",
+  "input_columns": [
+   "axis(category*)",
+   "series(category)",
+   "value(number*)",
+   "sig(string)"
+  ]
+ },
+ {
+  "seg": 140,
+  "title": "普通UMAP vs Cell 复现图",
+  "type_zh": "UMAP标签框注释(顶刊版)",
+  "type_en": "UMAP with label boxes",
+  "family": "scatter",
+  "journal": "未标注",
+  "features": "淡彩半透明簇云;每簇中心彩色底标签框(白/黑字);无图例无网格;轴umap_1/2",
+  "data": "UMAP坐标+12类标签",
+  "wow": 2,
+  "input_format": "xy",
+  "input_columns": [
+   "umap_1(number*)",
+   "umap_2(number*)",
+   "cluster(category*)"
+  ]
+ },
+ {
+  "seg": 141,
+  "title": "UMAP (T 亚群)",
+  "type_zh": "UMAP标签框注释",
+  "type_en": "UMAP with colored label boxes",
+  "family": "scatter",
+  "journal": "未标注",
+  "features": "淡彩半透明簇云;每簇中心彩色底标签框,文字与底色对比;无图例无网格;轴umap_1(-10~10)、umap_2",
+  "data": "UMAP坐标+T亚群标签",
+  "wow": 2,
+  "input_format": "xy",
+  "input_columns": [
+   "umap_1(number*)",
+   "umap_2(number*)",
+   "cluster(category*)"
+  ]
+ },
+ {
+  "seg": 142,
+  "title": "森林图",
+  "type_zh": "森林图(表格风)",
+  "type_en": "forest plot (table style)",
+  "family": "volcano",
+  "journal": "未标注",
+  "features": "左文本列+中HR图+右P值列,交替行底纹;x=HR log刻度0.5-2.5虚线HR=1;方块+CI;右侧P值带*/**;分组花括号;彩色编号圆点图例",
+  "data": "变量HR、CI上下限、p+分组映射",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "variable(string*)",
+   "hr(number*)",
+   "lo(number*)",
+   "hi(number*)",
+   "p(number*)",
+   "group(category)"
+  ]
+ },
+ {
+  "seg": 143,
+  "title": "3D地图",
+  "type_zh": "3D双层填充地图",
+  "type_en": "3D choropleth, dual-layer",
+  "family": "tree_geo",
+  "journal": "未标注",
+  "features": "3D盒轴:底层径流多边形黄橙红,上层降雨多边形蓝色悬空;底面经纬度115-120E/29-35N;竖轴Rainfall/Runoff",
+  "data": "子流域多边形+归一化降雨径流(4组)",
+  "wow": 3,
+  "input_format": "matrix",
+  "input_columns": [
+   "lon(number*)",
+   "lat(number*)",
+   "rain(number*)",
+   "runoff(number*)",
+   "event(string*)"
+  ]
+ },
+ {
+  "seg": 144,
+  "title": "森林图",
+  "type_zh": "森林图(背景色带)",
+  "type_en": "forest plot with shaded bands",
+  "family": "volcano",
+  "journal": "未标注",
+  "features": "方块+CI,方块色按β分级(红High/浅蓝Moderate/黑Low);背景蓝(0-0.4)/粉(0.4-0.8)竖带;水平虚线分疾病组;x -0.8~1.6",
+  "data": "疾病级β、95%CI、Padj+阈值",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "variable(string*)",
+   "beta(number*)",
+   "lo(number*)",
+   "hi(number*)",
+   "padj(number*)",
+   "count(number)"
+  ]
+ },
+ {
+  "seg": 145,
+  "title": "氨基酸位点热图",
+  "type_zh": "氨基酸突变能量热图",
+  "type_en": "AA substitution heatmap + profile",
+  "family": "heatmap",
+  "journal": "未标注",
+  "features": "x=57位点,y=20氨基酸;绿-白-红能量色标(-2.0~2.94)顶部;黑虚折线+红/蓝圆点=位点平均能量(右轴);零虚线",
+  "data": "57位点×20氨基酸能量矩阵+均值",
+  "wow": 2,
+  "input_format": "matrix",
+  "input_columns": [
+   "site(string*)",
+   "aa(string*)",
+   "energy(number*)"
+  ]
+ },
+ {
+  "seg": 146,
+  "title": "火山+条形图",
+  "type_zh": "火山+GO条形复合图",
+  "type_en": "volcano + GO bar composite",
+  "family": "volcano",
+  "journal": "未标注",
+  "features": "上条形:条长=-log10(p),GO名+代表基因,左粉右蓝;下火山:红显著/蓝未达FC/灰NS,虚线阈值,基因名引线",
+  "data": "基因log2FC与p;GO条目与基因",
+  "wow": 2,
+  "input_format": "long",
+  "input_columns": [
+   "feature(string*)",
+   "log2fc(number*)",
+   "pvalue(number*)",
+   "label(string)",
+   "group(category)"
+  ]
+ }
+]

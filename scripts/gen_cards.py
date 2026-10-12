@@ -9,6 +9,7 @@
 import json
 import os
 import re
+import glob
 import argparse
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -50,12 +51,22 @@ def purposes_of(c):
 
 CARD_BODY = """**一句话**：{summary}
 
+**高级感**：{wow}
+
+**适用场景**：{scene}
+
+**有什么用**：{plain}
+
 **部件亮点**
 - 结构布局：{layout}
 - 编码方式：{encoding}
 
 **复现**：配方 `{recipe}` 可直接运行（合成数据，seed 固定）；换真实数据时保持列语义一致。
 """
+
+WOW_LABEL = {3: '★★★ 镇场级（用户要"高级/惊艳"时优先摆）',
+             2: '★★ 有设计感',
+             1: '★ 常规扎实'}
 
 
 def summarize(c):
@@ -82,12 +93,32 @@ def load_catalog(root):
     raise FileNotFoundError('catalog.json not found under ' + root)
 
 
+def load_scene(root):
+    """路由档案(reference/routing/segNNN.json)的 use_when[0] 与 plain, 缺档案返回空。"""
+    rd = os.path.join(root, 'reference', 'routing')
+    if not os.path.isdir(rd):
+        return {}, {}
+    scene, plain = {}, {}
+    for p in glob.glob(os.path.join(rd, 'seg*.json')):
+        try:
+            r = json.load(open(p, encoding='utf-8'))
+            uw = r.get('use_when') or []
+            if uw:
+                scene[int(r['seg'])] = uw[0]
+            if r.get('plain'):
+                plain[int(r['seg'])] = r['plain']
+        except Exception:
+            continue
+    return scene, plain
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--root', default=ROOT)
     args = ap.parse_args()
     root = args.root
     cat = load_catalog(root)
+    scene, plain_map = load_scene(root)
     schemas = {}
     sp = os.path.join(root, 'reference', 'data-schemas.json')
     if os.path.exists(sp):
@@ -106,11 +137,15 @@ def main():
             'data: %s' % data.replace('\n', ' '),
             'input: %s (reference/data-schemas.json #%03d)' % (schemas.get('%03d' % s, {}).get('format', 'long'), s),
             'journal: %s' % c.get('journal', ''),
+            'wow: %d' % c.get('wow', 1),
             'recipe: scripts/recipes/case_seg%03d.py' % s,
             'preview: ../case_seg%03d.png' % s,
         ]
         body = CARD_BODY.format(
             summary=summarize(c), layout=layout_of(c), encoding=encoding_of(c),
+            wow=WOW_LABEL.get(c.get('wow', 1), WOW_LABEL[1]),
+            scene=scene.get(s, '（路由档案待补：跑 reference/routing 档案流程后重生成卡片）'),
+            plain=plain_map.get(s, '（审计待补 plain 字段）'),
             recipe='scripts/recipes/case_seg%03d.py' % s)
         open(os.path.join(cards_dir, 'case_seg%03d.md' % s), 'w', encoding='utf-8').write(
             '---\n' + '\n'.join(fm) + '\n---\n\n' + body)

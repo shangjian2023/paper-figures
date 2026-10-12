@@ -5,11 +5,18 @@ purpose: [相关关系]
 data: 菌群×ARG:相关,p值,丰度
 input: matrix (reference/data-schemas.json #096)
 journal: Nature
+wow: 2
 recipe: scripts/recipes/case_seg096.py
 preview: ../case_seg096.png
 ---
 
 **一句话**：相关矩阵点图（Nature 风格）
+
+**高级感**：★★ 有设计感
+
+**适用场景**：两组实体（如 14 类菌群 × 10 类抗性基因 ARG）两两算相关，矩阵约 10×8 到 25×15，想用圆点代替色块展示
+
+**有什么用**：行是各类菌群、列是各类抗性基因，每个圆点代表一对：红蓝分正负相关、颜色深浅分强弱，圆越大这种菌越常见，带星号的结果更可靠。
 
 **部件亮点**
 - 结构布局：单面板

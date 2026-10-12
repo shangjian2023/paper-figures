@@ -24,7 +24,12 @@ def p_to_stars(p):
 
 def vs_control(groups, control=0, two_sided=True):
     """groups: list of 1D arrays; 返回 (stars_list, adjusted_p_list)。
-    优先 statsmodels 的 Dunnett(若可用), 否则 Welch t + Bonferroni。"""
+    优先 statsmodels 的 Dunnett(若可用), 否则 Welch t + Bonferroni。
+
+    索引约定(易踩坑): stars/padj 按"组下标"对齐——第 control 位是 '-' 占位符,
+    其余位依次是各组 vs 对照的结果。喂 sig_bracket(按"比较对"消费)前先剔除占位:
+        stars, padj = vs_control(data, control=0)
+        pairs = [(i, s) for i, s in enumerate(stars) if s != '-']  # (组下标, 星级)"""
     ctrl = np.asarray(groups[control], dtype=float)
     tests = [i for i in range(len(groups)) if i != control]
     try:

@@ -5,11 +5,18 @@ purpose: [相关关系]
 data: 亚群×(分数x,指数y,类型色)
 input: long (reference/data-schemas.json #061)
 journal: Cancer Cell
+wow: 1
 recipe: scripts/recipes/case_seg061.py
 preview: ../case_seg061.png
 ---
 
 **一句话**：拟合散点图（Cancer Cell 风格）
+
+**高级感**：★ 常规扎实
+
+**适用场景**：有约 20-40 个对象（细胞亚群/基因/样本）各有两个连续指标（如肿瘤富集分数×响应指数），想展示两者的相关趋势
+
+**有什么用**：每种细胞亚群画成一个点：越靠右越富集在肿瘤、越靠上治疗响应越好，一条趋势线显示富集在肿瘤的亚群响应更差，每个点都标了名字。
 
 **部件亮点**
 - 结构布局：单面板
